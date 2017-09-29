@@ -10,7 +10,7 @@ import * as KoaStaticCache from 'koa-static-cache'
 import * as mongoose from 'mongoose'
 import * as net from 'net'
 
-import {IServerAppConfig} from './IServerAppConfig'
+import { IServerAppConfig } from './IServerAppConfig'
 
 export class ServerApp {
   private _dbConn: mongoose.Connection

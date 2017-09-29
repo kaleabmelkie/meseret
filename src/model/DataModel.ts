@@ -1,6 +1,6 @@
-import {Document, Model, model, Schema, SchemaDefinition, SchemaOptions} from 'mongoose'
+import { Document, Model, model, Schema, SchemaDefinition, SchemaOptions } from 'mongoose'
 
-import {FunctionsType} from './FunctionsType'
+import { FunctionsType } from './FunctionsType'
 
 export abstract class DataModel<Paths, Methods extends FunctionsType, Statics extends FunctionsType> {
   abstract name: string
