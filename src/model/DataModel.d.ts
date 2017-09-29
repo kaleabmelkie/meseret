@@ -1,8 +1,6 @@
 /// <reference types="mongoose" />
 import { Document, Model, Schema, SchemaDefinition, SchemaOptions } from 'mongoose';
-export declare type FunctionsType = {
-    [name: string]: Function;
-};
+import { FunctionsType } from './FunctionsType';
 export declare abstract class DataModel<Paths, Methods extends FunctionsType, Statics extends FunctionsType> {
     abstract name: string;
     paths: SchemaDefinition;

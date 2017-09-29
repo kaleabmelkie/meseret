@@ -10,7 +10,7 @@ import * as KoaStaticCache from 'koa-static-cache'
 import * as mongoose from 'mongoose'
 import * as net from 'net'
 
-import { ServerAppConfig } from './ServerAppConfig'
+import {IServerAppConfig} from './IServerAppConfig'
 
 export class ServerApp {
   private _dbConn: mongoose.Connection
@@ -29,7 +29,7 @@ export class ServerApp {
     return this._servers
   }
 
-  constructor (public readonly config: ServerAppConfig) { }
+  constructor (public readonly config: IServerAppConfig) { }
 
   async start (): Promise<void> {
 
