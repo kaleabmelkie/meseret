@@ -1,3 +1,6 @@
+// model
+export * from './model/DataModel'
+
 // server
-export { ServerApp } from './server/ServerApp'
-export { ServerAppConfig } from './server/ServerAppConfig'
+export * from './server/ServerApp'
+export * from './server/ServerAppConfig'
