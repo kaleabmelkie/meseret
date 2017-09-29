@@ -3,7 +3,7 @@ import * as Koa from 'koa'
 import * as KoaRouter from 'koa-router'
 import * as mongoose from 'mongoose'
 
-export interface ServerAppConfig {
+export interface IServerAppConfig {
   name: string
 
   models?: mongoose.Model<mongoose.Document>[]

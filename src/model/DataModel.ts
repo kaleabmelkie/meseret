@@ -1,12 +1,12 @@
-import { SchemaDefinition, SchemaOptions, Schema, Model, Document, model } from 'mongoose'
+import {Document, Model, model, Schema, SchemaDefinition, SchemaOptions} from 'mongoose'
 
-export declare type Functions = { [name: string]: Function }
+export declare type FunctionsType = { [name: string]: Function }
 
-export abstract class DataModel<Paths, Methods extends Functions, Statics extends Functions> {
+export abstract class DataModel<Paths, Methods extends FunctionsType, Statics extends FunctionsType> {
   abstract name: string
   paths: SchemaDefinition // fixme: type check using `Paths` (maybe using a setter?)
   methods: Methods
-  statics: Functions
+  statics: FunctionsType
   options: SchemaOptions
 
   get schema (): Schema {
