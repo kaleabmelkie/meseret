@@ -60,8 +60,6 @@ export class ServerApp {
       return Promise.reject(err)
     }
 
-
-
     /* KOA */
 
     try {

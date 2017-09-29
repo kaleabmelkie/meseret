@@ -4,6 +4,20 @@
   "description": "meseret -- configuration-based backbone for node.js servers.",
   "main": "src/main.js",
   "typings": "src/main.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint --type-check --project ./"
+  },
+  "keywords": [
+    "kaleab",
+    "tech",
+    "meseret",
+    "configuration",
+    "backbone",
+    "node.js",
+    "server",
+    "typescript"
+  ],
   "repository": "git@gitlab.com:kaleab.tech/meseret",
   "author": "Kaleab Melkie <kaleabmelkie@gmail.com>",
   "license": "MIT",
