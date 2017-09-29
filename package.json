@@ -2,9 +2,38 @@
   "name": "meseret",
   "version": "0.0.0",
   "description": "meseret -- configuration-based backbone for node.js servers.",
-  "main": "build/main.js",
+  "main": "src/main.js",
+  "typings": "src/main.d.ts",
   "repository": "git@gitlab.com:kaleab.tech/meseret",
   "author": "Kaleab Melkie <kaleabmelkie@gmail.com>",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "devDependencies": {
+    "@types/dotenv": "^4.0.0",
+    "@types/koa": "^2.0.39",
+    "@types/koa-bodyparser": "^3.0.23",
+    "@types/koa-compress": "^2.0.6",
+    "@types/koa-json": "^2.0.16",
+    "@types/koa-logger": "^2.0.2",
+    "@types/koa-router": "^7.0.22",
+    "@types/koa-static": "^3.0.0",
+    "@types/mongoose": "^4.7.19",
+    "@types/node": "^8.0.17",
+    "tslint": "^5.5.0",
+    "tslint-config-standard": "^6.0.1",
+    "typescript": "^2.4.2"
+  },
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-compress": "^2.0.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.0.1",
+    "koa-router": "^7.2.1",
+    "koa-static": "^4.0.1",
+    "koa-static-cache": "^5.1.1",
+    "mongoose": "^4.11.4",
+    "ts-node": "^3.3.0"
+  }
 }
