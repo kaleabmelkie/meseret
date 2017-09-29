@@ -1,0 +1,10 @@
+{
+  "name": "meseret",
+  "version": "0.0.0",
+  "description": "meseret -- configuration-based backbone for node.js servers.",
+  "main": "build/main.js",
+  "repository": "git@gitlab.com:kaleab.tech/meseret",
+  "author": "Kaleab Melkie <kaleabmelkie@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
