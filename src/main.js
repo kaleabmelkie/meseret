@@ -4,6 +4,6 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 // model
-__export(require("./model/DataModel"));
+__export(require("./model/ModelFactory"));
 // server
 __export(require("./server/ServerApp"));

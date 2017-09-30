@@ -1,5 +1,6 @@
 // model
-export * from './model/DataModel'
+export * from './model/ModelFactory'
+export * from './model/FunctionsType'
 
 // server
 export * from './server/ServerApp'

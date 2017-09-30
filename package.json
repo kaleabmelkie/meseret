@@ -6,7 +6,8 @@
   "typings": "src/main.d.ts",
   "scripts": {
     "build": "tsc",
-    "lint": "tslint --type-check --project ./"
+    "lint": "tslint --type-check --project ./",
+    "test": "tsc && node ./test/test.js"
   },
   "keywords": [
     "kaleab",
