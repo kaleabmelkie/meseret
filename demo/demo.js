@@ -4,7 +4,7 @@ const path_1 = require("path");
 const main_1 = require("../src/main");
 const SampleModel_1 = require("./models/SampleModel");
 const SampleRouter_1 = require("./routes/SampleRouter");
-const config = {
+exports.app = new main_1.ServerApp({
     name: 'Test',
     models: [
         SampleModel_1.SampleModel
@@ -13,14 +13,15 @@ const config = {
     httpServers: [
         { path: 'localhost', port: 1414 }
     ],
-    publicDirs: [path_1.join(__dirname, './public/')],
+    publicDirs: [
+        path_1.join(__dirname, './public/')
+    ],
     middleware: [],
     routes: [
         SampleRouter_1.SampleRouter.routes(), SampleRouter_1.SampleRouter.allowedMethods()
     ]
-};
-const app = new main_1.ServerApp(config);
-app.start()
+});
+exports.app.start()
     .then(() => {
     console.log('Demo Test Passing');
 })

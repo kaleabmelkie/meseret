@@ -40,7 +40,7 @@ export class ServerApp {
 
       if (this.config.mongoUris) { // if mongoUris in config...
         // set mongoose's promise library
-        (mongoose as any).Promise = Promise
+        (mongoose as any).Promise = global.Promise
 
         // connect to db
         try {

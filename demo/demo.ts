@@ -1,12 +1,12 @@
 import { join } from 'path'
 
-import { ServerApp, IServerAppConfig } from '../src/main'
+import { ServerApp } from '../src/main'
 
 import { SampleModel } from './models/SampleModel'
 
 import { SampleRouter } from './routes/SampleRouter'
 
-const config: IServerAppConfig = {
+export const app = new ServerApp({
   name: 'Test',
 
   models: [
@@ -19,16 +19,17 @@ const config: IServerAppConfig = {
     { path: 'localhost', port: 1414 }
   ],
 
-  publicDirs: [join(__dirname, './public/')],
+  publicDirs: [
+    join(__dirname, './public/')
+  ],
 
   middleware: [],
 
   routes: [
     SampleRouter.routes(), SampleRouter.allowedMethods()
   ]
-}
+})
 
-const app = new ServerApp(config)
 app.start()
   .then(() => {
     console.log('Demo Test Passing')

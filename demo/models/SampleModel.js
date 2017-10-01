@@ -13,11 +13,13 @@ class SampleModelFactory extends main_1.ModelFactory {
         this.methods = {
             method1() {
                 // code
+                // (this as DocumentType) is available for other methods
             }
         };
         this.statics = {
             static1() {
                 // code
+                // (this as ModelType) is available for other static functions
             }
         };
     }

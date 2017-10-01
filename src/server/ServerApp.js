@@ -30,7 +30,7 @@ class ServerApp {
             // mongoose models are automatically created at the origins of this.config.model
             if (this.config.mongoUris) {
                 // set mongoose's promise library
-                mongoose.Promise = Promise;
+                mongoose.Promise = global.Promise;
                 // connect to db
                 try {
                     await mongoose.connect(this.config.mongoUris, { useMongoClient: true }).then();
