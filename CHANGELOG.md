@@ -1,5 +1,8 @@
 # meseret change log
 
+## v0.0.3
+- enable 'index.html' as the default load file when hosting public directories
+
 ## v0.0.2
 - Added this [CHANGELOG](CHANGELOG.md) to the project.
 - Also, added a [README](README.md).
