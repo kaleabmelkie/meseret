@@ -1,5 +1,6 @@
 // model
 export * from './model/ModelFactory'
+export * from './model/IModelFactoryConfig'
 export * from './model/FunctionsType'
 
 // server

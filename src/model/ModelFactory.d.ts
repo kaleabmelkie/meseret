@@ -1,15 +1,15 @@
 /// <reference types="mongoose" />
 import { Document, Model, Schema, SchemaDefinition, SchemaOptions } from 'mongoose';
 import { FunctionsType } from './FunctionsType';
-export declare abstract class ModelFactory<Paths, Methods extends FunctionsType, Statics extends FunctionsType> {
-    abstract name: string;
-    paths: SchemaDefinition;
-    methods: Methods;
-    statics: Statics;
-    options: SchemaOptions;
+import { IModelFactoryConfig } from './IModelFactoryConfig';
+export declare class ModelFactory<IPaths, ISchemaMethods extends FunctionsType, ISchemaStatics extends FunctionsType> {
+    private _config;
     private _schema;
     private _model;
+    constructor(_config: IModelFactoryConfig<IPaths, ISchemaMethods, ISchemaStatics>);
     readonly schema: Schema;
-    readonly model: Model<Document & Paths & Methods> & Statics;
+    readonly model: Model<Document & IPaths & ISchemaMethods> & ISchemaStatics;
+    doc(that: any): Document & IPaths & ISchemaMethods;
+    mod(that: any): Model<Document & IPaths & ISchemaMethods> & ISchemaStatics;
 }
-export { SchemaDefinition, SchemaOptions, Document, Model };
+export { Document, Model, Schema, SchemaDefinition, SchemaOptions };

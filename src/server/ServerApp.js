@@ -64,7 +64,7 @@ class ServerApp {
             if (this.config.publicDirs) {
                 for (const dir of this.config.publicDirs) {
                     this._app.use(KoaStaticCache(dir, { cacheControl: 'private' }));
-                    this._app.use(KoaStatic(dir, { index: false, gzip: true }));
+                    this._app.use(KoaStatic(dir, { gzip: true }));
                 }
             }
             // use provided middleware

@@ -8,5 +8,5 @@ const router = new Router({
 router.get('/', async (ctx, next) => {
     ctx.body = 'Hello, world!';
     ctx.body += `\nThere are ${(await SampleModel_1.SampleModel.find()).length} documents modeled as 'Sample'`;
-})
+});
 exports.SampleRouter = router;

@@ -27,4 +27,4 @@ exports.app.start()
 })
     .catch((err) => {
     console.error(`Demo Test Failed: ${err}`);
-})
+});

@@ -1,43 +1,43 @@
-import { Document, FunctionsType, Model, ModelFactory } from '../../src/main'
+import { FunctionsType, ModelFactory } from '../../src/main'
 
-export interface ISampleModelPaths {
+export interface ISamplePaths {
   path1: string
   path2?: string
 }
 
-export interface ISampleModelMethods extends FunctionsType {
+export interface ISampleSchemaMethods extends FunctionsType {
   method1: () => void
 }
 
-export interface ISampleModelStatics extends FunctionsType {
+export interface ISampleSchemaStatics extends FunctionsType {
   static1: () => void
 }
 
-// helpers
-declare type DocumentType = Document & ISampleModelPaths & ISampleModelMethods
-declare type ModelType = Model<DocumentType> & ISampleModelStatics
+const factory = new ModelFactory<ISamplePaths, ISampleSchemaMethods, ISampleSchemaStatics>({
+  name: 'Sample',
 
-export class SampleModelFactory extends ModelFactory<ISampleModelPaths, ISampleModelMethods, ISampleModelStatics> {
-  readonly name = 'Sample'
-
-  readonly paths = {
+  paths: {
     path1: { type: String, required: true },
     path2: String
-  }
+  },
 
-  readonly methods = {
+  methods: {
+
     method1 (): void {
       // code
-      // (this as DocumentType) is available for other methods
+      // factory.doc(this) is available
     }
-  }
 
-  readonly statics = {
+  },
+
+  statics: {
+
     static1 (): void {
       // code
-      // (this as ModelType) is available for other static functions
+      // factory.mod(this) is available for other static functions
     }
-  }
-}
 
-export const SampleModel = new SampleModelFactory().model
+  }
+})
+
+export const SampleModel = factory.model
