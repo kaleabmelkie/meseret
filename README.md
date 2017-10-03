@@ -79,7 +79,7 @@ Besides `name`, `mongoUris`, `publicDirs` and `httpServers`, there are many more
 
 More documentation and guide is coming soon in future releases (including on how to use the mongoose `ModelFactory` for an IDE auto-complete support of the models in TypeScript).  
 
-Meanwhile, please do see and run the demo:
+Meanwhile, the `demo` folder contains a simple "Task Organizer" application. Please do see and run the demo:
 ```bash
 npm test
 ```

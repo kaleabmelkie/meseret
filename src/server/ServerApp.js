@@ -36,7 +36,7 @@ class ServerApp {
                     await mongoose.connect(this.config.mongoUris, { useMongoClient: true }).then();
                     // todo: feature request: auth (user & pass) for connecting to db
                     this._dbConn = mongoose.connection;
-                    console.log(`\nDatabase connected to ${this.config.mongoUris}.`);
+                    console.log(`Database connected to ${this.config.mongoUris}.`);
                 }
                 catch (err) {
                     err.message = `Database connection error: ${err.message}`;
@@ -84,7 +84,7 @@ class ServerApp {
                             return Promise.reject(err);
                         }
                         const address = server.address();
-                        console.log(`\nListening at https://${address.address}:${address.port}/ in ${this._app.env} mode.`);
+                        console.log(`Listening at https://${address.address}:${address.port}/ in ${this._app.env} mode.`);
                     });
                     this._servers.push(server);
                 }
@@ -98,7 +98,7 @@ class ServerApp {
                             return Promise.reject(err);
                         }
                         const address = server.address();
-                        console.log(`\nListening at http://${address.address}:${address.port}/ in ${this._app.env} mode.`);
+                        console.log(`Listening at http://${address.address}:${address.port}/ in ${this._app.env} mode.`);
                     });
                     this._servers.push(server);
                 }

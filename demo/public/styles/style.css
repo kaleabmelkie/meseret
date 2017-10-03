@@ -1,0 +1,137 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: rgb(245,245,245);
+  color: rgb(45,45,45);
+}
+
+body {
+  margin: 0 auto;
+  padding: 40px 20px;
+
+  overflow-y: scroll;
+
+  max-width: 560px;
+
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+  outline: 0;
+
+  font: inherit;
+  text-decoration: none;
+
+  background-color: transparent;
+  color: rgb(0,70,140);
+
+  transition: color 140ms;
+}
+a:focus {
+  text-decoration: none;
+
+  color: rgb(120,140,200);
+}
+a:hover {
+  text-decoration: underline;
+
+  color: rgb(90,140,200);
+}
+a:active {
+  text-decoration: underline;
+
+  color: rgb(0,0,0);
+}
+
+button {
+  margin: 0;
+  padding: 5px 10px;
+
+  border: 0;
+  border-radius: 3px;
+  outline: 0;
+
+  font: inherit;
+
+  background-color: transparent;
+  color: rgb(0,70,140);
+
+  transition: background-color 140ms;
+}
+button:focus {
+  background-color: rgba(180,200,220,0.5);
+}
+button:hover {
+  background-color: rgba(180,200,220,0.3);
+}
+button:active {
+  background-color: rgb(180,200,220);
+}
+
+#top {
+  padding: 0 0 20px;
+}
+
+#tasks-container {
+  padding: 0 0 20px;
+}
+
+.tasks {
+  margin: 0 0 20px;
+
+  overflow: hidden;
+
+  border-radius: 3px;
+
+  background-color: rgb(255,255,255);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.tasks > header {
+  margin: 0;
+  padding: 20px 20px 0;
+
+  font-size: 20px;
+  font-weight: 400;
+
+  color: rgb(0,70,140);
+}
+.tasks > article {
+  padding: 10px 20px 10px;
+}
+.tasks > footer {
+  padding: 5px;
+
+  text-align: right;
+
+  background-color: rgb(250,250,250);
+}
+.tasks > footer > button {
+  margin: 0px 0px 0px 5px;
+}
+
+#bottom {
+  text-align: right;
+}
+
+#add-btn {
+  padding: 20px;
+
+  font-size: 20px;
+  font-weight: 300;
+}
+
+#footer {
+  padding: 40px 0 20px;
+  font-size: 12px;
+  text-align: left;
+
+  color: rgb(90,90,90);
+}

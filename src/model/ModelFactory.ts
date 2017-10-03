@@ -8,7 +8,7 @@ export class ModelFactory<IPaths, ISchemaMethods extends FunctionsType, ISchemaS
   private _schema: Schema
   private _model: Model<Document & IPaths & ISchemaMethods> & ISchemaStatics
 
-  constructor (private _config: IModelFactoryConfig<IPaths, ISchemaMethods, ISchemaStatics>) { }
+  constructor (private _config: IModelFactoryConfig<ISchemaMethods, ISchemaStatics>) { }
 
   get schema (): Schema {
     if (!this._schema) {

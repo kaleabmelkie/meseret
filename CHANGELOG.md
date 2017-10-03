@@ -1,5 +1,9 @@
 # meseret change log
 
+## v0.1.0
+- new and better end-to-end demo app (named "Task Organizer")
+- BREAKING CHANGE: improve ModelFatory (remove its abstract constraint)
+
 ## v0.0.3
 - enable 'index.html' as the default load file when hosting public directories
 

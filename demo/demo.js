@@ -1,30 +1,36 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const main_1 = require("../src/main"); // replace '../src/main' by 'meseret' for your app
 const path_1 = require("path");
-const main_1 = require("../src/main");
-const SampleModel_1 = require("./models/SampleModel");
-const SampleRouter_1 = require("./routes/SampleRouter");
-exports.app = new main_1.ServerApp({
-    name: 'Test',
+const task_model_1 = require("./models/task.model");
+const tasks_router_1 = require("./routers/api/tasks.router");
+// start server app
+new main_1.ServerApp({
+    // name of the app
+    name: 'Task Organizer',
+    // mongoose models
     models: [
-        SampleModel_1.SampleModel
+        task_model_1.TaskModel
     ],
-    mongoUris: 'mongodb://localhost:27017/meseret-demo',
+    // mongodb connection
+    mongoUris: 'mongodb://localhost:27017/meseret-demo_task-organizer',
+    // servers to create
     httpServers: [
-        { path: 'localhost', port: 1414 }
+        { path: 'localhost', port: 80 },
+        { path: 'localhost', port: 1414 },
+        { path: 'localhost', port: 3000 },
+        { path: 'localhost', port: 8080 }
     ],
+    // directories to host
     publicDirs: [
         path_1.join(__dirname, './public/')
     ],
+    // extra Koa-middleware to use
     middleware: [],
+    // Koa-routers (as middleware)
     routes: [
-        SampleRouter_1.SampleRouter.routes(), SampleRouter_1.SampleRouter.allowedMethods()
+        tasks_router_1.TasksRouter.routes(), tasks_router_1.TasksRouter.allowedMethods()
     ]
-});
-exports.app.start()
-    .then(() => {
-    console.log('Demo Test Passing');
-})
-    .catch((err) => {
-    console.error(`Demo Test Failed: ${err}`);
-});
+}).start() // start the app (returns a promise)
+    .then(() => { console.log('Task Organizer Starting...'); })
+    .catch((err) => { console.error(`Start Failed: ${err}`); });

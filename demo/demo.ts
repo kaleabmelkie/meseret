@@ -1,39 +1,42 @@
+import { ServerApp } from '../src/main' // replace '../src/main' by 'meseret' for your app
 import { join } from 'path'
 
-import { ServerApp } from '../src/main'
+import { TaskModel } from './models/task.model'
+import { TasksRouter } from './routers/api/tasks.router'
 
-import { SampleModel } from './models/SampleModel'
+// start server app
+new ServerApp({
+  // name of the app
+  name: 'Task Organizer',
 
-import { SampleRouter } from './routes/SampleRouter'
-
-export const app = new ServerApp({
-  name: 'Test',
-
+  // mongoose models
   models: [
-    SampleModel
+    TaskModel
   ],
 
-  mongoUris: 'mongodb://localhost:27017/meseret-demo',
+  // mongodb connection
+  mongoUris: 'mongodb://localhost:27017/meseret-demo_task-organizer',
 
+  // servers to create
   httpServers: [
-    { path: 'localhost', port: 1414 }
+    { path: 'localhost', port: 80 },
+    { path: 'localhost', port: 1414 },
+    { path: 'localhost', port: 3000 },
+    { path: 'localhost', port: 8080 }
   ],
 
+  // directories to host
   publicDirs: [
     join(__dirname, './public/')
   ],
 
+  // extra Koa-middleware to use
   middleware: [],
 
+  // Koa-routers (as middleware)
   routes: [
-    SampleRouter.routes(), SampleRouter.allowedMethods()
+    TasksRouter.routes(), TasksRouter.allowedMethods()
   ]
-})
-
-app.start()
-  .then(() => {
-    console.log('Demo Test Passing')
-  })
-  .catch((err: any) => {
-    console.error(`Demo Test Failed: ${ err }`)
-  })
+}).start() // start the app (returns a promise)
+  .then(() => { console.log('Task Organizer Starting...') })
+  .catch((err: any) => { console.error(`Start Failed: ${ err }`) })
