@@ -13,13 +13,10 @@ new main_1.ServerApp({
         task_model_1.TaskModel
     ],
     // mongodb connection
-    mongoUris: 'mongodb://localhost:27017/meseret-demo_task-organizer',
+    mongoUris: process.env['MONGODB_URI'] || 'mongodb://localhost:27017/meseret-demo_task-organizer',
     // servers to create
     httpServers: [
-        { path: 'localhost', port: 80 },
-        { path: 'localhost', port: 1414 },
-        { path: 'localhost', port: 3000 },
-        { path: 'localhost', port: 8080 }
+        { path: process.env['PATH'] || 'localhost', port: Number.parseInt(String(process.env['PORT'])) || 80 }
     ],
     // directories to host
     publicDirs: [

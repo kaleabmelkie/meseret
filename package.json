@@ -8,7 +8,7 @@
     "build": "tsc",
     "lint": "tslint --type-check --project ./",
     "lint:fix": "tslint --type-check --project ./ --fix",
-    "test": "tsc && node ./demo/demo.js"
+    "start": "tsc && node ./demo/demo.js"
   },
   "keywords": [
     "kaleab",

@@ -81,11 +81,11 @@ More documentation and guide is coming soon in future releases (including on how
 
 Meanwhile, the `demo` folder contains a simple "Task Organizer" application. Please do see and run the demo:
 ```bash
-npm test
+npm start
 ```
 or
 ```bash
-yarn test
+yarn start
 ```
 or
 ```bash
