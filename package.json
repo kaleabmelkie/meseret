@@ -5,10 +5,10 @@
   "main": "src/main.js",
   "typings": "src/main.d.ts",
   "scripts": {
-    "build": "tsc",
-    "lint": "tslint --type-check --project ./",
-    "lint:fix": "tslint --type-check --project ./ --fix",
-    "start": "tsc && node ./demo/demo.js"
+    "build": "./node_modules/.bin/tsc",
+    "lint": "./node_modules/.bin/tslint --type-check --project ./",
+    "lint:fix": "./node_modules/.bin/tslint --type-check --project ./ --fix",
+    "start": "./node_modules/.bin/tsc && node ./demo/demo.js"
   },
   "keywords": [
     "kaleab",
