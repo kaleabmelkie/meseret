@@ -15,7 +15,7 @@ new ServerApp({
   ],
 
   // mongodb connection
-  mongoUris: process.env['MONGODB_URI'] || 'mongodb://localhost:27017/meseret-demo_task-organizer',
+  mongoUris: process.env['PROD_MONGODB'] || 'mongodb://localhost:27017/meseret-demo_task-organizer',
 
   // servers to create
   httpServers: [
