@@ -12,12 +12,12 @@ export interface IServerAppConfig {
 
   httpsServers?: {
     opts: https.ServerOptions
-    path: string,
+    path?: string,
     port: number
   }[]
 
   httpServers?: {
-    path: string,
+    path?: string,
     port: number
   }[]
 

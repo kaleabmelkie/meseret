@@ -7,3 +7,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./model/ModelFactory"));
 // server
 __export(require("./server/ServerApp"));
+//# sourceMappingURL=main.js.map

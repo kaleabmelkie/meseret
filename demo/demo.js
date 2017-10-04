@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const main_1 = require("../src/main"); // replace '../src/main' by 'meseret' for your app
-const path_1 = require("path");
-const task_model_1 = require("./models/task.model");
-const tasks_router_1 = require("./routers/api/tasks.router");
+var main_1 = require("../src/main"); // replace '../src/main' by 'meseret' for your app
+var path_1 = require("path");
+var task_model_1 = require("./models/task.model");
+var tasks_router_1 = require("./routers/api/tasks.router");
 // start server app
 new main_1.ServerApp({
     // name of the app
@@ -13,10 +13,10 @@ new main_1.ServerApp({
         task_model_1.TaskModel
     ],
     // mongodb connection
-    mongoUris: process.env['MONGODB_URI'] || 'mongodb://localhost:27017/meseret-demo_task-organizer',
+    mongoUris: process.env['PROD_MONGODB'] || 'mongodb://localhost:27017/meseret-demo_task-organizer',
     // servers to create
     httpServers: [
-        { path: process.env['PATH'] || 'localhost', port: Number.parseInt(String(process.env['PORT'])) || 80 }
+        { port: Number.parseInt(String(process.env['PORT'])) || 80 }
     ],
     // directories to host
     publicDirs: [
@@ -29,5 +29,6 @@ new main_1.ServerApp({
         tasks_router_1.TasksRouter.routes(), tasks_router_1.TasksRouter.allowedMethods()
     ]
 }).start() // start the app (returns a promise)
-    .then(() => { console.log('Task Organizer Starting...'); })
-    .catch((err) => { console.error(`Start Failed: ${err}`); });
+    .then(function () { console.log('Task Organizer Starting...'); })
+    .catch(function (err) { console.error("Start Failed: " + err); });
+//# sourceMappingURL=demo.js.map

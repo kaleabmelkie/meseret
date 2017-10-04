@@ -1,31 +1,41 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = require("mongoose");
+var mongoose_1 = require("mongoose");
 exports.Model = mongoose_1.Model;
 exports.Schema = mongoose_1.Schema;
-class ModelFactory {
-    constructor(_config) {
+var ModelFactory = /** @class */ (function () {
+    function ModelFactory(_config) {
         this._config = _config;
     }
-    get schema() {
-        if (!this._schema) {
-            this._schema = new mongoose_1.Schema(this._config.paths, this._config.options);
-            this._schema.method(this._config.methods || {});
-            this._schema.static(this._config.statics || {});
-        }
-        return this._schema;
-    }
-    get model() {
-        if (!this._model) {
-            this._model = mongoose_1.model(this._config.name, this.schema);
-        }
-        return this._model;
-    }
-    doc(that) {
+    Object.defineProperty(ModelFactory.prototype, "schema", {
+        get: function () {
+            if (!this._schema) {
+                this._schema = new mongoose_1.Schema(this._config.paths, this._config.options);
+                this._schema.method(this._config.methods || {});
+                this._schema.static(this._config.statics || {});
+            }
+            return this._schema;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ModelFactory.prototype, "model", {
+        get: function () {
+            if (!this._model) {
+                this._model = mongoose_1.model(this._config.name, this.schema);
+            }
+            return this._model;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ModelFactory.prototype.doc = function (that) {
         return that;
-    }
-    mod(that) {
+    };
+    ModelFactory.prototype.mod = function (that) {
         return that;
-    }
-}
+    };
+    return ModelFactory;
+}());
 exports.ModelFactory = ModelFactory;
+//# sourceMappingURL=ModelFactory.js.map

@@ -19,7 +19,7 @@ new ServerApp({
 
   // servers to create
   httpServers: [
-    { path: process.env['PATH'] || 'localhost', port: Number.parseInt(String(process.env['PORT'])) || 80 }
+    { port: Number.parseInt(String(process.env['PORT'])) || 80 }
   ],
 
   // directories to host
