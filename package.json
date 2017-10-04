@@ -8,7 +8,7 @@
     "build": "./node_modules/.bin/tsc",
     "lint": "./node_modules/.bin/tslint --type-check --project ./",
     "lint:fix": "./node_modules/.bin/tslint --type-check --project ./ --fix",
-    "start": "./node_modules/.bin/tsc && node ./demo/demo.js"
+    "start": "node ./demo/demo.js"
   },
   "keywords": [
     "kaleab",
