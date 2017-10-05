@@ -75,7 +75,7 @@ export class ServerApp {
       // use provided public directories (with static cache)
       if (this.config.publicDirs) {
         for (const dir of this.config.publicDirs) {
-          this._app.use(KoaStaticCache(dir, { cacheControl: 'private' }))
+          this._app.use(KoaStaticCache(dir, { cacheControl: this.config.cacheControl || 'private' }))
           this._app.use(KoaStatic(dir, { gzip: true }))
         }
       }

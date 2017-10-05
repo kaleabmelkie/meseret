@@ -1,8 +1,9 @@
 # meseret change log
 
 ## v0.1.0
+- BREAKING: improve ModelFatory (remove its abstract constraint)
+- add a config option for cache control type
 - new and better end-to-end demo app (named "Task Organizer")
-- BREAKING CHANGE: improve ModelFatory (remove its abstract constraint)
 
 ## v0.0.3
 - enable 'index.html' as the default load file when hosting public directories

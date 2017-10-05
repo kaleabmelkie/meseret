@@ -134,7 +134,7 @@ var ServerApp = /** @class */ (function () {
                                 try {
                                     for (_a = __values(this.config.publicDirs), _b = _a.next(); !_b.done; _b = _a.next()) {
                                         dir = _b.value;
-                                        this._app.use(KoaStaticCache(dir, { cacheControl: 'private' }));
+                                        this._app.use(KoaStaticCache(dir, { cacheControl: this.config.cacheControl || 'private' }));
                                         this._app.use(KoaStatic(dir, { gzip: true }));
                                     }
                                 }

@@ -37,6 +37,7 @@
     "@types/koa-static": "^3.0.1",
     "@types/mongoose": "^4.7.23",
     "@types/node": "^8.0.31",
+    "@types/socket.io": "^1.4.31",
     "tslint": "^5.7.0",
     "tslint-config-standard": "^6.0.1",
     "typescript": "^2.5.3"
@@ -50,6 +51,7 @@
     "koa-router": "^7.2.1",
     "koa-static": "^4.0.1",
     "koa-static-cache": "^5.1.1",
-    "mongoose": "^4.11.14"
+    "mongoose": "^4.11.14",
+    "socket.io": "^2.0.3"
   }
 }
