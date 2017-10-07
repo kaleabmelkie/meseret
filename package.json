@@ -7,25 +7,36 @@
   "scripts": {
     "build": "./node_modules/.bin/tsc",
     "lint": "./node_modules/.bin/tslint --type-check --project ./",
-    "lint:fix": "./node_modules/.bin/tslint --type-check --project ./ --fix",
+    "fix": "./node_modules/.bin/tslint --type-check --project ./ --fix",
+    "dev": "./node_modules/.bin/nodemon ./demo/demo.js",
     "start": "node ./demo/demo.js"
   },
   "keywords": [
-    "kaleab",
-    "tech",
     "meseret",
+    "base",
     "configuration",
     "backbone",
     "node.js",
     "server",
-    "typescript"
+    "api",
+    "router",
+    "websocket",
+    "database",
+    "typescript",
+    "koa",
+    "koa-router",
+    "socket.io",
+    "mongodb",
+    "mongoose",
+    "kaleab.tech"
   ],
   "repository": "git@gitlab.com:kaleab.tech/meseret",
   "author": "Kaleab Melkie <kaleabmelkie@gmail.com>",
   "license": "MIT",
   "private": false,
   "engines": {
-    "node": "^8"
+    "node": "^8",
+    "yarn": "^1"
   },
   "devDependencies": {
     "@types/koa": "^2.0.39",
@@ -38,6 +49,7 @@
     "@types/mongoose": "^4.7.23",
     "@types/node": "^8.0.31",
     "@types/socket.io": "^1.4.31",
+    "nodemon": "^1.12.1",
     "tslint": "^5.7.0",
     "tslint-config-standard": "^6.0.1",
     "typescript": "^2.5.3"
