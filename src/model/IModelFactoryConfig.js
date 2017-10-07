@@ -1,3 +1,3 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=IModelFactoryConfig.js.map
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiSU1vZGVsRmFjdG9yeUNvbmZpZy5qcyIsInNvdXJjZVJvb3QiOiJDOi9Db2RlL0BrYWxlYWIudGVjaC9tZXNlcmV0LyIsInNvdXJjZXMiOlsic3JjL21vZGVsL0lNb2RlbEZhY3RvcnlDb25maWcudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiJ9

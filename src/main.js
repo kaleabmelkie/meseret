@@ -1,10 +1,6 @@
 "use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
 Object.defineProperty(exports, "__esModule", { value: true });
-// model
-__export(require("./model/ModelFactory"));
-// server
-__export(require("./server/ServerApp"));
-//# sourceMappingURL=main.js.map
+var tslib_1 = require("tslib");
+tslib_1.__exportStar(require("./model/ModelFactory"), exports);
+tslib_1.__exportStar(require("./server/ServerApp"), exports);
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5qcyIsInNvdXJjZVJvb3QiOiJDOi9Db2RlL0BrYWxlYWIudGVjaC9tZXNlcmV0LyIsInNvdXJjZXMiOlsic3JjL21haW4udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBQ0EsK0RBQW9DO0FBS3BDLDZEQUFrQyJ9

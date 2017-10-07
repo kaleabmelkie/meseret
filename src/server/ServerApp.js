@@ -1,50 +1,6 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var __values = (this && this.__values) || function (o) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
-    if (m) return m.call(o);
-    return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
 var http = require("http");
 var https = require("https");
 var Koa = require("koa");
@@ -55,7 +11,7 @@ var KoaJson = require("koa-json");
 var KoaStatic = require("koa-static");
 var KoaStaticCache = require("koa-static-cache");
 var mongoose = require("mongoose");
-var ServerApp = /** @class */ (function () {
+var ServerApp = (function () {
     function ServerApp(config) {
         this.config = config;
         this._servers = [];
@@ -82,57 +38,49 @@ var ServerApp = /** @class */ (function () {
         configurable: true
     });
     ServerApp.prototype.start = function () {
-        return __awaiter(this, void 0, void 0, function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
             var _this = this;
             var err_1, err_2, _a, _b, dir, _c, _d, m, _e, _f, r, _loop_1, this_1, _g, _h, s, _loop_2, this_2, _j, _k, s, e_1, _l, e_2, _m, e_3, _o, e_4, _p, e_5, _q;
-            return __generator(this, function (_r) {
+            return tslib_1.__generator(this, function (_r) {
                 switch (_r.label) {
                     case 0:
                         _r.trys.push([0, 7, , 8]);
-                        if (!this.config.mongoUris) return [3 /*break*/, 5];
-                        // set mongoose's promise library
+                        if (!this.config.mongoUris) return [3, 5];
                         mongoose.Promise = global.Promise;
                         _r.label = 1;
                     case 1:
                         _r.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, mongoose.connect(this.config.mongoUris, { useMongoClient: true }).then()
-                            // todo: feature request: auth (user & pass) for connecting to db
-                        ];
+                        return [4, mongoose.connect(this.config.mongoUris, { useMongoClient: true }).then()];
                     case 2:
                         _r.sent();
-                        // todo: feature request: auth (user & pass) for connecting to db
                         this._dbConn = mongoose.connection;
                         console.log("Database connected to " + this.config.mongoUris + ".");
-                        return [3 /*break*/, 4];
+                        return [3, 4];
                     case 3:
                         err_1 = _r.sent();
                         err_1.message = "Database connection error: " + err_1.message;
-                        return [2 /*return*/, Promise.reject(err_1)];
-                    case 4: return [3 /*break*/, 6];
+                        return [2, Promise.reject(err_1)];
+                    case 4: return [3, 6];
                     case 5:
                         if (this.config.models) {
-                            return [2 /*return*/, Promise.reject(new Error('No MongoDB URI to load the provided models on.'))];
+                            return [2, Promise.reject(new Error('No MongoDB URI to load the provided models on.'))];
                         }
                         _r.label = 6;
-                    case 6: return [3 /*break*/, 8];
+                    case 6: return [3, 8];
                     case 7:
                         err_2 = _r.sent();
                         err_2.message = "Mongoose setup error: " + err_2.message;
-                        return [2 /*return*/, Promise.reject(err_2)];
+                        return [2, Promise.reject(err_2)];
                     case 8:
-                        /* KOA */
                         try {
-                            // construct koa app
                             this._app = new Koa();
-                            // use the essential koa middleware
                             this._app.use(KoaLogger());
                             this._app.use(KoaCompress({ level: 9, memLevel: 9, threshold: 0 }));
                             this._app.use(KoaBodyparser({ enableTypes: ['json', 'form', 'text'] }));
                             this._app.use(KoaJson({ pretty: this._app.env === 'development' }));
-                            // use provided public directories (with static cache)
                             if (this.config.publicDirs) {
                                 try {
-                                    for (_a = __values(this.config.publicDirs), _b = _a.next(); !_b.done; _b = _a.next()) {
+                                    for (_a = tslib_1.__values(this.config.publicDirs), _b = _a.next(); !_b.done; _b = _a.next()) {
                                         dir = _b.value;
                                         this._app.use(KoaStaticCache(dir, { cacheControl: this.config.cacheControl || 'private' }));
                                         this._app.use(KoaStatic(dir, { gzip: true }));
@@ -146,10 +94,9 @@ var ServerApp = /** @class */ (function () {
                                     finally { if (e_1) throw e_1.error; }
                                 }
                             }
-                            // use provided middleware
                             if (this.config.middleware)
                                 try {
-                                    for (_c = __values(this.config.middleware), _d = _c.next(); !_d.done; _d = _c.next()) {
+                                    for (_c = tslib_1.__values(this.config.middleware), _d = _c.next(); !_d.done; _d = _c.next()) {
                                         m = _d.value;
                                         this._app.use(m);
                                     }
@@ -161,10 +108,9 @@ var ServerApp = /** @class */ (function () {
                                     }
                                     finally { if (e_2) throw e_2.error; }
                                 }
-                            // use provided routes
                             if (this.config.routes)
                                 try {
-                                    for (_e = __values(this.config.routes), _f = _e.next(); !_f.done; _f = _e.next()) {
+                                    for (_e = tslib_1.__values(this.config.routes), _f = _e.next(); !_f.done; _f = _e.next()) {
                                         r = _f.value;
                                         this._app.use(r);
                                     }
@@ -176,7 +122,6 @@ var ServerApp = /** @class */ (function () {
                                     }
                                     finally { if (e_3) throw e_3.error; }
                                 }
-                            // create and listen on all https _servers
                             if (this.config.httpsServers) {
                                 _loop_1 = function (s) {
                                     var server = https.createServer(s.opts, this_1._app.callback()).listen(s.port, s.path, function (err) {
@@ -191,7 +136,7 @@ var ServerApp = /** @class */ (function () {
                                 };
                                 this_1 = this;
                                 try {
-                                    for (_g = __values(this.config.httpsServers), _h = _g.next(); !_h.done; _h = _g.next()) {
+                                    for (_g = tslib_1.__values(this.config.httpsServers), _h = _g.next(); !_h.done; _h = _g.next()) {
                                         s = _h.value;
                                         _loop_1(s);
                                     }
@@ -204,7 +149,6 @@ var ServerApp = /** @class */ (function () {
                                     finally { if (e_4) throw e_4.error; }
                                 }
                             }
-                            // create and listen on all http _servers
                             if (this.config.httpServers) {
                                 _loop_2 = function (s) {
                                     var server = http.createServer(this_2._app.callback()).listen(s.port, s.path, function (err) {
@@ -219,7 +163,7 @@ var ServerApp = /** @class */ (function () {
                                 };
                                 this_2 = this;
                                 try {
-                                    for (_j = __values(this.config.httpServers), _k = _j.next(); !_k.done; _k = _j.next()) {
+                                    for (_j = tslib_1.__values(this.config.httpServers), _k = _j.next(); !_k.done; _k = _j.next()) {
                                         s = _k.value;
                                         _loop_2(s);
                                     }
@@ -232,13 +176,13 @@ var ServerApp = /** @class */ (function () {
                                     finally { if (e_5) throw e_5.error; }
                                 }
                             }
-                            return [2 /*return*/, Promise.resolve()];
+                            return [2, Promise.resolve()];
                         }
                         catch (err) {
                             err.message = "Koa setup error: " + err.message;
-                            return [2 /*return*/, Promise.reject(err)];
+                            return [2, Promise.reject(err)];
                         }
-                        return [2 /*return*/];
+                        return [2];
                 }
             });
         });
@@ -246,4 +190,4 @@ var ServerApp = /** @class */ (function () {
     return ServerApp;
 }());
 exports.ServerApp = ServerApp;
-//# sourceMappingURL=ServerApp.js.map
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiU2VydmVyQXBwLmpzIiwic291cmNlUm9vdCI6IkM6L0NvZGUvQGthbGVhYi50ZWNoL21lc2VyZXQvIiwic291cmNlcyI6WyJzcmMvc2VydmVyL1NlcnZlckFwcC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFBQSwyQkFBNEI7QUFDNUIsNkJBQThCO0FBQzlCLHlCQUEwQjtBQUMxQiwwQ0FBMkM7QUFDM0Msc0NBQXVDO0FBQ3ZDLDhDQUErQztBQUMvQyxrQ0FBbUM7QUFDbkMsc0NBQXVDO0FBQ3ZDLGlEQUFrRDtBQUNsRCxtQ0FBb0M7QUFLcEM7SUFpQkUsbUJBQTZCLE1BQXdCO1FBQXhCLFdBQU0sR0FBTixNQUFNLENBQWtCO1FBZDdDLGFBQVEsR0FBaUIsRUFBRSxDQUFBO0lBY3NCLENBQUM7SUFaMUQsc0JBQUksNkJBQU07YUFBVjtZQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsT0FBTyxDQUFBO1FBQ3JCLENBQUM7OztPQUFBO0lBRUQsc0JBQUksMEJBQUc7YUFBUDtZQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFBO1FBQ2xCLENBQUM7OztPQUFBO0lBRUQsc0JBQUksOEJBQU87YUFBWDtZQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFBO1FBQ3RCLENBQUM7OztPQUFBO0lBSUsseUJBQUssR0FBWDs7Ozs7Ozs7NkJBT1EsSUFBSSxDQUFDLE1BQU0sQ0FBQyxTQUFTLEVBQXJCLGNBQXFCO3dCQUV0QixRQUFnQixDQUFDLE9BQU8sR0FBRyxNQUFNLENBQUMsT0FBTyxDQUFBOzs7O3dCQUl4QyxXQUFNLFFBQVEsQ0FBQyxPQUFPLENBQUMsSUFBSSxDQUFDLE1BQU0sQ0FBQyxTQUFTLEVBQUUsRUFBQyxjQUFjLEVBQUUsSUFBSSxFQUFDLENBQUMsQ0FBQyxJQUFJLEVBQXlCLEVBQUE7O3dCQUFuRyxTQUFtRyxDQUFBO3dCQUVuRyxJQUFJLENBQUMsT0FBTyxHQUFHLFFBQVEsQ0FBQyxVQUFVLENBQUE7d0JBQ2xDLE9BQU8sQ0FB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

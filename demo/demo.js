@@ -1,34 +1,26 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var main_1 = require("../src/main"); // replace '../src/main' by 'meseret' for your app
+var main_1 = require("../src/main");
 var path_1 = require("path");
 var task_model_1 = require("./models/task.model");
 var tasks_router_1 = require("./routers/api/tasks.router");
-// start server app
 new main_1.ServerApp({
-    // name of the app
     name: 'Task Organizer',
-    // mongoose models
     models: [
         task_model_1.TaskModel
     ],
-    // mongodb connection
     mongoUris: process.env['PROD_MONGODB'] || 'mongodb://localhost:27017/meseret-demo_task-organizer',
-    // servers to create
     httpServers: [
         { port: Number.parseInt(String(process.env['PORT'])) || 80 }
     ],
-    // directories to host
     publicDirs: [
         path_1.join(__dirname, './public/')
     ],
-    // extra Koa-middleware to use
     middleware: [],
-    // Koa-routers (as middleware)
     routes: [
         tasks_router_1.TasksRouter.routes(), tasks_router_1.TasksRouter.allowedMethods()
     ]
-}).start() // start the app (returns a promise)
+}).start()
     .then(function () { console.log('Task Organizer Starting...'); })
     .catch(function (err) { console.error("Start Failed: " + err); });
-//# sourceMappingURL=demo.js.map
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGVtby5qcyIsInNvdXJjZVJvb3QiOiJDOi9Db2RlL0BrYWxlYWIudGVjaC9tZXNlcmV0LyIsInNvdXJjZXMiOlsiZGVtby9kZW1vLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsb0NBQXVDO0FBQ3ZDLDZCQUEyQjtBQUUzQixrREFBK0M7QUFDL0MsMkRBQXdEO0FBR3hELElBQUksZ0JBQVMsQ0FBQztJQUVaLElBQUksRUFBRSxnQkFBZ0I7SUFHdEIsTUFBTSxFQUFFO1FBQ04sc0JBQVM7S0FDVjtJQUdELFNBQVMsRUFBRSxPQUFPLENBQUMsR0FBRyxDQUFDLGNBQWMsQ0FBQyxJQUFJLHVEQUF1RDtJQUdqRyxXQUFXLEVBQUU7UUFDWCxFQUFFLElBQUksRUFBRSxNQUFNLENBQUMsUUFBUSxDQUFDLE1BQU0sQ0FBQyxPQUFPLENBQUMsR0FBRyxDQUFDLE1BQU0sQ0FBQyxDQUFDLENBQUMsSUFBSSxFQUFFLEVBQUU7S0FDN0Q7SUFHRCxVQUFVLEVBQUU7UUFDVixXQUFJLENBQUMsU0FBUyxFQUFFLFdBQVcsQ0FBQztLQUM3QjtJQUdELFVBQVUsRUFBRSxFQUFFO0lBR2QsTUFBTSxFQUFFO1FBQ04sMEJBQVcsQ0FBQyxNQUFNLEVBQUUsRUFBRSwwQkFBVyxDQUFDLGNBQWMsRUFBRTtLQUNuRDtDQUNGLENBQUMsQ0FBQyxLQUFLLEVBQUU7S0FDUCxJQUFJLENBQUMsY0FBUSxPQUFPLENBQUMsR0FBRyxDQUFDLDRCQUE0QixDQUFDLENBQUEsQ0FBQyxDQUFDLENBQUM7S0FDekQsS0FBSyxDQUFDLFVBQUMsR0FBUSxJQUFPLE9BQU8sQ0FBQyxLQUFLLENBQUMsbUJBQWtCLEdBQU0sQ0FBQyxDQUFBLENBQUMsQ0FBQyxDQUFDLENBQUEifQ==
