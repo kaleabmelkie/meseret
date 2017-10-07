@@ -28,6 +28,9 @@
     "socket.io",
     "mongodb",
     "mongoose",
+    "model",
+    "serverapp",
+    "modelfactory",
     "kaleab.tech"
   ],
   "repository": "git@gitlab.com:kaleab.tech/meseret",

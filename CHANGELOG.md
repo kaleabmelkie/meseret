@@ -1,5 +1,9 @@
 # meseret change log
 
+## v0.2.0
+- BREAKING: rename `ModelFactory.doc` to `ModelFactory.documentify`
+- BREAKING: rename `ModelFactory.mod` to `ModelFactory.modelify`
+
 ## v0.1.0
 - BREAKING: improve ModelFatory (remove its abstract constraint)
 - add a config option for cache control type
