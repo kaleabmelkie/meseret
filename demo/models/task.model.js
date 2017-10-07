@@ -14,5 +14,5 @@ var factory = new main_1.ModelFactory({
 });
 exports.TaskModel = factory.model;
 // fixme: temp: use Document and Model so that TSLint will not remove them when fixing code
-console.warn('To-Do: Temp-Fix: ', {}, main_1.Model); // todo: google the provided error
+console.log({} || main_1.Model); // todo: google the provided error
 //# sourceMappingURL=task.model.js.map

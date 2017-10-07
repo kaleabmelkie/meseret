@@ -28,11 +28,11 @@ export class ModelFactory<IPaths, ISchemaMethods extends FunctionsType, ISchemaS
     return this._model
   }
 
-  doc (that: any): Document & IPaths & ISchemaMethods {
+  documetify (that: any): Document & IPaths & ISchemaMethods {
     return that as Document & IPaths & ISchemaMethods
   }
 
-  mod (that: any): Model<Document & IPaths & ISchemaMethods> & ISchemaStatics {
+  modelify (that: any): Model<Document & IPaths & ISchemaMethods> & ISchemaStatics {
     return that as Model<Document & IPaths & ISchemaMethods> & ISchemaStatics
   }
 }

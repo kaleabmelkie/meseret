@@ -29,4 +29,4 @@ const factory = new ModelFactory<ITaskPaths, ITaskSchemaMethods, ITaskSchemaStat
 export const TaskModel = factory.model
 
 // fixme: temp: use Document and Model so that TSLint will not remove them when fixing code
-console.warn('To-Do: Temp-Fix: ', {} as Document, Model) // todo: google the provided error
+console.log({} as Document || Model) // todo: google the provided error

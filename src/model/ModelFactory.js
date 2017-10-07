@@ -29,10 +29,10 @@ var ModelFactory = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    ModelFactory.prototype.doc = function (that) {
+    ModelFactory.prototype.documetify = function (that) {
         return that;
     };
-    ModelFactory.prototype.mod = function (that) {
+    ModelFactory.prototype.modelify = function (that) {
         return that;
     };
     return ModelFactory;
