@@ -21,6 +21,6 @@ export interface IServerAppConfig {
     }[];
     publicDirs?: string[];
     middleware?: Koa.Middleware[];
-    routes?: KoaRouter.IMiddleware[];
+    routes?: KoaRouter[];
     cacheControl?: string;
 }

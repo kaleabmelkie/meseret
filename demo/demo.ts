@@ -3,6 +3,7 @@ import { join } from 'path'
 
 import { TaskModel } from './models/task.model'
 import { TasksRouter } from './routers/api/tasks.router'
+import { SampleSocket } from './sockets/sample.socket-factory'
 
 // start server app
 new ServerApp({
@@ -32,7 +33,7 @@ new ServerApp({
 
   // Koa-routers (as middleware)
   routes: [
-    TasksRouter.routes(), TasksRouter.allowedMethods()
+    TasksRouter
   ]
 }).start() // start the app (returns a promise)
   .then(() => { console.log('Task Organizer Starting...') })

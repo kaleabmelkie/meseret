@@ -84,7 +84,12 @@ export class ServerApp {
       if (this.config.middleware) for (const m of this.config.middleware) this._app.use(m)
 
       // use provided routes
-      if (this.config.routes) for (const r of this.config.routes) this._app.use(r as Koa.Middleware)
+      if (this.config.routes) {
+        for (const r of this.config.routes) {
+          this._app.use(r.routes())
+          this._app.use(r.allowedMethods())
+        }
+      }
 
       // create and listen on all https _servers
       if (this.config.httpsServers) {
