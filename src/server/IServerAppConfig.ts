@@ -28,4 +28,6 @@ export interface IServerAppConfig {
   routes?: KoaRouter[]
 
   cacheControl?: string
+
+  sockets?: SocketIO.Server[]
 }

@@ -123,6 +123,15 @@ export class ServerApp {
         }
       }
 
+      // attach sockets to the servers
+      if (this.config.sockets) {
+        for (const socket of this.config.sockets) {
+          for (const server of this._servers) {
+            socket.attach(server)
+          }
+        }
+      }
+
       return Promise.resolve()
     } catch (err) {
       err.message = `Koa setup error: ${err.message}`

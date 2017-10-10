@@ -2,6 +2,7 @@
 /// <reference types="node" />
 /// <reference types="koa" />
 /// <reference types="koa-router" />
+/// <reference types="socket.io" />
 import * as https from 'https';
 import * as Koa from 'koa';
 import * as KoaRouter from 'koa-router';
@@ -23,4 +24,5 @@ export interface IServerAppConfig {
     middleware?: Koa.Middleware[];
     routes?: KoaRouter[];
     cacheControl?: string;
+    sockets?: SocketIO.Server[];
 }
