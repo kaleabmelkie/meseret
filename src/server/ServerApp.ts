@@ -83,9 +83,9 @@ export class ServerApp {
       // use provided middleware
       if (this.config.middleware) for (const m of this.config.middleware) this._app.use(m)
 
-      // use provided routes
-      if (this.config.routes) {
-        for (const r of this.config.routes) {
+      // use provided routers
+      if (this.config.routers) {
+        for (const r of this.config.routers) {
           this._app.use(r.routes())
           this._app.use(r.allowedMethods())
         }

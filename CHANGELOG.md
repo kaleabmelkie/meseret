@@ -5,6 +5,7 @@
 - MAJOR FEATURE: Socket.io support.
 - BREAKING: rename `ModelFactory.doc` to `ModelFactory.documentify`
 - BREAKING: rename `ModelFactory.mod` to `ModelFactory.modelify`
+- BREAKING: rename `IServerAppConfig.routes` to `IServerAppConfig.routers`
 - improve the [README](README.md) and [package.json](package.json)
 
 ## v0.1.0

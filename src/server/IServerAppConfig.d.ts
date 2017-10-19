@@ -22,7 +22,7 @@ export interface IServerAppConfig {
     }[];
     publicDirs?: string[];
     middleware?: Koa.Middleware[];
-    routes?: KoaRouter[];
+    routers?: KoaRouter[];
     cacheControl?: string;
     sockets?: SocketIO.Server[];
 }

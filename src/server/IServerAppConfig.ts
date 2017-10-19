@@ -25,7 +25,7 @@ export interface IServerAppConfig {
 
   middleware?: Koa.Middleware[]
 
-  routes?: KoaRouter[]
+  routers?: KoaRouter[]
 
   cacheControl?: string
 
