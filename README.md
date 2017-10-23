@@ -110,7 +110,7 @@ npm start
 ```
 or
 ```bash
-node ./demo/demo.js
+node ./demo/src/main.js
 ```
 Note: This demo requires a browser that supports `fetch()` in order to work properly.  
 

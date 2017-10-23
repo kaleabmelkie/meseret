@@ -2,10 +2,11 @@
 
 ## v0.2.0
 
-- MAJOR FEATURE: Socket.io support.
+- MAJOR FEATURE: Socket.io support
 - BREAKING: rename `ModelFactory.doc` to `ModelFactory.documentify`
 - BREAKING: rename `ModelFactory.mod` to `ModelFactory.modelify`
 - BREAKING: rename `IServerAppConfig.routes` to `IServerAppConfig.routers`
+- improved demo that now uses Angular, Socket.io and separates logic from router (NOTE: demo is still in beta)
 - improve the [README](README.md) and [package.json](package.json)
 
 ## v0.1.0
@@ -20,9 +21,9 @@
 
 ## v0.0.2
 
-- Added this [CHANGELOG](CHANGELOG.md) to the project.
-- Also, added a [README](README.md).
+- Added this [CHANGELOG](CHANGELOG.md) to the project
+- Also, added a [README](README.md)
 
 ## v0.0.1
 
-- Initial release with basic features (`ServerApp`, `IServerAppConfig`, `ModelFactory` and `FunctionsType`).
+- Initial release with basic features (`ServerApp`, `IServerAppConfig`, `ModelFactory` and `FunctionsType`)

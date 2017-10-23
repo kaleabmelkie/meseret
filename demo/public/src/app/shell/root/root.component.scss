@@ -1,0 +1,30 @@
+@import '../../../styles/vars';
+
+#header {
+  position: sticky;
+  z-index: 6;
+
+  top: 0;
+
+  @include mat-elevation(6)
+}
+
+#title {
+  padding: 0 20px 0 0;
+}
+
+#footer {
+  padding: 40px 20px 20px;
+
+  font-size: 12px;
+  line-height: 24px;
+  text-align: center;
+
+  color: map-get($theme-foreground, disabled);
+
+  a {
+    text-decoration: none;
+
+    color: map-get($theme-accent, 500);
+  }
+}

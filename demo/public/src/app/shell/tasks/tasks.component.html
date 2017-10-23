@@ -1,0 +1,45 @@
+<mat-toolbar>The World's Tasks...</mat-toolbar>
+
+<div id="tasks-container" class="wrap">
+  <div *ngIf="tasks.length; else nope">
+    <mat-card *ngFor="let task of tasks" [title]="'Created on ' + toReadableDate(task.created) + '.'">
+      <div class="task-command-container">
+        <mat-checkbox #done [(checked)]="task.done" (change)="edit({ _id: task._id, done: done.checked })"></mat-checkbox>
+        <br>
+        <button mat-icon-button class="del-btn" (click)="remove(task)">
+          <mat-icon color="warn">delete</mat-icon>
+        </button>
+      </div>
+
+      <div style="flex: auto">
+        <mat-form-field>
+          <input matInput
+                 #title
+                 class="task-title"
+                 [(value)]="task.title"
+                 (keyup)="edit({ _id: task._id, title: title.value })"
+                 (change)="edit({ _id: task._id, title: title.value })"
+                 placeholder="Task">
+        </mat-form-field>
+
+        <mat-form-field>
+          <textarea matInput matTextareaAutosize
+                    #desc
+                    class="task-desc"
+                    [(value)]="task.desc"
+                    (keyup)="edit({ _id: task._id, desc: desc.value })"
+                    (change)="edit({ _id: task._id, desc: desc.value })"
+                    placeholder="Description"></textarea>
+        </mat-form-field>
+      </div>
+    </mat-card>
+  </div>
+
+  <ng-template #nope>
+    <div id="nothing">Nothing to show. &nbsp; :(</div>
+  </ng-template>
+</div>
+
+<button mat-fab id="add-btn">
+  <mat-icon>add</mat-icon>
+</button>

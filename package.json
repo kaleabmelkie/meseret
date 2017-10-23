@@ -8,8 +8,9 @@
     "build": "./node_modules/.bin/tsc",
     "lint": "./node_modules/.bin/tslint --type-check --project ./",
     "fix": "./node_modules/.bin/tslint --type-check --project ./ --fix",
-    "dev": "./node_modules/.bin/nodemon ./demo/demo.js",
-    "start": "node ./demo/demo.js"
+    "dev": "./node_modules/.bin/nodemon ./demo/src/main.js",
+    "test": "node ./demo/src/main.js",
+    "start": "node ./demo/src/main.js"
   },
   "keywords": [
     "meseret",
