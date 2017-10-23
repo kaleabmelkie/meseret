@@ -8,7 +8,7 @@ import { TasksSocket } from './sockets/api/tasks.socket'
 new ServerApp({
   name: 'Task Organizer',
 
-  mongoUris: process.env['MONGODB_URI'] || 'mongodb://localhost/task-organizer',
+  mongoUris: process.env['PROD_MONGODB'] || 'mongodb://localhost/task-organizer',
   httpServers: [{ port: Number.parseInt(String(process.env['PORT'])) || 80 }],
 
   publicDirs: [join(__dirname, '../public/dist/')],
