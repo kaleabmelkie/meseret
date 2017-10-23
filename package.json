@@ -5,6 +5,7 @@
   "main": "src/main.js",
   "typings": "src/main.d.ts",
   "scripts": {
+    "postinstall": "cd ./demo/public/ && npm install",
     "build": "./node_modules/.bin/tsc",
     "lint": "./node_modules/.bin/tslint --type-check --project ./",
     "fix": "./node_modules/.bin/tslint --type-check --project ./ --fix",
