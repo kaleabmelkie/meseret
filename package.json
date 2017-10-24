@@ -7,7 +7,7 @@
   "scripts": {
     "build": "./node_modules/.bin/tsc",
     "lint": "./node_modules/.bin/tslint --type-check --project ./",
-    "fix": "./node_modules/.bin/tslint --type-check --project ./ --fix",
+    "fix": "./node_modules/.bin/tslint --type-check --project ./ --fix"
   },
   "keywords": [
     "meseret",

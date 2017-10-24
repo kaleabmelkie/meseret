@@ -1,7 +1,8 @@
 # meseret change log
 
 ## v1.1.0
-- Add more `IServerAppConfig` options: `compress`, `bodyParser`, `json` and `log`
+- FEATURE: Add more `IServerAppConfig` options: `compress`, `bodyParser`, `json` and `log`
+- Better [README](README.md)
 
 ## v1.0.2
 - BREAKING DOC: remove the demo application out of this package.

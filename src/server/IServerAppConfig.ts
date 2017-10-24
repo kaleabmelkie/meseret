@@ -6,9 +6,12 @@ import * as mongoose from 'mongoose'
 export interface IServerAppConfig {
   name: string
 
-  models?: mongoose.Model<mongoose.Document>[]
-
   mongoUris?: string
+
+  httpServers?: {
+    path?: string,
+    port: number
+  }[]
 
   httpsServers?: {
     opts: https.ServerOptions
@@ -16,26 +19,24 @@ export interface IServerAppConfig {
     port: number
   }[]
 
-  httpServers?: {
-    path?: string,
-    port: number
-  }[]
-
   publicDirs?: string[]
 
-  middleware?: Koa.Middleware[]
+  models?: mongoose.Model<mongoose.Document>[]
 
   routers?: KoaRouter[]
 
   sockets?: SocketIO.Server[]
 
+  log?: boolean
+
+  compress?: boolean
+
+  bodyParser?: boolean
+
+  json?: boolean
+
   cacheControl?: string
 
-  compress: boolean
+  middleware?: Koa.Middleware[]
 
-  bodyParser: boolean
-
-  json: boolean
-
-  log: boolean
 }

@@ -1,119 +1,167 @@
 # meseret
 
-configuration-based backbone for node.js servers.  
+configuration-based backbone for node.js servers.
 
 ## Features
 
-##### General:
-- TypeScript everywhere.
+### General
+
+- [TypeScript](https://www.npmjs.com/package/typescript) everywhere.
 - Configuration-based architecture (using TypeScript code).
 
-##### Server:
-- Koa server with preconfigured compression, static caching, body parsing (including JSON) and console logging.
-- Support for more Koa middleware, and koa-router routes.
+### Server
+
+- Koa server with preconfigured compression, static serving & caching, body parsing (JSON and forms), direct JSON response and console logging.
+- Support for more [Koa](https://www.npmjs.com/package/koa) middleware, and [koa-router](https://www.npmjs.com/package/koa-router) routes.
 - Listening on multiple HTTP and/or HTTPS servers.
 - Static-serving (hosting) multiple public directories.
 
-##### Database:
-- MongoDB connection and Mongoose models.
+### Database
+
+- MongoDB connection and [Mongoose](https://www.npmjs.com/package/mongoose) models.
 - A `ModelFactory` for type enabled Mongoose schema paths, methods and statics, -- bringing autocomplete to the data model.
 
-##### WebSocket:
-- Socket.io support.
+### WebSocket
+
+- [Socket.io](https://www.npmjs.com/package/socket-io) support.
 
 ## Installation
+
 Using Yarn:
-```bash
+
+```sh
 yarn add meseret
-```  
+```
 
-Or, using NPM:
-```bash
+Or, using npm:
+
+```sh
 npm install meseret --save
-```  
+```
 
-## Usage
+## Language
 
-Meseret is written in TypeScript, so the code you write is also expected to be in TypeScript.  
+Your application code is recommened to be written in [TypeScript](https://www.npmjs.com/package/typescript) when you use this framework. Below here are some basic implementation examples:
 
-A simple server app listening for requests using Koa at `http://localhost:80/` and `http://127.0.0.1:3000/` may look like:
-```typescript
+## A Simple `ServerApp`
+
+A simple app that makes [Koa](https://www.npmjs.com/package/koa) listen on port 3000 looks like:
+
+```ts
 import { ServerApp } from 'meseret'
 
 new ServerApp({
-  name: 'Simple Demo App',
-  
-  httpServers: [
-    { path: 'localhost', port: 80 },
-    { path: '127.0.0.1', port: 3000 }
-  ]
+  name: 'App Name',
+  httpServer: [{ port: 3000 }],
 }).start()
-  .then(() => console.log(`'Simple Demo App' is starting...`))
-  .catch(err => console.error(`Problem starting app: ${err}`))
-```  
+```
 
-Note: The `name` is required; but every other configuartion field is optional.  
+A new `ServerApp` recieves a configuation object (called `IServerAppConfig`) as a parameter.
+The `start()` method launchs the server application and returns a `Promise`.
 
-Now, a simple server app that connects to MongoDB (at `mongodb://localhost:27017/db-name`) may look like:
-```typescript
-import { ServerApp } from 'meseret'
+## `IServerAppConfig` Options
 
-new ServerApp({
-  name: 'MongoDB Connect Demo',
-  
-  mongoUris: 'mongodb://localhost:27017/db-name',
-  
-  httpServers: [
-    { path: 'localhost', port: 80 }
-  ]
-}).start()
-  .then(() => console.log(`'MongoDB Connect Demo' is starting...`))
-  .catch(err => console.error(`Problem starting app: ${err}`))
-```  
+The `name` option is the only required of all the `IServerAppConfig` options. Below is a lost of all the available options:
 
-And, a server app that hosts a public directory (assuming a `./public` directory exists):
-```typescript
+Option Name | Data Type | Description
+--- | --- | --
+`bodyParser` | `boolean` | Support for JSON and form request bodies? Defaults to true.
+`cacheControl` | `string` | Cache control to be used. Defaults to 'private'.
+`compress` | `boolean` | Compress responses? Defaults to true.
+`httpServers` | `{ path?: string, port: number }[]` | HTTP server configurations.
+`httpsServers` | `{ opts: https.ServerOptions, path?: string, port: number }[]` | HTTPS server configurations.
+`json` | `boolean` | Support direct JSON response parsing? Defaults to true.
+`log` | `boolean` | Log requests and responses? Defaults to true.
+`middleware` | `Koa.middleware[]` | [Koa](https://www.npmjs.com/package/koa) middleware to use.
+`models` | `mongoose.Model<mongoose.Document>[]` | [Mongoose](https://www.npmjs.com/package/mongoose) models, optionally built using meseret's `ModelFactory`.
+`mongoUris` | `string` | MongoDB connection URIs.
+`name` | `string` | Name of the server application; it is required.
+`publicDirs` | `string[]` | Directory paths to serve statically.
+`routers` | `KoaRouter[]` | An array of [koa-router](https://www.npmjs.com/package/koa-router) routers used in the servers.
+`sockets` | `SocketIO.Server[]` | [Socket.io](https://www.npmjs.com/package/socket-io) servers used in the http servers.
+
+## A Realistic Example
+
+A small "task organization" application:
+
+```ts
+// src/main.ts
+
 import { ServerApp } from 'meseret'
 import { join } from 'path'
 
+import { TasksModel } from './models/tasks.model'
+import { TaskRouter } from './routers/task.router'
+
 new ServerApp({
-  name: 'Folder Host Demo',
-  
-  mongoUris: 'mongodb://localhost:27017/db-name',
-  
-  publicDirs: [
-    join(__dirname, './public/')
-  ],
-  
-  httpServers: [
-    { path: 'localhost', port: 80 }
-  ]
+  name: 'Task Organizer',
+  mongoUris: process.env['MONGO_URI'] || 'mongodb://localhost/task-organizer',
+  httpServers: [{port: Number.parseInt(process.env['PORT']) || 3000}],
+  publicDirs: [join(__dirname, '../../public/dist/')],
+  models: [TasksModel],
+  routers: [TaskRouter]
 }).start()
-  .then(() => console.log(`'Folder Host Demo' is starting...`))
-  .catch(err => console.error(`Problem starting app: ${err}`))
-```  
-
-Besides `name`, `mongoUris`, `publicDirs` and `httpServers`, there are many more configuration options that are already in place and working just fine. To name a few: `httpsServers`, Mongoose `models`, `cacheControl` type, Koa-compatible `middleware` and `routes` (as Koa-middleware).  
-
-More documentation and guide is coming soon in future releases (including on how to use the mongoose `ModelFactory` for an IDE auto-complete support of the models in TypeScript).  
-
-## Demo
-
-Meanwhile, the `demo` folder contains a simple end-to-end "Task Organizer" application.  
-After launching a `mongod` server (on `mongodb://localhost:27017`), you may try running the demo as:
-```bash
-yarn start
+  .then(() => console.log(`Starting 'Task Organizer'...`))
+  .catch(err => console.error(`Launch problem: ${err}`))
 ```
-or
-```bash
-npm start
+
+It is recommened to use the `ModelFactory` from meseret. Although this method is relatively verbose, it provides support for auto-completing mongoose models in IDEs (even deep down to the data level).
+
+```ts
+// src/models/tasks.model
+
+import { ModelFactory, Document, Model } from 'ServerApp'
+
+export interface ITasksSchemaPaths { desc: string, done: boolean }
+export interface ITasksSchemaMethods { tickToggle: () => Promise<boolean> }
+export interface ITasksSchemaStatics { } // empty for now
+
+const factory = new ModelFactory<ITasksSchemaPaths, ITasksSchemaMethods, ITasksSchemaStatics>({
+  name: 'Tasks', // collection/model name
+  paths: {
+    desc: { type: String, required: true, trim: true }
+    done: { type: Boolean, required: true, default: false }
+  },
+  models: {
+    async tickToggle (): Promise<boolean> {
+      const task = factory.modelize(this)
+      task.done = !task.done
+      await task.save()
+      return Promise.resolve(task.done)
+    }
+  }
+  statics: { } // empty for now
+})
+
+export const TasksModel = factory.model
 ```
-or
-```bash
-node ./demo/src/main.js
+
+...or, you could use same old mongoose and loose auto-complete support for your database data in your IDEs.
+
+Below is how you can create routers used in the `ServerApp` using [koa-router](https://www.npmjs.com/packages/koa-router). Nothing out of the ordinary here.
+
+```ts
+// src/routers/task.router
+
+import * as Router from 'koa-router'
+import { TasksModel } from '../models/tasks.model'
+
+const TaskRouter = new Router({ prefix: '/api/' })
+
+// GET /api/task/:_id
+TaskRouter.get('/task/:_id', async ctx => {
+  ctx.body = await TasksModel.findById(ctx.params['_id'])
+})
+
+// ... more API definition
+
+export { TaskRouter }
 ```
-Note: This demo requires a browser that supports `fetch()` in order to work properly.  
+
+_More documentation is coming soon._
 
 ## Licence
-Made with &hearts; in Addis Ababa.  
+
+Made with &hearts; in Addis Ababa.
+
 [MIT License](LICENSE) &copy; 2017 Kaleab S. Melkie.
