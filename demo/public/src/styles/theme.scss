@@ -1,8 +1,0 @@
-@import '~@angular/material/theming';
-@import 'vars';
-
-@include mat-core();
-
-$theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
-
-@include angular-material-theme($theme);

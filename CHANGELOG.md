@@ -1,6 +1,12 @@
 # meseret change log
 
-## v0.2.0
+## v1.0.2
+- BREAKING DOC: remove the demo application out of this package.
+
+## v1.0.1
+- Bug fixes
+
+## v1.0.0
 
 - MAJOR FEATURE: Socket.io support
 - BREAKING: rename `ModelFactory.doc` to `ModelFactory.documentify`
