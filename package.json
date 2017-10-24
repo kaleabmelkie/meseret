@@ -31,7 +31,7 @@
     "modelfactory",
     "kaleab.tech"
   ],
-  "repository": "git@gitlab.com:kaleab.tech/meseret",
+  "repository": "git@gitlab.com:kaleabmelkie/meseret",
   "author": "Kaleab Melkie <kaleabmelkie@gmail.com>",
   "license": "MIT",
   "private": false,
