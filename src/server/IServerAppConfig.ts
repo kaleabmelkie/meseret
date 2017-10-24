@@ -27,7 +27,15 @@ export interface IServerAppConfig {
 
   routers?: KoaRouter[]
 
+  sockets?: SocketIO.Server[]
+
   cacheControl?: string
 
-  sockets?: SocketIO.Server[]
+  compress: boolean
+
+  bodyParser: boolean
+
+  json: boolean
+
+  log: boolean
 }

@@ -67,16 +67,18 @@ export class ServerApp {
       this._app = new Koa()
 
       // use the essential koa middleware
-      this._app.use(KoaLogger())
-      this._app.use(KoaCompress({ level: 9, memLevel: 9, threshold: 0 }))
-      this._app.use(KoaBodyparser({ enableTypes: ['json', 'form', 'text'] }))
-      this._app.use(KoaJson({ pretty: this._app.env === 'development' }))
+      if (this.config.log) this._app.use(KoaLogger())
+      if (this.config.compress) this._app.use(KoaCompress({ level: 9, memLevel: 9, threshold: 0 }))
+      if (this.config.bodyParser) this._app.use(KoaBodyparser({ enableTypes: ['json', 'form', 'text'] }))
+      if (this.config.json) this._app.use(KoaJson({ pretty: this._app.env === 'development' }))
 
       // use provided public directories (with static cache)
       if (this.config.publicDirs) {
         for (const dir of this.config.publicDirs) {
           this._app.use(KoaStaticCache(dir, { cacheControl: this.config.cacheControl || 'private' }))
-          this._app.use(KoaStatic(dir, { gzip: true }))
+          this._app.use(KoaStatic(dir, {
+            gzip: this.config.compress === true || this.config.compress === false ? this.config.compress : true
+          }))
         }
       }
 
