@@ -8,36 +8,38 @@ configuration-based backbone for node.js servers.
 
 ## Features
 
-### General
+__General:__
 
 - [TypeScript](https://www.npmjs.com/package/typescript) everywhere.
 - Configuration-based architecture (using TypeScript code).
 
-### Server
+__Server:__
 
 - Koa server with preconfigured compression, static serving & caching, body parsing (JSON and forms), direct JSON response and console logging.
 - Support for more [Koa](https://www.npmjs.com/package/koa) middleware, and [koa-router](https://www.npmjs.com/package/koa-router) routes.
 - Listening on multiple HTTP and/or HTTPS servers.
 - Static-serving (hosting) multiple public directories.
 
-### Database
+__Database:__
 
 - MongoDB connection and [Mongoose](https://www.npmjs.com/package/mongoose) models.
 - A `ModelFactory` for type enabled Mongoose schema paths, methods and statics, -- bringing auto-complete to the data model.
 
-### WebSocket
+__WebSocket:__
 
 - [Socket.io](https://www.npmjs.com/package/socket.io) support.
 
 ## Installation
 
-Using Yarn:
+Inside a Node.js package, install meseret using:
+
+Yarn:
 
 ```sh
 yarn add meseret
 ```
 
-Or, using npm:
+or NPM:
 
 ```sh
 npm install meseret --save
@@ -162,10 +164,12 @@ TaskRouter.get('/task/:_id', async ctx => {
 export { TaskRouter }
 ```
 
-_More explanatory documentation will be coming in future releases._
-
 ## Licence
 
 Made with &hearts; in Addis Ababa.
 
 [MIT License](LICENSE) &copy; 2017 Kaleab S. Melkie.
+
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/pj69cKtfSMsPzwUKHBTfQqhm/kaleabmelkie/meseret'>
+  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/pj69cKtfSMsPzwUKHBTfQqhm/kaleabmelkie/meseret.svg' />
+</a>

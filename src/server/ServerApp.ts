@@ -67,10 +67,10 @@ export class ServerApp {
       this._app = new Koa()
 
       // use the essential koa middleware
-      if (this.config.log) this._app.use(KoaLogger())
-      if (this.config.compress) this._app.use(KoaCompress({ level: 9, memLevel: 9, threshold: 0 }))
-      if (this.config.bodyParser) this._app.use(KoaBodyparser({ enableTypes: ['json', 'form', 'text'] }))
-      if (this.config.json) this._app.use(KoaJson({ pretty: this._app.env === 'development' }))
+      if (this.config.log !== false) this._app.use(KoaLogger())
+      if (this.config.compress !== false) this._app.use(KoaCompress({ level: 9, memLevel: 9, threshold: 0 }))
+      if (this.config.bodyParser !== false) this._app.use(KoaBodyparser({ enableTypes: ['json', 'form', 'text'] }))
+      if (this.config.json !== false) this._app.use(KoaJson({ pretty: this._app.env === 'development' }))
 
       // use provided public directories (with static cache)
       if (this.config.publicDirs) {

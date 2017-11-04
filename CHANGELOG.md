@@ -1,6 +1,7 @@
 # meseret change log
 
-## v1.1.3 
+## v1.1.3
+- FIX (maybe, BREAKING): turn on `IServerAppConfig`'s `log`, `compress`, `bodyParser` and `json` methods by default.
 - improve README
 
 ## v1.1.2
@@ -27,7 +28,7 @@
 
 ## v0.1.0
 
-- BREAKING: improve ModelFatory (remove its abstract constraint)
+- BREAKING: improve ModelFactory (remove its abstract constraint)
 - add a config option for cache control type
 - new and better end-to-end demo app (named "Task Organizer")
 
