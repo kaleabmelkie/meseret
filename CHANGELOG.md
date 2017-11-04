@@ -1,5 +1,11 @@
 # meseret change log
 
+## v1.1.3 
+- improve README
+
+## v1.1.2
+- improve README
+
 ## v1.1.0
 - FEATURE: Add more `IServerAppConfig` options: `compress`, `bodyParser`, `json` and `log`
 - Better [README](README.md)

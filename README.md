@@ -1,3 +1,7 @@
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/pj69cKtfSMsPzwUKHBTfQqhm/kaleabmelkie/meseret'>
+  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/pj69cKtfSMsPzwUKHBTfQqhm/kaleabmelkie/meseret.svg' />
+</a>
+
 # meseret
 
 configuration-based backbone for node.js servers.
@@ -19,11 +23,11 @@ configuration-based backbone for node.js servers.
 ### Database
 
 - MongoDB connection and [Mongoose](https://www.npmjs.com/package/mongoose) models.
-- A `ModelFactory` for type enabled Mongoose schema paths, methods and statics, -- bringing autocomplete to the data model.
+- A `ModelFactory` for type enabled Mongoose schema paths, methods and statics, -- bringing auto-complete to the data model.
 
 ### WebSocket
 
-- [Socket.io](https://www.npmjs.com/package/socket-io) support.
+- [Socket.io](https://www.npmjs.com/package/socket.io) support.
 
 ## Installation
 
@@ -41,7 +45,7 @@ npm install meseret --save
 
 ## Language
 
-Your application code is recommened to be written in [TypeScript](https://www.npmjs.com/package/typescript) when you use this framework. Below here are some basic implementation examples:
+Your application code is recommended to be written in [TypeScript](https://www.npmjs.com/package/typescript) when you use this framework. Below here are some basic implementation examples:
 
 ## A Simple `ServerApp`
 
@@ -56,15 +60,15 @@ new ServerApp({
 }).start() // returns a Promise
 ```
 
-A new `ServerApp` recieves a configuation object (called `IServerAppConfig`) as a parameter.
-The `start()` method launchs the server application and returns a `Promise`.
+A new `ServerApp` receives a configuration object (called `IServerAppConfig`) as a parameter.
+The `start()` method launches the server application and returns a `Promise`.
 
 ## `IServerAppConfig` Options
 
 The `name` option is the only required of all the `IServerAppConfig` options. Below is a lost of all the available options:
 
 Option Name | Data Type | Description
---- | --- | --
+--- | --- | ---
 `bodyParser` | `boolean` | Support for JSON and form request bodies? Defaults to true.
 `cacheControl` | `string` | Cache control to be used. Defaults to 'private'.
 `compress` | `boolean` | Compress responses? Defaults to true.
@@ -105,7 +109,7 @@ new ServerApp({
   .catch(err => console.error(`Launch problem: ${err}`))
 ```
 
-It is recommened to use the `ModelFactory` from meseret. Although this method is relatively verbose, it provides support for auto-completing mongoose models in IDEs (even deep down to the data level).
+It is recommended to use the `ModelFactory` from meseret. Although this method is relatively verbose, it provides support for auto-completing mongoose models in IDEs (even deep down to the data level).
 
 ```ts
 // src/models/tasks.model
@@ -165,7 +169,3 @@ _More explanatory documentation will be coming in future releases._
 Made with &hearts; in Addis Ababa.
 
 [MIT License](LICENSE) &copy; 2017 Kaleab S. Melkie.
-
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/pj69cKtfSMsPzwUKHBTfQqhm/kaleabmelkie/meseret'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/pj69cKtfSMsPzwUKHBTfQqhm/kaleabmelkie/meseret.svg' />
-</a>
