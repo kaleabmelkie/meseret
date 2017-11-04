@@ -53,7 +53,7 @@ import { ServerApp } from 'meseret'
 new ServerApp({
   name: 'App Name',
   httpServer: [{ port: 3000 }],
-}).start()
+}).start() // returns a Promise
 ```
 
 A new `ServerApp` recieves a configuation object (called `IServerAppConfig`) as a parameter.
@@ -110,11 +110,11 @@ It is recommened to use the `ModelFactory` from meseret. Although this method is
 ```ts
 // src/models/tasks.model
 
-import { ModelFactory, Document, Model } from 'ServerApp'
+import { ModelFactory, Document, Model,  } from 'ServerApp'
 
 export interface ITasksSchemaPaths { desc: string, done: boolean }
-export interface ITasksSchemaMethods { tickToggle: () => Promise<boolean> }
-export interface ITasksSchemaStatics { } // empty for now
+export interface ITasksSchemaMethods extends FunctionsType { tickToggle: () => Promise<boolean> }
+export interface ITasksSchemaStatics extends FunctionsType { } // empty for now
 
 const factory = new ModelFactory<ITasksSchemaPaths, ITasksSchemaMethods, ITasksSchemaStatics>({
   name: 'Tasks', // collection/model name
@@ -123,7 +123,7 @@ const factory = new ModelFactory<ITasksSchemaPaths, ITasksSchemaMethods, ITasksS
     done: { type: Boolean, required: true, default: false }
   },
   models: {
-    async tickToggle (): Promise<boolean> {
+    tickToggle: async (): Promise<boolean> => {
       const task = factory.modelize(this)
       task.done = !task.done
       await task.save()
@@ -158,10 +158,14 @@ TaskRouter.get('/task/:_id', async ctx => {
 export { TaskRouter }
 ```
 
-_More documentation is coming soon._
+_More explanatory documentation will be coming in future releases._
 
 ## Licence
 
 Made with &hearts; in Addis Ababa.
 
 [MIT License](LICENSE) &copy; 2017 Kaleab S. Melkie.
+
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/pj69cKtfSMsPzwUKHBTfQqhm/kaleabmelkie/meseret'>
+  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/pj69cKtfSMsPzwUKHBTfQqhm/kaleabmelkie/meseret.svg' />
+</a>
