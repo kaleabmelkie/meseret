@@ -1,6 +1,7 @@
 # meseret change log
 
 ## v1.1.4
+- support Koa@1 legacy middleware internally, using koa-convert.
 - add peer dependencies.
 - fix a README doc problem.
 

@@ -2,6 +2,7 @@ import * as http from 'http'
 import * as https from 'https'
 import * as Koa from 'koa'
 import * as KoaCompress from 'koa-compress'
+import * as KoaConvert from 'koa-convert'
 import * as KoaLogger from 'koa-logger'
 import * as KoaBodyparser from 'koa-bodyparser'
 import * as KoaJson from 'koa-json'
@@ -83,7 +84,7 @@ export class ServerApp {
       }
 
       // use provided middleware
-      if (this.config.middleware) for (const m of this.config.middleware) this._app.use(m)
+      if (this.config.middleware) for (const m of this.config.middleware) this._app.use(KoaConvert.compose(m))
 
       // use provided routers
       if (this.config.routers) {
