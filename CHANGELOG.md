@@ -1,5 +1,8 @@
 # meseret change log
 
+## v1.1.4
+- fix a README doc problem.
+
 ## v1.1.3
 - FIX (maybe, BREAKING): turn on `IServerAppConfig`'s `log`, `compress`, `bodyParser` and `json` methods by default.
 - improve README

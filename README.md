@@ -128,7 +128,7 @@ const factory = new ModelFactory<ITasksSchemaPaths, ITasksSchemaMethods, ITasksS
     desc: { type: String, required: true, trim: true }
     done: { type: Boolean, required: true, default: false }
   },
-  models: {
+  methods: {
     tickToggle: async (): Promise<boolean> => {
       const task = factory.modelize(this)
       task.done = !task.done
@@ -152,10 +152,10 @@ Below is how you can create routers used in the `ServerApp` using [koa-router](h
 import * as Router from 'koa-router'
 import { TasksModel } from '../models/tasks.model'
 
-const TaskRouter = new Router({ prefix: '/api/' })
+const TaskRouter = new Router({ prefix: '/api/task' })
 
 // GET /api/task/:_id
-TaskRouter.get('/task/:_id', async ctx => {
+TaskRouter.get('/:_id', async ctx => {
   ctx.body = await TasksModel.findById(ctx.params['_id'])
 })
 
