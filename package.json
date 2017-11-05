@@ -66,5 +66,15 @@
     "koa-static-cache": "^5.1.1",
     "mongoose": "^4.11.14",
     "socket.io": "^2.0.3"
+  },
+  "peerDevDependencies": {
+    "@types/koa-router": "^7.0.23",
+    "@types/mongoose": "^4.7.23",
+    "@types/socket.io": "^1.4.31"
+  },
+  "peerDependencies": {
+    "koa-router": "^7.2.1",
+    "mongoose": "^4.11.14",
+    "socket.io": "^2.0.3"
   }
 }

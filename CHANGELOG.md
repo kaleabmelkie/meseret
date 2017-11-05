@@ -1,6 +1,7 @@
 # meseret change log
 
 ## v1.1.4
+- add peer dependencies.
 - fix a README doc problem.
 
 ## v1.1.3
