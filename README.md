@@ -47,7 +47,7 @@ npm install meseret --save
 
 ## Language
 
-Your application code is recommended to be written in [TypeScript](https://www.npmjs.com/package/typescript) when you use this framework. Below here are some basic implementation examples:
+Your application code is recommended to be written in [TypeScript](https://www.npmjs.com/package/typescript) when you use this framework.
 
 ## A Simple `ServerApp`
 

@@ -29,15 +29,16 @@
     "model",
     "serverapp",
     "modelfactory",
-    "kaleab.tech"
+    "kaleab",
+    "melkie",
+    "kaleabmelkie"
   ],
   "repository": "git@gitlab.com:kaleabmelkie/meseret",
   "author": "Kaleab Melkie <kaleabmelkie@gmail.com>",
   "license": "MIT",
   "private": false,
   "engines": {
-    "node": "^8",
-    "yarn": "^1"
+    "node": ">= 8"
   },
   "devDependencies": {
     "@types/koa": "^2.0.39",
