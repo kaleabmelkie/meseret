@@ -16,7 +16,7 @@ import { IServerAppConfig } from './IServerAppConfig'
 
 export class ServerApp {
   private _dbConn: mongoose.Connection
-  private _app: Koa
+  private _app: Koa = new Koa()
   private _servers: net.Server[] = []
 
   get dbConn (): mongoose.Connection {
@@ -65,9 +65,6 @@ export class ServerApp {
     /* KOA */
 
     try {
-      // construct koa app
-      this._app = new Koa()
-
       // set keys
       if (this.config.keys) this._app.keys = this.config.keys
 
