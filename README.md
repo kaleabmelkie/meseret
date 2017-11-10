@@ -71,22 +71,22 @@ The `name` option is the only required of all the `IServerAppConfig` options. Be
 
 Option Name | Data Type | Description
 --- | --- | ---
-`bodyParser` | `boolean` | Support for JSON and form request bodies? Defaults to true.
-`cacheControl` | `string` | Cache control to be used. Defaults to 'private'.
-`compress` | `boolean` | Compress responses? Defaults to true.
-`httpServers` | `{ path?: string, port: number }[]` | HTTP server configurations.
-`httpsServers` | `{ opts: https.ServerOptions, path?: string, port: number }[]` | HTTPS server configurations.
-`json` | `boolean` | Support direct JSON response parsing? Defaults to true.
-`keys` | `string[]` | Sets Koa `app.keys`.
-`log` | `boolean` | Log requests and responses? Defaults to true.
-`middleware` | `Koa.middleware[]` | [Koa](https://www.npmjs.com/package/koa) middleware to use.
-`models` | `mongoose.Model<mongoose.Document>[]` | [Mongoose](https://www.npmjs.com/package/mongoose) models, optionally built using meseret's `ModelFactory`.
-`mongoUris` | `string` | MongoDB connection URIs.
-`name` | `string` | Name of the server application; it is required.
-`publicDirs` | `string[]` | Directory paths to serve statically.
-`routers` | `KoaRouter[]` | An array of [koa-router](https://www.npmjs.com/package/koa-router) routers used in the servers.
-`session` | `boolean` | Session support using cookies? Works only if `IServerAppConfig.keys` is provided. Defaults to true if some `keys` are provided.
-`sockets` | `SocketIO.Server[]` | [Socket.io](https://www.npmjs.com/package/socket-io) servers used in the http servers.
+`bodyParser?` | `boolean` | Support for JSON and form request bodies? Defaults to true.
+`cacheControl?` | `string` | Cache control to be used. Defaults to 'private'.
+`compress?` | `boolean` | Compress responses? Defaults to true.
+`httpServers?` | `{ path?: string, port: number }[]` | HTTP server configurations.
+`httpsServers?` | `{ opts: https.ServerOptions, path?: string, port: number }[]` | HTTPS server configurations.
+`json?` | `boolean` | Support direct JSON response parsing? Defaults to true.
+`keys?` | `string[]` | Sets Koa `app.keys`.
+`log?` | `boolean` | Log requests and responses? Defaults to true.
+`middleware?` | `Koa.middleware[]` | More [Koa](https://www.npmjs.com/package/koa) middleware to use.
+`models?` | `mongoose.Model<mongoose.Document>[]` | [Mongoose](https://www.npmjs.com/package/mongoose) models, optionally built using meseret's `ModelFactory`. Requires `IServerApp.mongoUris`.
+`mongoUris?` | `string` | MongoDB connection URIs.
+`name` | `string` | Name of the server application. It is required.
+`publicDirs?` | `string[]` | Directory paths to serve statically.
+`routers?` | `KoaRouter[]` | An array of [koa-router](https://www.npmjs.com/package/koa-router) routers used in the servers.
+`session?` | `boolean` | Session support using cookies? Requires `IServerAppConfig.keys`. Defaults to true if some `IServerAppConfig.keys` are provided.
+`sockets?` | `SocketIO.Server[]` | [Socket.io](https://www.npmjs.com/package/socket-io) servers used in the http servers.
 
 ## A Realistic Example
 

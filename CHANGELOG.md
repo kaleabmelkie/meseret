@@ -1,5 +1,8 @@
 # meseret change log
 
+## v1.2.1
+- Improve README.md.
+
 ## v1.2.0
 - Construct Koa app when `ServerApp` is constructed, before calling `ServerApp.start()`.
 - Add key and session support.
