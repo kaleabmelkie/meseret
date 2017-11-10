@@ -3,11 +3,12 @@ import * as https from 'https'
 import * as Koa from 'koa'
 import * as KoaCompress from 'koa-compress'
 import * as KoaConvert from 'koa-convert'
-import * as KoaLogger from 'koa-logger'
 import * as KoaBodyparser from 'koa-bodyparser'
 import * as KoaJson from 'koa-json'
+import * as KoaLogger from 'koa-logger'
 import * as KoaStatic from 'koa-static'
 import * as KoaStaticCache from 'koa-static-cache'
+import * as KoaSession from 'koa-session'
 import * as mongoose from 'mongoose'
 import * as net from 'net'
 
@@ -67,8 +68,12 @@ export class ServerApp {
       // construct koa app
       this._app = new Koa()
 
+      // set keys
+      if (this.config.keys) this._app.keys = this.config.keys
+
       // use the essential koa middleware
       if (this.config.log !== false) this._app.use(KoaLogger())
+      if (this.config.session !== false && Array.isArray(this._app.keys) && this._app.keys.length) this._app.use(KoaSession(this.app))
       if (this.config.compress !== false) this._app.use(KoaCompress({ level: 9, memLevel: 9, threshold: 0 }))
       if (this.config.bodyParser !== false) this._app.use(KoaBodyparser({ enableTypes: ['json', 'form', 'text'] }))
       if (this.config.json !== false) this._app.use(KoaJson({ pretty: this._app.env === 'development' }))

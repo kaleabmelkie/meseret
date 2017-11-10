@@ -28,5 +28,7 @@ export interface IServerAppConfig {
     bodyParser?: boolean;
     json?: boolean;
     cacheControl?: string;
+    keys: string[];
+    session?: boolean;
     middleware?: Koa.Middleware[];
 }

@@ -1,6 +1,7 @@
 # meseret change log
 
 ## v1.2.0
+- Add key and session support.
 - Improved README.md and package.json.
 
 ## v1.1.4

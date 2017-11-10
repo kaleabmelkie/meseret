@@ -15,7 +15,7 @@ __General:__
 
 __Server:__
 
-- Koa server with preconfigured compression, static serving & caching, body parsing (JSON and forms), direct JSON response and console logging.
+- Koa server with preconfigured compression, static serving & caching, body parsing (JSON and forms), direct JSON response, console logging and session support.
 - Support for more [Koa](https://www.npmjs.com/package/koa) middleware, and [koa-router](https://www.npmjs.com/package/koa-router) routes.
 - Listening on multiple HTTP and/or HTTPS servers.
 - Static-serving (hosting) multiple public directories.
@@ -77,6 +77,7 @@ Option Name | Data Type | Description
 `httpServers` | `{ path?: string, port: number }[]` | HTTP server configurations.
 `httpsServers` | `{ opts: https.ServerOptions, path?: string, port: number }[]` | HTTPS server configurations.
 `json` | `boolean` | Support direct JSON response parsing? Defaults to true.
+`keys` | `string[]` | Sets Koa `app.keys`.
 `log` | `boolean` | Log requests and responses? Defaults to true.
 `middleware` | `Koa.middleware[]` | [Koa](https://www.npmjs.com/package/koa) middleware to use.
 `models` | `mongoose.Model<mongoose.Document>[]` | [Mongoose](https://www.npmjs.com/package/mongoose) models, optionally built using meseret's `ModelFactory`.
@@ -84,6 +85,7 @@ Option Name | Data Type | Description
 `name` | `string` | Name of the server application; it is required.
 `publicDirs` | `string[]` | Directory paths to serve statically.
 `routers` | `KoaRouter[]` | An array of [koa-router](https://www.npmjs.com/package/koa-router) routers used in the servers.
+`session` | `boolean` | Session support using cookies? Works only if `IServerAppConfig.keys` is provided. Defaults to true if some `keys` are provided.
 `sockets` | `SocketIO.Server[]` | [Socket.io](https://www.npmjs.com/package/socket-io) servers used in the http servers.
 
 ## A Realistic Example

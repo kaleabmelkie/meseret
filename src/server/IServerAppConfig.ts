@@ -37,6 +37,10 @@ export interface IServerAppConfig {
 
   cacheControl?: string
 
+  keys: string[]
+
+  session?: boolean
+
   middleware?: Koa.Middleware[]
 
 }

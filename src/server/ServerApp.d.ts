@@ -1,6 +1,7 @@
 /// <reference types="mongoose" />
 /// <reference types="koa" />
 /// <reference types="koa-bodyparser" />
+/// <reference types="koa-session" />
 /// <reference types="koa-router" />
 /// <reference types="node" />
 import * as Koa from 'koa';
