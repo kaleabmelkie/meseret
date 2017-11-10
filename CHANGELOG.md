@@ -1,6 +1,7 @@
 # meseret change log
 
 ## v1.2.1
+- FIX: Make `ServerAppConfig.keys` optional.
 - Improve README.md.
 
 ## v1.2.0

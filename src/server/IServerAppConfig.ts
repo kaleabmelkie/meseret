@@ -37,7 +37,7 @@ export interface IServerAppConfig {
 
   cacheControl?: string
 
-  keys: string[]
+  keys?: string[]
 
   session?: boolean
 
