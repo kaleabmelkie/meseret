@@ -1,5 +1,8 @@
 # meseret change log
 
+## v1.2.2
+- Minor improvement in the way koa-routers are handled.
+
 ## v1.2.1
 - FIX: Make `ServerAppConfig.keys` optional.
 - Improve README.md.
