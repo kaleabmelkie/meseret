@@ -1,5 +1,8 @@
 # meseret change log
 
+## v1.2.3
+- Fix koa-router usage bug
+
 ## v1.2.2
 - README fix.
 - Minor improvement in the way koa-routers are handled.

@@ -89,7 +89,7 @@ export class ServerApp {
       if (this.config.middleware) for (const m of this.config.middleware) this._app.use(KoaConvert.compose(m))
 
       // use provided routers
-      if (this.config.routers) for (const r of this.config.routers) this._app.use(r.middlewares())
+      if (this.config.routers) for (const r of this.config.routers) this._app.use(r.routes()).use(r.allowedMethods())
 
       // create and listen on all https _servers
       if (this.config.httpsServers) {
