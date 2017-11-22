@@ -58,7 +58,7 @@ import { ServerApp } from 'meseret'
 
 new ServerApp({
   name: 'App Name',
-  httpServer: [{ port: 3000 }],
+  httpServers: [{ port: 3000 }],
 }).start() // returns a Promise
 ```
 
