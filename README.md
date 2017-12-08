@@ -1,7 +1,3 @@
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/pj69cKtfSMsPzwUKHBTfQqhm/kaleabmelkie/meseret'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/pj69cKtfSMsPzwUKHBTfQqhm/kaleabmelkie/meseret.svg' />
-</a>
-
 # meseret
 
 configuration-based backbone for node.js servers.
@@ -15,8 +11,8 @@ __General:__
 
 __Server:__
 
-- Koa server with preconfigured compression, static serving & caching, body parsing (JSON and forms), direct JSON response, console logging and session support.
-- Support for more [Koa](https://www.npmjs.com/package/koa) middleware, and [koa-router](https://www.npmjs.com/package/koa-router) routes.
+- [Koa](https://www.npmjs.com/package/koa) server with preconfigured compression, static serving & caching, body parsing (JSON and forms), direct JSON response, console logging and session support.
+- Support for more Koa middleware, and [koa-router](https://www.npmjs.com/package/koa-router) routes.
 - Listening on multiple HTTP and/or HTTPS servers.
 - Static-serving (hosting) multiple public directories.
 
@@ -31,7 +27,7 @@ __WebSocket:__
 
 ## Installation
 
-Inside a Node.js package, install meseret using:
+Inside a [Node.js](https://nodejs.org/) package, install meseret using:
 
 Yarn:
 
@@ -67,7 +63,7 @@ The `start()` method launches the server application and returns a `Promise`.
 
 ## `IServerAppConfig` Options
 
-The `name` option is the only required of all the `IServerAppConfig` options. Below is a lost of all the available options:
+The `name` option is the only required of all the `IServerAppConfig` options. Below is a list of all the available options:
 
 Option Name | Data Type | Description
 --- | --- | ---
@@ -113,12 +109,12 @@ new ServerApp({
   .catch(err => console.error(`Launch problem: ${err}`))
 ```
 
-It is recommended to use the `ModelFactory` from meseret. Although this method is relatively verbose, it provides support for auto-completing mongoose models in IDEs (even deep down to the data level).
+It is recommended to use the `ModelFactory` from meseret for your mongoose data models. Although this method is optional and relatively verbose, it provides support for auto-completing mongoose models in IDEs (even deep down to the data-schema level).
 
 ```ts
 // src/models/tasks.model
 
-import { ModelFactory, Document, Model,  } from 'ServerApp'
+import { ModelFactory, Document, Model } from 'ServerApp'
 
 export interface ITasksSchemaPaths { desc: string, done: boolean }
 export interface ITasksSchemaMethods extends FunctionsType { tickToggle: () => Promise<boolean> }
@@ -132,13 +128,16 @@ const factory = new ModelFactory<ITasksSchemaPaths, ITasksSchemaMethods, ITasksS
   },
   methods: {
     tickToggle: async (): Promise<boolean> => {
-      const task = factory.modelize(this)
+      const task = factory.documentify(this) // for auto-complete support in the `this`
       task.done = !task.done
       await task.save()
       return Promise.resolve(task.done)
     }
   }
-  statics: { } // empty for now
+  statics: {
+    // empty for now
+    // `factory.modelify(this)` in a function is available for auto-complete support 
+  }
 })
 
 export const TasksModel = factory.model
@@ -171,7 +170,3 @@ export { TaskRouter }
 Made with &hearts; in Addis Ababa.
 
 [MIT License](LICENSE) &copy; 2017 Kaleab S. Melkie.
-
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/pj69cKtfSMsPzwUKHBTfQqhm/kaleabmelkie/meseret'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/pj69cKtfSMsPzwUKHBTfQqhm/kaleabmelkie/meseret.svg' />
-</a>

@@ -1,41 +1,55 @@
 # meseret change log
 
+## v1.2.4
+
+- Improve README
+
 ## v1.2.3
+
 - Fix koa-router usage bug
 
 ## v1.2.2
+
 - README fix.
 - Minor improvement in the way koa-routers are handled.
 
 ## v1.2.1
+
 - FIX: Make `ServerAppConfig.keys` optional.
 - Improve README.md.
 
 ## v1.2.0
+
 - Construct Koa app when `ServerApp` is constructed, before calling `ServerApp.start()`.
 - Add key and session support.
 - Improved README.md and package.json.
 
 ## v1.1.4
+
 - support Koa@1 legacy middleware internally, using koa-convert.
 - add peer dependencies.
 - fix a README doc problem.
 
 ## v1.1.3
+
 - FIX (maybe, BREAKING): turn on `IServerAppConfig`'s `log`, `compress`, `bodyParser` and `json` methods by default.
 - improve README
 
 ## v1.1.2
+
 - improve README
 
 ## v1.1.0
+
 - FEATURE: Add more `IServerAppConfig` options: `compress`, `bodyParser`, `json` and `log`
 - Better [README](README.md)
 
 ## v1.0.2
+
 - BREAKING DOC: remove the demo application out of this package.
 
 ## v1.0.1
+
 - Bug fixes
 
 ## v1.0.0
