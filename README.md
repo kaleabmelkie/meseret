@@ -184,7 +184,7 @@ export { TaskRouter }
 
 To recap, the above router (`TaskRouter`) and the model (`TasksModel`) are included in the `ServerApp` (`taskOrganizer`). When the `taskOrganizer` is started, it:
 
-1. connects to a MongoDB server at a specified `MONGO_URI` environment variable (or default to `mongodb://localhost/task-organizer`),
+1. connects to a MongoDB server at a specified `MONGO_URI` environment variable (or defaults to `mongodb://localhost/task-organizer`),
 2. loads configured Mongoose database models (`TasksModel`),
 3. launches an HTTP Koa server at a specified `PORT` environment variable (or defaults to `3000`) on `localhost`,
 4. serves the static directory `./react/build/`,
@@ -199,11 +199,11 @@ Based on this and the default configuration, the started `ServerApp` **implicitl
 - JSON format responses (using [koa-json](https://npmjs.com/package/koa-json)), and
 - logging every request and response (using [koa-logger](https://npmjs.com/package/koa-logger)).
 
-In addition, a `keys` option can be provided to set Koa `ctx.keys` for signing cookies. If the `keys` are set, a sessions support will enabled automatically (using [koa-session](https://npmjs.com/package/koa-session)).
+In addition, a `keys` option can be provided to set Koa `ctx.keys` for signing cookies. If the `keys` are set, session support will be enabled automatically (using [koa-session](https://npmjs.com/package/koa-session)).
 
 These features can be explicitly turned off (or modified) inside the `config` parameter of the `ServerApp` instance.
 
-Besides the above built-in feature middleware packages, you may specify your own Koa `middleware` in the `config` to be used for the HTTP and/or HTTPS requests. You can also find the original `Koa` application instance using `taskOrganizer.app`, among other variables.
+Besides the above built-in feature middleware packages, you may specify your own Koa `middleware` in the `config` to be used for each HTTP and/or HTTPS requests. You can also find the original `Koa` application instance using `taskOrganizer.app`, among many other variables.
 
 Whew!
  
