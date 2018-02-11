@@ -5,8 +5,8 @@ import { IModelFactoryConfig } from './IModelFactoryConfig'
 
 export class ModelFactory<IPaths, ISchemaMethods extends FunctionsType, ISchemaStatics extends FunctionsType> {
 
-  private _schema: Schema
-  private _model: Model<Document & IPaths & ISchemaMethods> & ISchemaStatics
+  private _schema?: Schema
+  private _model?: Model<Document & IPaths & ISchemaMethods> & ISchemaStatics
 
   constructor (private _config: IModelFactoryConfig<ISchemaMethods, ISchemaStatics>) { }
 

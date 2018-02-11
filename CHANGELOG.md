@@ -2,6 +2,7 @@
 
 ## v1.3.0
 
+- Add SPA support
 - Upgrade package dependency requirements
 - Change package description and keywords
 

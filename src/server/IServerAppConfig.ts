@@ -2,17 +2,18 @@ import * as https from 'https'
 import * as Koa from 'koa'
 import * as KoaRouter from 'koa-router'
 import * as mongoose from 'mongoose'
+import * as SocketIO from 'socket.io'
 
 export interface IServerAppConfig {
   name: string
 
+  models?: mongoose.Model<mongoose.Document>[]
   mongoUris?: string
 
   httpServers?: {
     path?: string,
     port: number
   }[]
-
   httpsServers?: {
     opts: https.ServerOptions
     path?: string,
@@ -20,27 +21,17 @@ export interface IServerAppConfig {
   }[]
 
   publicDirs?: string[]
-
-  models?: mongoose.Model<mongoose.Document>[]
-
   routers?: KoaRouter[]
-
   sockets?: SocketIO.Server[]
-
-  log?: boolean
-
-  compress?: boolean
+  spaFileRelativePath?: string
 
   bodyParser?: boolean
-
-  json?: boolean
-
   cacheControl?: string
-
+  compress?: boolean
   keys?: string[]
-
+  json?: boolean
+  log?: boolean
   session?: boolean
 
   middleware?: Koa.Middleware[]
-
 }

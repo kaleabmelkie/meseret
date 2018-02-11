@@ -1,5 +1,5 @@
-/// <reference types="node" />
 /// <reference types="mongoose" />
+/// <reference types="node" />
 /// <reference types="koa-router" />
 /// <reference types="socket.io" />
 /// <reference types="koa" />
@@ -9,6 +9,7 @@ import * as KoaRouter from 'koa-router';
 import * as mongoose from 'mongoose';
 export interface IServerAppConfig {
     name: string;
+    models?: mongoose.Model<mongoose.Document>[];
     mongoUris?: string;
     httpServers?: {
         path?: string;
@@ -20,15 +21,15 @@ export interface IServerAppConfig {
         port: number;
     }[];
     publicDirs?: string[];
-    models?: mongoose.Model<mongoose.Document>[];
     routers?: KoaRouter[];
     sockets?: SocketIO.Server[];
-    log?: boolean;
-    compress?: boolean;
+    spaFileRelativePath?: string;
     bodyParser?: boolean;
-    json?: boolean;
     cacheControl?: string;
+    compress?: boolean;
     keys?: string[];
+    json?: boolean;
+    log?: boolean;
     session?: boolean;
     middleware?: Koa.Middleware[];
 }

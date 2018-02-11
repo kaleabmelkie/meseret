@@ -6,6 +6,7 @@ import * as KoaConvert from 'koa-convert'
 import * as KoaBodyparser from 'koa-bodyparser'
 import * as KoaJson from 'koa-json'
 import * as KoaLogger from 'koa-logger'
+import * as KoaSend from 'koa-send'
 import * as KoaStatic from 'koa-static'
 import * as KoaStaticCache from 'koa-static-cache'
 import * as KoaSession from 'koa-session'
@@ -15,11 +16,11 @@ import * as net from 'net'
 import { IServerAppConfig } from './IServerAppConfig'
 
 export class ServerApp {
-  private _dbConn: mongoose.Connection
+  private _dbConn?: mongoose.Connection
   private _app: Koa = new Koa()
   private _servers: net.Server[] = []
 
-  get dbConn (): mongoose.Connection {
+  get dbConn (): mongoose.Connection | undefined {
     return this._dbConn
   }
 
@@ -41,13 +42,9 @@ export class ServerApp {
       // mongoose models are automatically created at the origins of this.config.model
 
       if (this.config.mongoUris) { // if mongoUris in config...
-        // set mongoose's promise library
-        (mongoose as any).Promise = global.Promise
-
         // connect to db
         try {
-          await mongoose.connect(this.config.mongoUris, {useMongoClient: true}).then(/* covert to Promise */)
-          // todo: feature request: auth (user & pass) for connecting to db
+          await mongoose.connect(this.config.mongoUris) // todo: feature request: auth (user & pass) support for db
           this._dbConn = mongoose.connection
           console.log(`Database connected to ${this.config.mongoUris}.`)
         } catch (err) {
@@ -90,6 +87,16 @@ export class ServerApp {
 
       // use provided routers
       if (this.config.routers) for (const r of this.config.routers) this._app.use(r.routes()).use(r.allowedMethods())
+
+      // 404 => SPA?
+      if (this.config.spaFileRelativePath) {
+        this._app.use(async ctx => {
+          if (ctx.status === 404) {
+            await KoaSend(ctx, this.config.spaFileRelativePath as string)
+              .catch(err => console.error(`Error sending the specified SPA file: ${err}`))
+          }
+        })
+      }
 
       // create and listen on all https _servers
       if (this.config.httpsServers) {

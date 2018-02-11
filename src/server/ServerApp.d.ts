@@ -10,10 +10,10 @@ import * as net from 'net';
 import { IServerAppConfig } from './IServerAppConfig';
 export declare class ServerApp {
     readonly config: IServerAppConfig;
-    private _dbConn;
+    private _dbConn?;
     private _app;
     private _servers;
-    readonly dbConn: mongoose.Connection;
+    readonly dbConn: mongoose.Connection | undefined;
     readonly app: Koa;
     readonly servers: net.Server[];
     constructor(config: IServerAppConfig);
