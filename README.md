@@ -116,7 +116,7 @@ const taskOrganizer = new ServerApp({
 
   httpServers: [{ port: Number.parseInt(process.env['PORT']) || 3000 }],
 
-  publicDirs: [join(__dirname, 'react', 'build')],
+  publicDirs: [join(process.cwd(), 'react', 'build')],
   routers: [TaskRouter],
   spaFileRelativePath: join('react', 'build', 'index.html')
 })
