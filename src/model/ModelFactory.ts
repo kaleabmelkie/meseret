@@ -37,4 +37,6 @@ export class ModelFactory<IPaths, ISchemaMethods extends FunctionsType, ISchemaS
   }
 }
 
+// fixme: Document and Model always need to be used in users' model factories; this should happen!
+
 export { Document, Model, Schema, SchemaDefinition, SchemaOptions }
