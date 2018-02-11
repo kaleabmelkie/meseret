@@ -2,6 +2,7 @@
 
 ## v1.3.0
 
+- Upgrade package dependency requirements
 - Change package description and keywords
 
 ## v1.2.4
