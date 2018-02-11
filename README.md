@@ -1,33 +1,43 @@
 # meseret
 
-configuration-based backbone for node.js servers.
+Opinionated, feature-packed professional node.js server framework.
 
 ## Features
 
-__General:__
+Meseret is a framework designed from the ground up to allow easy professional-grade node.js server configuration setup (code-wise).
 
-- [TypeScript](https://www.npmjs.com/package/typescript) everywhere.
-- Configuration-based architecture (using TypeScript code).
+Here are some of the features:
 
-__Server:__
+__Server Setup:__
 
 - [Koa](https://www.npmjs.com/package/koa) server with preconfigured compression, static serving & caching, body parsing (JSON and forms), direct JSON response, console logging and session support.
 - Support for more Koa middleware, and [koa-router](https://www.npmjs.com/package/koa-router) routes.
 - Listening on multiple HTTP and/or HTTPS servers.
 - Static-serving (hosting) multiple public directories.
 
-__Database:__
+__Database Models:__
 
 - MongoDB connection and [Mongoose](https://www.npmjs.com/package/mongoose) models.
-- A `ModelFactory` for type enabled Mongoose schema paths, methods and statics, -- bringing auto-complete to the data model.
+- A `ModelFactory` for type enabled Mongoose schema paths, methods and statics, -- bringing type-support (and IDE auto-complete) to the data schema.
 
-__WebSocket:__
+__WebSocket Support:__
 
 - [Socket.io](https://www.npmjs.com/package/socket.io) support.
 
+__Single Page Application Support:__
+
+- Serves any SPA file.
+- Serves build files of SPA front-end projects, built using frameworks such as [Angular](https://angular.io) and [React](https://reactjs.org), even when in different packages.
+- All 404 responses can be redirected to an SPA file, if specified.
+
+__Coding Style:__
+
+- [TypeScript](https://www.npmjs.com/package/typescript) everywhere.
+- Configuration-based architecture (using TypeScript code).
+
 ## Installation
 
-Inside a [Node.js](https://nodejs.org/) package, install meseret using:
+Inside a [Node.js](https://nodejs.org) package, install meseret using:
 
 Yarn:
 
@@ -81,6 +91,7 @@ Option Name | Data Type | Description
 `name` | `string` | Name of the server application. It is required.
 `publicDirs?` | `string[]` | Directory paths to serve statically.
 `routers?` | `KoaRouter[]` | An array of [koa-router](https://www.npmjs.com/package/koa-router) routers used in the servers.
+`spaFileRelativePath?` | `string` | A relative path to an SPA file (e.g. an [Angular](https://angular.io) or [React](https://reactjs.org) build's `index.html` file). If this is unspecified (or `null`) the ServerApp will not have an SPA-like behavior for `404 Not Found` pages.
 `session?` | `boolean` | Session support using cookies? Requires `IServerAppConfig.keys`. Defaults to true if some `IServerAppConfig.keys` are provided.
 `sockets?` | `SocketIO.Server[]` | [Socket.io](https://www.npmjs.com/package/socket-io) servers used in the http servers.
 
@@ -97,14 +108,20 @@ import { join } from 'path'
 import { TasksModel } from './models/tasks.model'
 import { TaskRouter } from './routers/task.router'
 
-new ServerApp({
+const taskOrganizer = new ServerApp({
   name: 'Task Organizer',
-  mongoUris: process.env['MONGO_URI'] || 'mongodb://localhost/task-organizer',
-  httpServers: [{port: Number.parseInt(process.env['PORT']) || 3000}],
-  publicDirs: [join(__dirname, '../../public/dist/')],
+  
   models: [TasksModel],
-  routers: [TaskRouter]
-}).start()
+  mongoUris: process.env['MONGO_URI'] || 'mongodb://localhost/task-organizer',
+
+  httpServers: [{ port: Number.parseInt(process.env['PORT']) || 3000 }],
+
+  publicDirs: [join(__dirname, 'react', 'build')],
+  routers: [TaskRouter],
+  spaFileRelativePath: join('react', 'build', 'index.html')
+})
+
+taskOrganizer.start()
   .then(() => console.log(`Starting 'Task Organizer'...`))
   .catch(err => console.error(`Launch problem: ${err}`))
 ```
@@ -128,7 +145,7 @@ const factory = new ModelFactory<ITasksSchemaPaths, ITasksSchemaMethods, ITasksS
   },
   methods: {
     tickToggle: async (): Promise<boolean> => {
-      const task = factory.documentify(this) // for auto-complete support in the `this`
+      const task = factory.documentify(this) // for type-support of the `this` in this document's context
       task.done = !task.done
       await task.save()
       return Promise.resolve(task.done)
@@ -136,7 +153,7 @@ const factory = new ModelFactory<ITasksSchemaPaths, ITasksSchemaMethods, ITasksS
   }
   statics: {
     // empty for now
-    // `factory.modelify(this)` in a function is available for auto-complete support 
+    // `factory.modelify(this)` is available in functions here, for type-support of the `this` in this model's context
   }
 })
 
@@ -160,11 +177,36 @@ TaskRouter.get('/:_id', async ctx => {
   ctx.body = await TasksModel.findById(ctx.params['_id'])
 })
 
-// ... more API definition
+// ... more route definitions
 
 export { TaskRouter }
 ```
 
+To recap, the above router (`TaskRouter`) and the model (`TasksModel`) are included in the `ServerApp` (`taskOrganizer`). When the `taskOrganizer` is started, it:
+
+1. connects to a MongoDB server at a specified `MONGO_URI` environment variable (or default to `mongodb://localhost/task-organizer`),
+2. loads configured Mongoose database models (`TasksModel`),
+3. launches an HTTP Koa server at a specified `PORT` environment variable (or defaults to `3000`) on `localhost`,
+4. serves the static directory `./react/build/`,
+5. serves an SPA from `./react/build/index.html`, and
+6. handles requests that match definitions in `TaskRouter`.
+
+Based on this and the default configuration, the started `ServerApp` **implicitly** takes care of:
+
+- Koa Context body parsing (using [koa-bodyparser](https://npmjs.com/package/koa-bodyparser)),
+- caching static requests (using [koa-static-cache](https://npmjs.com/package/koa-static-cache)),
+- response GZip compression (using [koa-compress](https://npmjs.com/package/koa-compress)),
+- JSON format responses (using [koa-json](https://npmjs.com/package/koa-json)), and
+- logging every request and response (using [koa-logger](https://npmjs.com/package/koa-logger)).
+
+In addition, a `keys` option can be provided to set Koa `ctx.keys` for signing cookies. If the `keys` are set, a sessions support will enabled automatically (using [koa-session](https://npmjs.com/package/koa-session)).
+
+These features can be explicitly turned off (or modified) inside the `config` parameter of the `ServerApp` instance.
+
+Besides the above built-in feature middleware packages, you may specify your own Koa `middleware` in the `config` to be used for the HTTP and/or HTTPS requests. You can also find the original `Koa` application instance using `taskOrganizer.app`, among other variables.
+
+Whew!
+ 
 ## Licence
 
 Made with &hearts; in Addis Ababa.

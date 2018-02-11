@@ -29,7 +29,12 @@
     "mongoose",
     "mongodb",
     "websocket",
-    "socket.io"
+    "socket.io",
+    "single page application",
+    "spa",
+    "404",
+    "angular",
+    "react"
   ],
   "repository": "git@gitlab.com:kaleabmelkie/meseret",
   "author": "Kaleab Melkie <kaleabmelkie@gmail.com>",
