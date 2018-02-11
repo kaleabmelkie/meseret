@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.3.0
+
+- Change package description and keywords
+
 ## v1.2.4
 
 - Improve README

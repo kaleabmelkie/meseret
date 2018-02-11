@@ -169,4 +169,4 @@ export { TaskRouter }
 
 Made with &hearts; in Addis Ababa.
 
-[MIT License](LICENSE) &copy; 2017 Kaleab S. Melkie.
+[MIT License](LICENSE) &copy; 2017-2018 Kaleab S. Melkie.
