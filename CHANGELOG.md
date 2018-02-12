@@ -2,6 +2,7 @@
 
 ## v1.3.3
 
+- Improved the package description
 - Fixed some issues in the [README](README.md)
 
 ## v1.3.2

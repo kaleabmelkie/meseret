@@ -1,7 +1,7 @@
 {
   "name": "meseret",
   "version": "1.3.2",
-  "description": "meseret is an opinionated, feature-packed professional node.js server framework.",
+  "description": "Opinionated, feature-packed professional node.js server framework.",
   "main": "src/main.js",
   "typings": "src/main.d.ts",
   "scripts": {
