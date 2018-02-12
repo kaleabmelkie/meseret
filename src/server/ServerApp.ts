@@ -63,34 +63,34 @@ export class ServerApp {
 
     try {
       // set keys
-      if (this.config.keys) this._app.keys = this.config.keys
+      if (this.config.keys) this.app.keys = this.config.keys
 
       // use the essential koa middleware
-      if (this.config.log !== false) this._app.use(KoaLogger())
-      if (this.config.session !== false && Array.isArray(this._app.keys) && this._app.keys.length) this._app.use(KoaSession(this.app))
-      if (this.config.compress !== false) this._app.use(KoaCompress({ level: 9, memLevel: 9, threshold: 0 }))
-      if (this.config.bodyParser !== false) this._app.use(KoaBodyparser({ enableTypes: ['json', 'form', 'text'] }))
-      if (this.config.json !== false) this._app.use(KoaJson({ pretty: this._app.env === 'development' }))
+      if (this.config.log !== false) this.app.use(KoaLogger())
+      if (this.config.session !== false && Array.isArray(this.app.keys) && this.app.keys.length) this.app.use(KoaSession(this.app))
+      if (this.config.compress !== false) this.app.use(KoaCompress({ level: 9, memLevel: 9, threshold: 0 }))
+      if (this.config.bodyParser !== false) this.app.use(KoaBodyparser({ enableTypes: ['json', 'form', 'text'] }))
+      if (this.config.json !== false) this.app.use(KoaJson({ pretty: this.app.env === 'development' }))
 
       // use provided public directories (with static cache)
       if (this.config.publicDirs) {
         for (const dir of this.config.publicDirs) {
-          this._app.use(KoaStaticCache(dir, { cacheControl: this.config.cacheControl || 'private' }))
-          this._app.use(KoaStatic(dir, {
+          this.app.use(KoaStaticCache(dir, { cacheControl: this.config.cacheControl || 'private' }))
+          this.app.use(KoaStatic(dir, {
             gzip: this.config.compress === true || this.config.compress === false ? this.config.compress : true
           }))
         }
       }
 
       // use provided middleware
-      if (this.config.middleware) for (const m of this.config.middleware) this._app.use(KoaConvert.compose(m))
+      if (this.config.middleware) for (const m of this.config.middleware) this.app.use(KoaConvert.compose(m))
 
       // use provided routers
-      if (this.config.routers) for (const r of this.config.routers) this._app.use(r.routes()).use(r.allowedMethods())
+      if (this.config.routers) for (const r of this.config.routers) this.app.use(r.routes()).use(r.allowedMethods())
 
       // 404 => SPA?
       if (this.config.spaFileRelativePath) {
-        this._app.use(async ctx => {
+        this.app.use(async ctx => {
           if (ctx.status === 404) {
             await KoaSend(ctx, this.config.spaFileRelativePath as string)
               .catch(err => console.error(`Error sending the specified SPA file: ${err}`))
@@ -98,42 +98,42 @@ export class ServerApp {
         })
       }
 
-      // create and listen on all https _servers
+      // create and listen on all https servers
       if (this.config.httpsServers) {
         for (const s of this.config.httpsServers) {
-          const server = https.createServer(s.opts, this._app.callback()).listen(s.port, s.path, (err: any) => {
+          const server = https.createServer(s.opts, this.app.callback()).listen(s.port, s.path, (err: any) => {
             if (err) {
               err.message = `HTTPS server creation error: ${err.message}`
               return Promise.reject(err)
             }
 
             const address = server.address()
-            console.log(`Listening at https://${address.address}:${address.port}/ in ${this._app.env} mode.`)
+            console.log(`Listening at https://${address.address}:${address.port}/ in ${this.app.env} mode.`)
           })
-          this._servers.push(server)
+          this.servers.push(server)
         }
       }
 
-      // create and listen on all http _servers
+      // create and listen on all http servers
       if (this.config.httpServers) {
         for (const s of this.config.httpServers) {
-          const server = http.createServer(this._app.callback()).listen(s.port, s.path, (err: any) => {
+          const server = http.createServer(this.app.callback()).listen(s.port, s.path, (err: any) => {
             if (err) {
               err.message = `HTTP server creation error: ${err.message}`
               return Promise.reject(err)
             }
 
             const address = server.address()
-            console.log(`Listening at http://${address.address}:${address.port}/ in ${this._app.env} mode.`)
+            console.log(`Listening at http://${address.address}:${address.port}/ in ${this.app.env} mode.`)
           })
-          this._servers.push(server)
+          this.servers.push(server)
         }
       }
 
       // attach sockets to the servers
       if (this.config.sockets) {
         for (const socket of this.config.sockets) {
-          for (const server of this._servers) {
+          for (const server of this.servers) {
             socket.attach(server)
           }
         }

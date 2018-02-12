@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.4.0
+
+- Minor code improvements
+
 ## v1.3.3
 
 - Improved the package description
