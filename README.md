@@ -89,6 +89,9 @@ Option Name | Data Type | Description
 `httpServers?` | `{ path?: string, port: number }[]` | HTTP server configurations.
 `httpsServers?` | `{ opts: https.ServerOptions, path?: string, port: number }[]` | HTTPS server configurations.
 `json?` | `boolean` | Support direct JSON response parsing? Defaults to `true`.
+`jsonPretty?` | `boolean` | If `json` is enabled, send pretty responses? Default to `true` only if `app` is in `'development'` mode.
+`jsonPrettyParam?` | `string` | Optional query-string param for pretty responses, if `json` is enabled.
+`jsonSpaces?` | `number` | JSON spaces, if `json` is enabled and pretty. Defaults to `2`.
 `keys?` | `string[]` | Sets Koa `app.keys`.
 `log?` | `boolean` | Log requests and responses? Defaults to true.
 `middleware?` | `Koa.middleware[]` | More [Koa](https://www.npmjs.com/package/koa) middleware to use.

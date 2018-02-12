@@ -42,6 +42,9 @@ export interface IServerAppConfig {
   compress?: boolean
   keys?: string[]
   json?: boolean
+  jsonPretty?: boolean
+  jsonPrettyParam?: string
+  jsonSpaces?: number
   log?: boolean
   session?: boolean
   sessionCookieKey?: string

@@ -72,7 +72,7 @@ export class ServerApp {
       if (this.config.session !== false && Array.isArray(this.app.keys) && this.app.keys.length) {
         this.app.use(KoaSession({
           key: this.config.sessionCookieKey || this.config.name.trim().toLowerCase().replace(/ /g, '_'),
-          httpOnly: this.config.sessionHttpOnly,
+          httpOnly: this.config.sessionHttpOnly || true,
           maxAge: this.config.sessionMaxAge || 86400000,
           overwrite: this.config.sessionOverwrite || true,
           renew: this.config.sessionRenew || false, // todo: remove the `as any` when @types/koa-session updates support for `renew` option
@@ -91,14 +91,18 @@ export class ServerApp {
         this.app.use(KoaBodyparser({
           enableTypes: enabledTypes,
           encode: this.config.bodyParserEncoding || 'utf-8',
-          extendTypes: this.config.bodyParserExtendTypes,
+          extendTypes: this.config.bodyParserExtendTypes || undefined,
           formLimit: this.config.bodyParserFormLimit || '56kb',
           jsonLimit: this.config.bodyParserJsonLimit || '1mb',
           textLimit: this.config.bodyParserTextLimit || '1mb' // todo: remove the `as any` when @types/koa-bodyparser updates support for `textLimit` option
         } as any))
       }
       if (this.config.json !== false) {
-        this.app.use(KoaJson({ pretty: this.app.env === 'development' }))
+        this.app.use(KoaJson({
+          pretty: this.config.jsonPretty || this.app.env === 'development',
+          param: this.config.jsonPrettyParam || undefined,
+          spaces: this.config.jsonSpaces || 2
+        }))
       }
 
       // use provided public directories (with static cache)
