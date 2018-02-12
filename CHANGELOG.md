@@ -2,6 +2,7 @@
 
 ## v1.4.0
 
+- Add options to easily configure and read the environment (default: `process['NODE_ENV'] || 'development'`)
 - Add a `name` shortcut to `ServerApp` from `ServerApp.config`
 - Enhanced `json` configuration (new options for "pretty" responses)
 - Enhanced `bodyParser` configuration (new options for encoding, and extending with new types, disabling, setting size limits for form, JSON and text request body types)

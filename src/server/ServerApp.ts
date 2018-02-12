@@ -20,7 +20,9 @@ export class ServerApp {
   private _app: Koa = new Koa()
   private _servers: net.Server[] = []
 
-  constructor (public readonly config: IServerAppConfig) { }
+  constructor (public readonly config: IServerAppConfig, env = process['NODE_ENV'] || 'development') {
+    this.env = env
+  }
 
   get name (): string {
     return this.config.name
@@ -36,6 +38,14 @@ export class ServerApp {
 
   get servers (): net.Server[] {
     return this._servers
+  }
+
+  get env (): string {
+    return this.app.env
+  }
+
+  set env (environment: string) {
+    this.app.env = environment
   }
 
   async start (): Promise<void> {
@@ -103,7 +113,7 @@ export class ServerApp {
       }
       if (this.config.json !== false) {
         this.app.use(KoaJson({
-          pretty: this.config.jsonPretty || this.app.env === 'development',
+          pretty: this.config.jsonPretty || this.env === 'development',
           param: this.config.jsonPrettyParam || undefined,
           spaces: this.config.jsonSpaces || 2
         }))
