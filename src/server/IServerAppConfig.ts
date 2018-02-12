@@ -26,6 +26,18 @@ export interface IServerAppConfig {
   spaFileRelativePath?: string
 
   bodyParser?: boolean
+  bodyParserEnableForm?: boolean
+  bodyParserEnableJson?: boolean
+  bodyParserEnableText?: boolean
+  bodyParserEncoding?: string
+  bodyParserExtendTypes?: {
+    json?: string[]
+    form?: string[]
+    text?: string[]
+  }
+  bodyParserFormLimit?: string
+  bodyParserJsonLimit?: string
+  bodyParserTextLimit?: string
   cacheControl?: string
   compress?: boolean
   keys?: string[]

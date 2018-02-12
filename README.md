@@ -75,7 +75,15 @@ The `name` option is the only required of all the `IServerAppConfig` options. Be
 
 Option Name | Data Type | Description
 --- | --- | ---
-`bodyParser?` | `boolean` | Support for JSON and form request bodies? Defaults to `true`.
+`bodyParser?` | `boolean` | Support form, JSON and text request body parsing? Defaults to `true`.
+`bodyParserEnableForm?` | `boolean` | If `bodyParser` is enabled, enable form parsing? Defaults to `true`.
+`bodyParserEnableJson?` | `boolean` | If `bodyParser` is enabled, enable JSON parsing? Defaults to `true`.
+`bodyParserEnableText?` | `boolean` | If `bodyParser` is enabled, enable text parsing? Defaults to `true`.
+`bodyParserEncoding?` | `string` | Encoding to use, if `bodyParser` is enabled. Defaults to `'utf-8'`.
+`bodyParserExtendTypes?` | `{ json?: string[], form?: string[], text?: string[] }` | Custom extend types, if `bodyParser` is enabled.
+`bodyParserFormLimit?` | `string` | Form size limit, if `bodyParser` is enabled. Defaults to `'56kb'`.
+`bodyParserJsonLimit?` | `string` | JSON size limit, if `bodyParser` is enabled. Defaults to `'1mb'`.
+`bodyParserTextLimit?` | `string` | Text size limit, if `bodyParser` is enabled. Defaults to `'1mb'`.
 `cacheControl?` | `string` | Cache control to be used. Defaults to `'private'`.
 `compress?` | `boolean` | Compress responses? Defaults to `true`.
 `httpServers?` | `{ path?: string, port: number }[]` | HTTP server configurations.

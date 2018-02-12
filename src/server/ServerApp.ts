@@ -66,21 +66,40 @@ export class ServerApp {
       if (this.config.keys) this.app.keys = this.config.keys
 
       // use the essential koa middleware
-      if (this.config.log !== false) this.app.use(KoaLogger())
+      if (this.config.log !== false) {
+        this.app.use(KoaLogger())
+      }
       if (this.config.session !== false && Array.isArray(this.app.keys) && this.app.keys.length) {
         this.app.use(KoaSession({
           key: this.config.sessionCookieKey || this.config.name.trim().toLowerCase().replace(/ /g, '_'),
           httpOnly: this.config.sessionHttpOnly,
           maxAge: this.config.sessionMaxAge || 86400000,
           overwrite: this.config.sessionOverwrite || true,
-          renew: this.config.sessionRenew || false, // todo: remove the `as any` when @types/koa-session receives an update for support renew
+          renew: this.config.sessionRenew || false, // todo: remove the `as any` when @types/koa-session updates support for `renew` option
           rolling: this.config.sessionRolling || false,
           signed: this.config.sessionSigned || true
         } as any, this.app))
       }
-      if (this.config.compress !== false) this.app.use(KoaCompress({ level: 9, memLevel: 9, threshold: 0 }))
-      if (this.config.bodyParser !== false) this.app.use(KoaBodyparser({ enableTypes: ['json', 'form', 'text'] }))
-      if (this.config.json !== false) this.app.use(KoaJson({ pretty: this.app.env === 'development' }))
+      if (this.config.compress !== false) {
+        this.app.use(KoaCompress({ level: 9, memLevel: 9, threshold: 0 }))
+      }
+      if (this.config.bodyParser !== false) {
+        const enabledTypes: string[] = []
+        if (this.config.bodyParserEnableForm !== false) enabledTypes.push('form')
+        if (this.config.bodyParserEnableJson !== false) enabledTypes.push('json')
+        if (this.config.bodyParserEnableText !== false) enabledTypes.push('text')
+        this.app.use(KoaBodyparser({
+          enableTypes: enabledTypes,
+          encode: this.config.bodyParserEncoding || 'utf-8',
+          extendTypes: this.config.bodyParserExtendTypes,
+          formLimit: this.config.bodyParserFormLimit || '56kb',
+          jsonLimit: this.config.bodyParserJsonLimit || '1mb',
+          textLimit: this.config.bodyParserTextLimit || '1mb' // todo: remove the `as any` when @types/koa-bodyparser updates support for `textLimit` option
+        } as any))
+      }
+      if (this.config.json !== false) {
+        this.app.use(KoaJson({ pretty: this.app.env === 'development' }))
+      }
 
       // use provided public directories (with static cache)
       if (this.config.publicDirs) {

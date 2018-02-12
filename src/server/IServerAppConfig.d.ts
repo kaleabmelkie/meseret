@@ -25,6 +25,17 @@ export interface IServerAppConfig {
     sockets?: SocketIO.Server[];
     spaFileRelativePath?: string;
     bodyParser?: boolean;
+    bodyParserEnableForm: boolean;
+    bodyParserEnableJson: boolean;
+    bodyParserEnableText: boolean;
+    bodyParserExtendTypes?: {
+        json?: string[];
+        form?: string[];
+        text?: string[];
+    };
+    bodyParserFormLimit?: string;
+    bodyParserJsonLimit?: string;
+    bodyParserTextLimit?: string;
     cacheControl?: string;
     compress?: boolean;
     keys?: string[];
