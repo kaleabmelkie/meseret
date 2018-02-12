@@ -13,9 +13,10 @@ export declare class ServerApp {
     private _dbConn?;
     private _app;
     private _servers;
+    constructor(config: IServerAppConfig);
+    readonly name: string;
     readonly dbConn: mongoose.Connection | undefined;
     readonly app: Koa;
     readonly servers: net.Server[];
-    constructor(config: IServerAppConfig);
     start(): Promise<void>;
 }

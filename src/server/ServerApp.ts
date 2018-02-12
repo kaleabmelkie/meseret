@@ -20,6 +20,12 @@ export class ServerApp {
   private _app: Koa = new Koa()
   private _servers: net.Server[] = []
 
+  constructor (public readonly config: IServerAppConfig) { }
+
+  get name (): string {
+    return this.config.name
+  }
+
   get dbConn (): mongoose.Connection | undefined {
     return this._dbConn
   }
@@ -31,8 +37,6 @@ export class ServerApp {
   get servers (): net.Server[] {
     return this._servers
   }
-
-  constructor (public readonly config: IServerAppConfig) { }
 
   async start (): Promise<void> {
 

@@ -6,8 +6,8 @@
   "typings": "src/main.d.ts",
   "scripts": {
     "build": "tsc",
-    "lint": "tslint --type-check --project ./",
-    "fix": "tslint --type-check --project ./ --fix"
+    "lint": "tslint --project ./",
+    "fix": "tslint --project ./ --fix"
   },
   "keywords": [
     "meseret",

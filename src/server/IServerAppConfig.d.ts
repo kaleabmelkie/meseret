@@ -25,9 +25,10 @@ export interface IServerAppConfig {
     sockets?: SocketIO.Server[];
     spaFileRelativePath?: string;
     bodyParser?: boolean;
-    bodyParserEnableForm: boolean;
-    bodyParserEnableJson: boolean;
-    bodyParserEnableText: boolean;
+    bodyParserEnableForm?: boolean;
+    bodyParserEnableJson?: boolean;
+    bodyParserEnableText?: boolean;
+    bodyParserEncoding?: string;
     bodyParserExtendTypes?: {
         json?: string[];
         form?: string[];
@@ -40,6 +41,9 @@ export interface IServerAppConfig {
     compress?: boolean;
     keys?: string[];
     json?: boolean;
+    jsonPretty?: boolean;
+    jsonPrettyParam?: string;
+    jsonSpaces?: number;
     log?: boolean;
     session?: boolean;
     sessionCookieKey?: string;
