@@ -2,6 +2,7 @@
 
 ## v1.4.0
 
+- Enhanced session configuration (new options for `sessionCookieKey`, `sessionHttpOnly`, `sessionMaxAge`, `sessionOverwrite`, `sessionRenew`, `sessionRolling` and `sessionSigned`)
 - Minor code improvements
 
 ## v1.3.3

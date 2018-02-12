@@ -67,7 +67,17 @@ export class ServerApp {
 
       // use the essential koa middleware
       if (this.config.log !== false) this.app.use(KoaLogger())
-      if (this.config.session !== false && Array.isArray(this.app.keys) && this.app.keys.length) this.app.use(KoaSession(this.app))
+      if (this.config.session !== false && Array.isArray(this.app.keys) && this.app.keys.length) {
+        this.app.use(KoaSession({
+          key: this.config.sessionCookieKey || this.config.name.trim().toLowerCase().replace(/ /g, '_'),
+          httpOnly: this.config.sessionHttpOnly,
+          maxAge: this.config.sessionMaxAge || 86400000,
+          overwrite: this.config.sessionOverwrite || true,
+          renew: this.config.sessionRenew || false, // todo: remove the `as any` when @types/koa-session receives an update for support renew
+          rolling: this.config.sessionRolling || false,
+          signed: this.config.sessionSigned || true
+        } as any, this.app))
+      }
       if (this.config.compress !== false) this.app.use(KoaCompress({ level: 9, memLevel: 9, threshold: 0 }))
       if (this.config.bodyParser !== false) this.app.use(KoaBodyparser({ enableTypes: ['json', 'form', 'text'] }))
       if (this.config.json !== false) this.app.use(KoaJson({ pretty: this.app.env === 'development' }))

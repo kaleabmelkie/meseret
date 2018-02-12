@@ -31,5 +31,12 @@ export interface IServerAppConfig {
     json?: boolean;
     log?: boolean;
     session?: boolean;
+    sessionCookieKey?: string;
+    sessionHttpOnly?: boolean;
+    sessionMaxAge?: number | 'session';
+    sessionOverwrite?: boolean;
+    sessionRenew?: boolean;
+    sessionRolling?: boolean;
+    sessionSigned?: boolean;
     middleware?: Koa.Middleware[];
 }

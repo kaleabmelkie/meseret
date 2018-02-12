@@ -75,12 +75,12 @@ The `name` option is the only required of all the `IServerAppConfig` options. Be
 
 Option Name | Data Type | Description
 --- | --- | ---
-`bodyParser?` | `boolean` | Support for JSON and form request bodies? Defaults to true.
-`cacheControl?` | `string` | Cache control to be used. Defaults to 'private'.
-`compress?` | `boolean` | Compress responses? Defaults to true.
+`bodyParser?` | `boolean` | Support for JSON and form request bodies? Defaults to `true`.
+`cacheControl?` | `string` | Cache control to be used. Defaults to `'private'`.
+`compress?` | `boolean` | Compress responses? Defaults to `true`.
 `httpServers?` | `{ path?: string, port: number }[]` | HTTP server configurations.
 `httpsServers?` | `{ opts: https.ServerOptions, path?: string, port: number }[]` | HTTPS server configurations.
-`json?` | `boolean` | Support direct JSON response parsing? Defaults to true.
+`json?` | `boolean` | Support direct JSON response parsing? Defaults to `true`.
 `keys?` | `string[]` | Sets Koa `app.keys`.
 `log?` | `boolean` | Log requests and responses? Defaults to true.
 `middleware?` | `Koa.middleware[]` | More [Koa](https://www.npmjs.com/package/koa) middleware to use.
@@ -90,7 +90,14 @@ Option Name | Data Type | Description
 `publicDirs?` | `string[]` | Directory paths to serve statically.
 `routers?` | `KoaRouter[]` | An array of [koa-router](https://www.npmjs.com/package/koa-router) routers used in the servers.
 `spaFileRelativePath?` | `string` | A relative path to an SPA file (e.g. an [Angular](https://angular.io) or [React](https://reactjs.org) build's `index.html` file). If this is unspecified (or `null`) the `ServerApp` will not have an SPA-like behavior of rerouting `404 Not Found` pages.
-`session?` | `boolean` | Session support using cookies? Requires `IServerAppConfig.keys`. Defaults to true if some `IServerAppConfig.keys` are provided.
+`session?` | `boolean` | Session support using cookies? Requires `IServerAppConfig.keys`. Defaults to `true` if some `IServerAppConfig.keys` are provided.
+`sessionCookieKey?` | `string` | Session cookie key, if `session` is enabled. Defaults to the `name` of the `ServerApp` in "snake_case".
+`sessionHttpOnly?` | `boolean` | If `session` is enabled, use it for HTTP only? Defaults to `true`.
+`sessionMaxAge?` | `number` or `'session'` | Maximum valid age of the session in milliseconds, if `session` is enabled. Defaults to `86400000` (1 day). If it is set to the string value: `'session'`, the cookie expires when the session/browser is closed.
+`sessionOverwrite?` | `boolean` | If `session` is enabled, allow overwriting? Defaults to `true`.
+`sessionRenew?` | `boolean` | If `session` is enabled, renew it when nearing its expiry? Defaults to `false`.
+`sessionRolling?` | `boolean` | If `session` is enabled, force a session identifier cookie to be set on every response? Defaults to `false`.
+`sessionSigned?` | `boolean` | If `session` is enabled, should it be signed? Defaults to `true`.
 `sockets?` | `SocketIO.Server[]` | [Socket.io](https://www.npmjs.com/package/socket-io) servers used in the http servers.
 
 ## A Realistic Example
