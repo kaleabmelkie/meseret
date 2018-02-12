@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.3.3
+
+- Fixed some issues in the [README](README.md)
+
 ## v1.3.2
 
 - Fixed an issue in the [README](README.md)

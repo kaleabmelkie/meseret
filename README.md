@@ -2,11 +2,9 @@
 
 Opinionated, feature-packed professional node.js server framework.
 
-## Features
-
 Meseret is a framework designed from the ground up to allow easy professional-grade node.js server configuration setup (code-wise).
 
-Here are some of the features:
+Here are some of its features:
 
 __Server Setup:__
 
@@ -91,7 +89,7 @@ Option Name | Data Type | Description
 `name` | `string` | Name of the server application. It is required.
 `publicDirs?` | `string[]` | Directory paths to serve statically.
 `routers?` | `KoaRouter[]` | An array of [koa-router](https://www.npmjs.com/package/koa-router) routers used in the servers.
-`spaFileRelativePath?` | `string` | A relative path to an SPA file (e.g. an [Angular](https://angular.io) or [React](https://reactjs.org) build's `index.html` file). If this is unspecified (or `null`) the ServerApp will not have an SPA-like behavior for `404 Not Found` pages.
+`spaFileRelativePath?` | `string` | A relative path to an SPA file (e.g. an [Angular](https://angular.io) or [React](https://reactjs.org) build's `index.html` file). If this is unspecified (or `null`) the `ServerApp` will not have an SPA-like behavior of rerouting `404 Not Found` pages.
 `session?` | `boolean` | Session support using cookies? Requires `IServerAppConfig.keys`. Defaults to true if some `IServerAppConfig.keys` are provided.
 `sockets?` | `SocketIO.Server[]` | [Socket.io](https://www.npmjs.com/package/socket-io) servers used in the http servers.
 
@@ -131,7 +129,7 @@ It is recommended to use the `ModelFactory` from meseret for your mongoose data 
 ```ts
 // src/models/tasks.model
 
-import { ModelFactory, Document, Model } from 'ServerApp'
+import { ModelFactory, FunctionsType, Document, Model } from 'meseret'
 
 export interface ITasksSchemaPaths { desc: string, done: boolean }
 export interface ITasksSchemaMethods extends FunctionsType { tickToggle: () => Promise<boolean> }
@@ -174,7 +172,7 @@ const TaskRouter = new Router({ prefix: '/api/task' })
 
 // GET /api/task/:_id
 TaskRouter.get('/:_id', async ctx => {
-  ctx.body = await TasksModel.findById(ctx.params['_id'])
+  ctx.body = await TasksModel.findById(String(ctx.params['_id']))
 })
 
 // ... more route definitions
