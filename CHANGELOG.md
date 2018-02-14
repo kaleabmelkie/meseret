@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.4.1
+
+- Update packages
+
 ## v1.4.0
 
 - Add options to easily configure and read the environment (default: `process['NODE_ENV'] || 'development'`)
