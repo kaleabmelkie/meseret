@@ -2,6 +2,7 @@
 
 ## v1.4.1
 
+- Fix the SocketIO namespace type bug
 - Update packages
 
 ## v1.4.0
