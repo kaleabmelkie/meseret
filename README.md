@@ -17,6 +17,7 @@ __Database Models:__
 
 - MongoDB connection and [Mongoose](https://www.npmjs.com/package/mongoose) models.
 - A `ModelFactory` for type enabled Mongoose schema paths, methods and statics, -- bringing type-support (and IDE auto-complete) to the data schema.
+- GridFS support to store small and large files in MongoDB.
 
 __WebSocket Support:__
 
@@ -69,7 +70,149 @@ new ServerApp({
 A new `ServerApp` receives a configuration object (called `IServerAppConfig`) as a parameter.
 The `start()` method launches the server application and returns a `Promise`.
 
-## `IServerAppConfig` Options
+## A Realistic Example
+
+We are now going to create the back-end of a small "task organization" application using meseret. Its main source file looks something like:
+
+```ts
+// src/main.ts
+
+import { ServerApp } from 'meseret'
+import { join } from 'path'
+
+import { TasksModel } from './models/tasks.model'
+import { TaskRouter } from './routers/task.router'
+
+const taskOrganizer = new ServerApp({
+  name: 'Task Organizer',
+  
+  models: [TasksModel],
+  mongoUris: process.env['MONGO_URI'] || 'mongodb://localhost/task-organizer',
+
+  httpServers: [{ port: Number.parseInt(process.env['PORT']) || 3000 }],
+
+  publicDirs: [join(process.cwd(), 'react', 'build')],
+  routers: [TaskRouter],
+  spaFileRelativePath: join('react', 'build', 'index.html')
+})
+
+taskOrganizer.start()
+  .then(() => console.log(`Starting 'Task Organizer'...`))
+  .catch(err => console.error(`Launch problem: ${err}`))
+
+// optionally, you may...
+export const dbConn = () taskOrganizer.dbConn  // to access the mongoose connection
+export const gfs = () => taskOrganizer.grid    // to access GridFS from other files
+export const app = () => taskOrganizer.app     // the Koa application instance
+// or, more generally...
+export { taskOrganizer }                       // the ServerApp, holding all of the above and more
+```
+
+In this code, we imported a `ServerApp` from meseret and created an instance (`taskOrganizer`) by passing it a (`config: IServerAppConfig`) as its first parameter. Then we called `start()` on `taskOrganizer` to launch our application based on the `config` we provided it. This configuration we passed to the `ServerApp` is the most important piece of code here. The job the `ServerApp` performs when `start()` is called will be discussed later in detail at the end of this example project.
+
+Now we are moving our attention to the mongoose database model that's imported and used in `taskOrganizer` (the `TasksModel`). When it comes to models, it is recommended that we use the `ModelFactory` from meseret. Although this method is optional and relatively verbose when compared to pure mongoose, it provides support for static-typing and auto-completing mongoose models in IDEs, even deep down to the data schema level. The code for `TasksModel` looks something like:
+
+```ts
+// src/models/tasks.model
+
+import { ModelFactory, FunctionsType, Document, Model } from 'meseret'
+
+export interface ITasksSchemaPaths { desc: string, done: boolean }
+export interface ITasksSchemaMethods extends FunctionsType { tickToggle: () => Promise<boolean> }
+export interface ITasksSchemaStatics extends FunctionsType { } // empty for now
+
+const factory = new ModelFactory<ITasksSchemaPaths, ITasksSchemaMethods, ITasksSchemaStatics>({
+  name: 'Tasks', // collection/model name
+  paths: {
+    desc: { type: String, required: true, trim: true }
+    done: { type: Boolean, required: true, default: false }
+  },
+  methods: {
+    tickToggle: async (): Promise<boolean> => {
+      const task = factory.documentify(this) // for type-support of the `this` in this document's context
+      task.done = !task.done
+      await task.save()
+      return Promise.resolve(task.done)
+    }
+  }
+  statics: {
+    // empty for now
+    // `factory.modelify(this)` is available in functions here, for type-support of the `this` in this model's context
+  }
+})
+
+export const TasksModel = factory.model
+```
+
+In the code above, the `ModelFactory` is imported from meseret and used to create an instance called `factory`. It receives three types to support type-checks and auto-complete of the data schema here and elsewhere in the project. These types represent the mongoose schema's paths, methods and statics, respectively. In the code above, these types are interfaces, namely `ITasksSchemaPaths`, `ITasksSchemaMethods` and `ITasksSchemaStatics` in order.
+
+As you can see above the methods' and statics' type interfaces extend `FunctionsType` from meseret. This is essential to guarantee that the mongoose method and static functions defined in the `factory` have valid signatures as their interface/type definitions above.
+
+However, meseret does not currently support this guaranteed match between the type definition and actual implementation for schema paths (it's in the works... shh!). Until this gets support, developers should manually check if their path interfaces match their `paths` definition.
+
+*TIP: If you have an empty `paths`, `methods` or `statics` you may pass just `{}` to the `ModelFactory`. Therefore, our code above could have eliminated the `ITasksSchemaStatics` and the `factory` would have been defined as*:
+
+```ts
+const factory = new ModelFactory<ITasksSchemaPaths, ITasksSchemaMethods, {}>({
+```
+
+Just like the `ServerApp`, meseret's `ModelFactory` receives an object (this time, whose type is `IModelFactoryConfig`). This object configures the `name` of the mongoose model (which is required) and, optionally, the paths, methods and statics for the model.
+
+Inside the mongoose method and static function definitions, the `this` keyword represents the document and model, respectively. Meseret adds static-type support to these `this`s using `factory.documentify(this)` and `factory.modelify(this)`, respectively.
+
+Finally, we see the `factory.model` code at the very last line. The `ModelFactory`'s `.model` is a getter that generates a normal mongoose model based on the `IModelFactoryConfig` provided earlier. It is to be used elsewhere in our project, just like a normal mongoose model would have been.
+
+Moving on...
+
+Below is how we create the [koa-router](https://www.npmjs.com/packages/koa-router)s used in the `ServerApp`. Nothing out of the ordinary here.
+
+```ts
+// src/routers/task.router
+
+import * as Router from 'koa-router'
+import { TasksModel } from '../models/tasks.model'
+
+const TaskRouter = new Router({ prefix: '/api/task' })
+
+// GET /api/task/:_id
+TaskRouter.get('/:_id', async ctx => {
+  ctx.body = await TasksModel.findById(String(ctx.params['_id']))
+})
+
+// ... more route definitions
+
+export { TaskRouter }
+```
+
+To recap, the above router (`TaskRouter`) and the model (`TasksModel`) are included in the `ServerApp` (`taskOrganizer`). When the `taskOrganizer` is started, it:
+
+1. connects to a MongoDB server at a specified `MONGO_URI` environment variable (or defaults to `mongodb://localhost/task-organizer`),
+2. loads configured Mongoose database models (`TasksModel`),
+3. launches an HTTP Koa server at a specified `PORT` environment variable (or defaults to `3000`) on `localhost`,
+4. serves the static directory `./react/build/`,
+5. serves an SPA from `./react/build/index.html`, and
+6. handles requests that match definitions in `TaskRouter`.
+
+Based on this and the default configuration, the started `ServerApp` **implicitly** takes care of:
+
+- Koa Context body parsing (using [koa-bodyparser](https://www.npmjs.com/package/koa-bodyparser)),
+- caching static requests (using [koa-static-cache](https://www.npmjs.com/package/koa-static-cache)),
+- response GZip compression (using [koa-compress](https://www.npmjs.com/package/koa-compress)),
+- JSON format responses (using [koa-json](https://www.npmjs.com/package/koa-json)),
+- logging every request and response (using [koa-logger](https://www.npmjs.com/package/koa-logger)), and
+- creating a GridFSStream instance based on the MongoDB connection (using [gridfs-stream](https://www.npmjs.com/package/gridfs-stream)).
+
+In addition, a `keys` option can be provided to set Koa `ctx.keys` for signing cookies. If the `keys` are set, session support will be enabled automatically (using [koa-session](https://npmjs.com/package/koa-session)).
+
+These features can be explicitly turned off (or modified) inside the `config` parameter of the `ServerApp` instance.
+
+Besides the above built-in feature middleware packages, you may specify your own Koa `middleware` in the `config` to be used for each HTTP and/or HTTPS requests. You can also find the original `Koa` application instance using `taskOrganizer.app`, among many other variables.
+
+Whew!
+
+## API
+
+### `IServerAppConfig` Options
 
 The `name` option is the only required of all the `IServerAppConfig` options. Below is a list of all the available options:
 
@@ -111,118 +254,8 @@ Option Name | Data Type | Description
 `sessionSigned?` | `boolean` | If `session` is enabled, should it be signed? Defaults to `true`.
 `sockets?` | `SocketIO.Server[]` | [Socket.io](https://www.npmjs.com/package/socket-io) servers used in the http servers.
 
-## A Realistic Example
+P.S. more API documentation is coming soon.
 
-A small "task organization" application:
-
-```ts
-// src/main.ts
-
-import { ServerApp } from 'meseret'
-import { join } from 'path'
-
-import { TasksModel } from './models/tasks.model'
-import { TaskRouter } from './routers/task.router'
-
-const taskOrganizer = new ServerApp({
-  name: 'Task Organizer',
-  
-  models: [TasksModel],
-  mongoUris: process.env['MONGO_URI'] || 'mongodb://localhost/task-organizer',
-
-  httpServers: [{ port: Number.parseInt(process.env['PORT']) || 3000 }],
-
-  publicDirs: [join(process.cwd(), 'react', 'build')],
-  routers: [TaskRouter],
-  spaFileRelativePath: join('react', 'build', 'index.html')
-})
-
-taskOrganizer.start()
-  .then(() => console.log(`Starting 'Task Organizer'...`))
-  .catch(err => console.error(`Launch problem: ${err}`))
-```
-
-It is recommended to use the `ModelFactory` from meseret for your mongoose data models. Although this method is optional and relatively verbose, it provides support for auto-completing mongoose models in IDEs (even deep down to the data-schema level).
-
-```ts
-// src/models/tasks.model
-
-import { ModelFactory, FunctionsType, Document, Model } from 'meseret'
-
-export interface ITasksSchemaPaths { desc: string, done: boolean }
-export interface ITasksSchemaMethods extends FunctionsType { tickToggle: () => Promise<boolean> }
-export interface ITasksSchemaStatics extends FunctionsType { } // empty for now
-
-const factory = new ModelFactory<ITasksSchemaPaths, ITasksSchemaMethods, ITasksSchemaStatics>({
-  name: 'Tasks', // collection/model name
-  paths: {
-    desc: { type: String, required: true, trim: true }
-    done: { type: Boolean, required: true, default: false }
-  },
-  methods: {
-    tickToggle: async (): Promise<boolean> => {
-      const task = factory.documentify(this) // for type-support of the `this` in this document's context
-      task.done = !task.done
-      await task.save()
-      return Promise.resolve(task.done)
-    }
-  }
-  statics: {
-    // empty for now
-    // `factory.modelify(this)` is available in functions here, for type-support of the `this` in this model's context
-  }
-})
-
-export const TasksModel = factory.model
-```
-
-...or, you could use same old mongoose and loose auto-complete support for your database data in your IDEs.
-
-Below is how you can create routers used in the `ServerApp` using [koa-router](https://www.npmjs.com/packages/koa-router). Nothing out of the ordinary here.
-
-```ts
-// src/routers/task.router
-
-import * as Router from 'koa-router'
-import { TasksModel } from '../models/tasks.model'
-
-const TaskRouter = new Router({ prefix: '/api/task' })
-
-// GET /api/task/:_id
-TaskRouter.get('/:_id', async ctx => {
-  ctx.body = await TasksModel.findById(String(ctx.params['_id']))
-})
-
-// ... more route definitions
-
-export { TaskRouter }
-```
-
-To recap, the above router (`TaskRouter`) and the model (`TasksModel`) are included in the `ServerApp` (`taskOrganizer`). When the `taskOrganizer` is started, it:
-
-1. connects to a MongoDB server at a specified `MONGO_URI` environment variable (or defaults to `mongodb://localhost/task-organizer`),
-2. loads configured Mongoose database models (`TasksModel`),
-3. launches an HTTP Koa server at a specified `PORT` environment variable (or defaults to `3000`) on `localhost`,
-4. serves the static directory `./react/build/`,
-5. serves an SPA from `./react/build/index.html`, and
-6. handles requests that match definitions in `TaskRouter`.
-
-Based on this and the default configuration, the started `ServerApp` **implicitly** takes care of:
-
-- Koa Context body parsing (using [koa-bodyparser](https://npmjs.com/package/koa-bodyparser)),
-- caching static requests (using [koa-static-cache](https://npmjs.com/package/koa-static-cache)),
-- response GZip compression (using [koa-compress](https://npmjs.com/package/koa-compress)),
-- JSON format responses (using [koa-json](https://npmjs.com/package/koa-json)), and
-- logging every request and response (using [koa-logger](https://npmjs.com/package/koa-logger)).
-
-In addition, a `keys` option can be provided to set Koa `ctx.keys` for signing cookies. If the `keys` are set, session support will be enabled automatically (using [koa-session](https://npmjs.com/package/koa-session)).
-
-These features can be explicitly turned off (or modified) inside the `config` parameter of the `ServerApp` instance.
-
-Besides the above built-in feature middleware packages, you may specify your own Koa `middleware` in the `config` to be used for each HTTP and/or HTTPS requests. You can also find the original `Koa` application instance using `taskOrganizer.app`, among many other variables.
-
-Whew!
- 
 ## Licence
 
 Made with &hearts; in Addis Ababa.

@@ -44,6 +44,7 @@
     "node": ">= 8.9"
   },
   "dependencies": {
+    "gridfs-stream": "^1.1.1",
     "koa": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
     "koa-compress": "^2.0.0",
@@ -59,6 +60,7 @@
     "socket.io": "^2.0.4"
   },
   "devDependencies": {
+    "@types/gridfs-stream": "^0.5.30",
     "@types/koa": "^2.0.44",
     "@types/koa-bodyparser": "^4.2.0",
     "@types/koa-compress": "^2.0.8",

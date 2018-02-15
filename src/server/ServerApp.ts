@@ -1,3 +1,4 @@
+import * as gridFSStream from 'gridfs-stream'
 import * as http from 'http'
 import * as https from 'https'
 import * as Koa from 'koa'
@@ -17,6 +18,7 @@ import { IServerAppConfig } from './IServerAppConfig'
 
 export class ServerApp {
   private _dbConn?: mongoose.Connection
+  private _grid?: gridFSStream.Grid
   private _app: Koa = new Koa()
   private _servers: net.Server[] = []
 
@@ -30,6 +32,10 @@ export class ServerApp {
 
   get dbConn (): mongoose.Connection | undefined {
     return this._dbConn
+  }
+
+  get grid (): gridFSStream.Grid | undefined {
+    return this._grid
   }
 
   get app (): Koa {
@@ -61,6 +67,8 @@ export class ServerApp {
           await mongoose.connect(this.config.mongoUris) // todo: feature request: auth (user & pass) support for db
           this._dbConn = mongoose.connection
           console.log(`Database connected to ${this.config.mongoUris}.`)
+
+          this._grid = gridFSStream(this._dbConn.db, mongoose.mongo)
         } catch (err) {
           err.message = `Database connection error: ${err.message}`
           return Promise.reject(err)

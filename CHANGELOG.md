@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.5.0
+
+- Support a GridFS instance through `ServerApp.grid` (using [gridfs-stream](https://www.npmjs.org/pacakge/gridfs-stream))
+
 ## v1.4.1
 
 - Fix the SocketIO namespace type bug
