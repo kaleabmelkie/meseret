@@ -3,6 +3,7 @@
 ## v1.5.0
 
 - Support a GridFS instance through `ServerApp.grid` (using [gridfs-stream](https://www.npmjs.org/pacakge/gridfs-stream))
+- Better examples and explanations in the [README](README.md)
 
 ## v1.4.1
 
