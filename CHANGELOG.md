@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.6.0
+
+- Add support for standard `multipart/form-data` file uploads' request body parsing; remove support for `bodyParserExtendTypes` (swapped [koa-bodyparser](https://www.npmjs.com/package/koa-bodyparser) for [koa-body](https://www.npmjs.com/package/koa-body))
+
 ## v1.5.0
 
 - Support a GridFS instance through `ServerApp.grid` (using [gridfs-stream](https://www.npmjs.org/pacakge/gridfs-stream))

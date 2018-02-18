@@ -4,7 +4,7 @@ import * as https from 'https'
 import * as Koa from 'koa'
 import * as KoaCompress from 'koa-compress'
 import * as KoaConvert from 'koa-convert'
-import * as KoaBodyparser from 'koa-bodyparser'
+import * as koaBody from 'koa-body'
 import * as KoaJson from 'koa-json'
 import * as KoaLogger from 'koa-logger'
 import * as KoaSend from 'koa-send'
@@ -93,6 +93,7 @@ export class ServerApp {
       }
       if (this.config.session !== false && Array.isArray(this.app.keys) && this.app.keys.length) {
         this.app.use(KoaSession({
+          // todo: fix this bug of || true always resulting in true
           key: this.config.sessionCookieKey || this.config.name.trim().toLowerCase().replace(/ /g, '_'),
           httpOnly: this.config.sessionHttpOnly || true,
           maxAge: this.config.sessionMaxAge || 86400000,
@@ -106,18 +107,16 @@ export class ServerApp {
         this.app.use(KoaCompress({ level: 9, memLevel: 9, threshold: 0 }))
       }
       if (this.config.bodyParser !== false) {
-        const enabledTypes: string[] = []
-        if (this.config.bodyParserEnableForm !== false) enabledTypes.push('form')
-        if (this.config.bodyParserEnableJson !== false) enabledTypes.push('json')
-        if (this.config.bodyParserEnableText !== false) enabledTypes.push('text')
-        this.app.use(KoaBodyparser({
-          enableTypes: enabledTypes,
-          encode: this.config.bodyParserEncoding || 'utf-8',
-          extendTypes: this.config.bodyParserExtendTypes || undefined,
+        this.app.use(koaBody({
+          encoding: this.config.bodyParserEncoding || 'utf-8',
           formLimit: this.config.bodyParserFormLimit || '56kb',
+          json: this.config.bodyParserEnableJson !== false,
           jsonLimit: this.config.bodyParserJsonLimit || '1mb',
-          textLimit: this.config.bodyParserTextLimit || '1mb' // todo: remove the `as any` when @types/koa-bodyparser updates support for `textLimit` option
-        } as any))
+          multipart: this.config.bodyParserMultipart || false,
+          text: this.config.bodyParserEnableText !== false,
+          textLimit: this.config.bodyParserTextLimit || '1mb',
+          urlencoded: this.config.bodyParserEnableForm !== false
+        }))
       }
       if (this.config.json !== false) {
         this.app.use(KoaJson({

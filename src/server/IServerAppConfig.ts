@@ -30,13 +30,9 @@ export interface IServerAppConfig {
   bodyParserEnableJson?: boolean
   bodyParserEnableText?: boolean
   bodyParserEncoding?: string
-  bodyParserExtendTypes?: {
-    json?: string[]
-    form?: string[]
-    text?: string[]
-  }
   bodyParserFormLimit?: string
   bodyParserJsonLimit?: string
+  bodyParserMultipart?: boolean
   bodyParserTextLimit?: string
   cacheControl?: string
   compress?: boolean

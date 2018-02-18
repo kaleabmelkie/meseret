@@ -195,7 +195,7 @@ To recap, the above router (`TaskRouter`) and the model (`TasksModel`) are inclu
 
 Based on this and the default configuration, the started `ServerApp` **implicitly** takes care of:
 
-- Koa Context body parsing (using [koa-bodyparser](https://www.npmjs.com/package/koa-bodyparser)),
+- Koa Context body parsing (using [koa-body](https://www.npmjs.com/package/koa-body)),
 - caching static requests (using [koa-static-cache](https://www.npmjs.com/package/koa-static-cache)),
 - response GZip compression (using [koa-compress](https://www.npmjs.com/package/koa-compress)),
 - JSON format responses (using [koa-json](https://www.npmjs.com/package/koa-json)),
@@ -223,9 +223,9 @@ Option Name | Data Type | Description
 `bodyParserEnableJson?` | `boolean` | If `bodyParser` is enabled, enable JSON parsing? Defaults to `true`.
 `bodyParserEnableText?` | `boolean` | If `bodyParser` is enabled, enable text parsing? Defaults to `true`.
 `bodyParserEncoding?` | `string` | Encoding to use, if `bodyParser` is enabled. Defaults to `'utf-8'`.
-`bodyParserExtendTypes?` | `{ json?: string[], form?: string[], text?: string[] }` | Custom extend types, if `bodyParser` is enabled.
 `bodyParserFormLimit?` | `string` | Form size limit, if `bodyParser` is enabled. Defaults to `'56kb'`.
 `bodyParserJsonLimit?` | `string` | JSON size limit, if `bodyParser` is enabled. Defaults to `'1mb'`.
+`bodyParserMultipart?` | `boolean` | If `bodyParser` is enabled, enable `multipart/form-data` parsing to support standard file upload?
 `bodyParserTextLimit?` | `string` | Text size limit, if `bodyParser` is enabled. Defaults to `'1mb'`.
 `cacheControl?` | `string` | Cache control to be used. Defaults to `'private'`.
 `compress?` | `boolean` | Compress responses? Defaults to `true`.
