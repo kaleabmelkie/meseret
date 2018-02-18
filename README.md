@@ -225,7 +225,7 @@ Option Name | Data Type | Description
 `bodyParserEncoding?` | `string` | Encoding to use, if `bodyParser` is enabled. Defaults to `'utf-8'`.
 `bodyParserFormLimit?` | `string` | Form size limit, if `bodyParser` is enabled. Defaults to `'56kb'`.
 `bodyParserJsonLimit?` | `string` | JSON size limit, if `bodyParser` is enabled. Defaults to `'1mb'`.
-`bodyParserMultipart?` | `boolean` | If `bodyParser` is enabled, enable `multipart/form-data` parsing to support standard file upload?
+`bodyParserMultipart?` | `boolean` | If `bodyParser` is enabled, enable `multipart/form-data` parsing to support standard file upload? Defaults to `false`.
 `bodyParserTextLimit?` | `string` | Text size limit, if `bodyParser` is enabled. Defaults to `'1mb'`.
 `cacheControl?` | `string` | Cache control to be used. Defaults to `'private'`.
 `compress?` | `boolean` | Compress responses? Defaults to `true`.
