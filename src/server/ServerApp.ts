@@ -93,14 +93,13 @@ export class ServerApp {
       }
       if (this.config.session !== false && Array.isArray(this.app.keys) && this.app.keys.length) {
         this.app.use(KoaSession({
-          // todo: fix this bug of || true always resulting in true
           key: this.config.sessionCookieKey || this.config.name.trim().toLowerCase().replace(/ /g, '_'),
-          httpOnly: this.config.sessionHttpOnly || true,
+          httpOnly: this.config.sessionHttpOnly !== false,
           maxAge: this.config.sessionMaxAge || 86400000,
-          overwrite: this.config.sessionOverwrite || true,
+          overwrite: this.config.sessionOverwrite !== false,
           renew: this.config.sessionRenew || false, // todo: remove the `as any` when @types/koa-session updates support for `renew` option
           rolling: this.config.sessionRolling || false,
-          signed: this.config.sessionSigned || true
+          signed: this.config.sessionSigned !== false
         } as any, this.app))
       }
       if (this.config.compress !== false) {
