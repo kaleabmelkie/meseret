@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.6.3
+
+- fixed typescript configuration (no longer requires `tslib`)
+
 ## v1.6.2
 
 - Improved and amended the [README](README.md)

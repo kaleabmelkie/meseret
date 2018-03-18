@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = require("mongoose");
 exports.Model = mongoose_1.Model;
 exports.Schema = mongoose_1.Schema;
-var ModelFactory = (function () {
+var ModelFactory = /** @class */ (function () {
     function ModelFactory(_config) {
         this._config = _config;
     }
