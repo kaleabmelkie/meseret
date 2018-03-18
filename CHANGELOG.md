@@ -1,10 +1,10 @@
 # meseret change log
 
-## v1.6.5
+## v1.7.0
 
 - fix: removed `outDir` and `rootDir` options from `tsconfig.json`
-- moved some `devDependencies` to `dependencies` in `package.json`
-- improved `tsconfig.json` and eliminated all `devDependencies`
+- FEATURE: moved some `devDependencies` to `dependencies` in `package.json` (resulting in much better static-type support)
+- FEATURE: improved `tsconfig.json` and eliminated all `devDependencies` (making `prettier` and `nodemon` commands available)
 
 ## v1.6.4
 
