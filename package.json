@@ -3,12 +3,12 @@
   "version": "1.6.2",
   "description":
     "Opinionated, feature-packed professional node.js server framework.",
-  "main": "src/main.js",
-  "typings": "src/main.d.ts",
+  "main": "lib/main.js",
+  "typings": "lib/main.d.ts",
   "scripts": {
     "tsc": "tsc",
     "prettier":
-      "prettier --no-semi --single-quote --write ./src/**/*.ts ./src/**/*.js ./*.json"
+      "prettier --no-semi --single-quote --write ./src/**/*.ts ./lib/**/*.js ./lib/**/*.ts ./*.json"
   },
   "keywords": [
     "meseret",

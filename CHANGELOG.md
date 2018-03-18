@@ -2,7 +2,8 @@
 
 ## v1.6.3
 
-- updated dependencies (and, internally, switched from `tslint` to `prettie`r for code linting)
+- moved built `*.js` and `*.d.ts` files to their own `lib` directory
+- updated dependencies (and, internal: switched from `tslint` to `prettier` for code linting)
 - fixed typescript configuration (no longer requires `tslib`)
 
 ## v1.6.2
