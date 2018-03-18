@@ -3,8 +3,8 @@
   "version": "1.6.4",
   "description":
     "Opinionated, feature-packed professional node.js server framework.",
-  "main": "lib/main.js",
-  "typings": "lib/main.d.ts",
+  "main": "src/main.js",
+  "typings": "src/main.d.ts",
   "scripts": {
     "tsc": "tsc",
     "prettier":
