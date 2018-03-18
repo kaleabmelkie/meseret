@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.7.1
+
+- fixed bugs in the example code of the [README](README.md)
+
 ## v1.7.0
 
 - fix: removed `outDir` and `rootDir` options from `tsconfig.json`

@@ -85,36 +85,33 @@ import { TaskRouter } from './routers/task.router'
 
 const taskOrganizer = new ServerApp({
   name: 'Task Organizer',
-  
-  models: [
-    TasksModel
-  ],
+
+  models: [TasksModel],
   mongoUris: process.env.MONGO_URI || 'mongodb://localhost/task-organizer',
 
-  httpServers: [{ 
-    path: Number(process.env.SERVER_PATH) || '127.0.0.1' }
-    port: Number(process.env.SERVER_PORT) || 3000 }
-  }],
+  httpServers: [
+    {
+      path: process.env.SERVER_PATH || '127.0.0.1',
+      port: Number(process.env.SERVER_PORT) || 3000
+    }
+  ],
 
-  publicDirs: [
-    join(process.cwd(), 'react', 'build')
-  ],
-  routers: [
-    TaskRouter
-  ],
+  publicDirs: [join(process.cwd(), 'react', 'build')],
+  routers: [TaskRouter],
   spaFileRelativePath: join('react', 'build', 'index.html')
 })
 
-taskOrganizer.start()
+taskOrganizer
+  .start()
   .then(() => console.log(`Starting 'Task Organizer'...`))
   .catch(err => console.error(`Launch problem: ${err}`))
+
+export { taskOrganizer }
 
 // optionally, you may...
 export const dbConn = () => taskOrganizer.dbConn  // to access the mongoose connection
 export const gfs = () => taskOrganizer.grid       // to access GridFS from other files
 export const app = () => taskOrganizer.app        // the Koa application instance
-// or, more generally...
-export { taskOrganizer }           // the ServerApp, holding all of the above and more
 ```
 
 In this code, we imported a `ServerApp` from meseret and created an instance (`taskOrganizer`) by passing it a (`config: IServerAppConfig`) as its first parameter. Then we called `start()` on `taskOrganizer` to launch our application based on the `config` we provided it. This configuration we passed to the `ServerApp` is the most important piece of code here. The job the `ServerApp` performs when `start()` is called will be discussed later in detail at the end of this example project.
@@ -124,33 +121,47 @@ Now we are moving our attention to the mongoose database model that's imported a
 ```ts
 // src/models/tasks.model
 
-import { ModelFactory, FunctionsType, Document, Model } from 'meseret'
+import { ModelFactory, FunctionsType } from 'meseret'
 
-export interface ITasksSchemaPaths { desc: string, done: boolean }
-export interface ITasksSchemaMethods extends FunctionsType { tickToggle: () => Promise<boolean> }
-export interface ITasksSchemaStatics extends FunctionsType { } // empty for now
+export interface ITasksSchemaPaths {
+  desc: string
+  done: boolean
+}
 
-const factory = new ModelFactory<ITasksSchemaPaths, ITasksSchemaMethods, ITasksSchemaStatics>({
-  name: 'Tasks', // collection/model name
+export interface ITasksSchemaMethods extends FunctionsType {
+  tickToggle: () => Promise<boolean>
+}
+
+export interface ITasksSchemaStatics extends FunctionsType {} // empty for now
+
+const factory = new ModelFactory<
+  ITasksSchemaPaths,
+  ITasksSchemaMethods,
+  ITasksSchemaStatics
+>({
+  name: 'tasks', // collection/model name
+
   paths: {
-    desc: { type: String, required: true, trim: true }
+    desc: { type: String, required: true, trim: true },
     done: { type: Boolean, required: true, default: false }
   },
+
   methods: {
-    tickToggle: async (): Promise<boolean> => {
-      const task = factory.documentify(this) // for static-type support of the `this` in this document's context
+    async tickToggle(): Promise<boolean> {
+      const task = factory.documetify(this) // for static-type support of the `this` in this document's context
       task.done = !task.done
       await task.save()
       return Promise.resolve(task.done)
     }
-  }
+  },
+
   statics: {
     // empty for now
     // `factory.modelify(this)` is available in functions here, for static-type support of the `this` in this model's context
   }
 })
 
-// optionally, you may manually access and alter the schema
+// optionally, you may manually access and alter the schema like...
 export const TasksSchema = factory.schema
 TasksSchema.index({ '$**': 'text' })
 
@@ -186,11 +197,16 @@ Below is how we create the [koa-router](https://www.npmjs.com/packages/koa-route
 import * as Router from 'koa-router'
 import { TasksModel } from '../models/tasks.model'
 
-const TaskRouter = new Router({ prefix: '/api/task' })
+const TaskRouter = new Router({ prefix: '/data/task' })
 
-// GET /api/task/:_id
+// POST /data/task/new
+TaskRouter.get('/new', async ctx => {
+  ctx.body = await TasksModel.create(ctx.request.body)
+})
+
+// GET /data/task/:_id
 TaskRouter.get('/:_id', async ctx => {
-  ctx.body = await TasksModel.findById(String(ctx.params['_id']))
+  ctx.body = await TasksModel.findById(ctx.params._id)
 })
 
 // ... more route definitions
