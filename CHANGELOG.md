@@ -2,8 +2,9 @@
 
 ## v1.6.5
 
-- moved some `devDependencies` to `dependencies` in `package.json`
 - fix: removed `outDir` and `rootDir` options from `tsconfig.json`
+- moved some `devDependencies` to `dependencies` in `package.json`
+- improved `tsconfig.json` and eliminated all `devDependencies`
 
 ## v1.6.4
 
