@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.6.5
+
+- fix: removed `outDir` and `rootDir` options from `tsconfig.json`
+
 ## v1.6.4
 
 - fix: added `typeRoots` in `tsconfig.json`
