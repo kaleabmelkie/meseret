@@ -142,9 +142,9 @@
     "@types/events" "*"
     "@types/node" "*"
 
-"@types/mongoose@^5.0.2":
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/@types/mongoose/-/mongoose-5.0.2.tgz#7fe0015bb473d70e33ac953cdc56d60a5fe2e3f9"
+"@types/mongoose@^5.0.7":
+  version "5.0.7"
+  resolved "https://registry.yarnpkg.com/@types/mongoose/-/mongoose-5.0.7.tgz#20c7c2a6eab9448c7fe2cfd26933d2bf1a036575"
   dependencies:
     "@types/events" "*"
     "@types/mongodb" "*"
@@ -154,9 +154,9 @@
   version "9.4.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.5.tgz#d2a90c634208173d1b1a0a6ba9f1df3de62edcf5"
 
-"@types/node@^9.4.6":
-  version "9.4.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.6.tgz#d8176d864ee48753d053783e4e463aec86b8d82e"
+"@types/node@^9.4.7":
+  version "9.4.7"
+  resolved "http://registry.npmjs.org/@types/node/-/node-9.4.7.tgz#57d81cd98719df2c9de118f2d5f3b1120dcd7275"
 
 "@types/serve-static@*":
   version "1.13.1"
@@ -165,9 +165,9 @@
     "@types/express-serve-static-core" "*"
     "@types/mime" "*"
 
-"@types/socket.io@^1.4.31":
-  version "1.4.31"
-  resolved "https://registry.yarnpkg.com/@types/socket.io/-/socket.io-1.4.31.tgz#7a928518a35516fccd90431f94538ed3fddaba19"
+"@types/socket.io@^1.4.32":
+  version "1.4.32"
+  resolved "https://registry.yarnpkg.com/@types/socket.io/-/socket.io-1.4.32.tgz#bf7bc4ea6991327f31672c05e237a8a28d7bfc30"
   dependencies:
     "@types/node" "*"
 
@@ -489,9 +489,9 @@ chalk@^2.0.1, chalk@^2.3.0:
     escape-string-regexp "^1.0.5"
     supports-color "^4.0.0"
 
-chokidar@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.0.1.tgz#6e67e9998fe10e8f651e975ca62460456ff8e297"
+chokidar@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.0.2.tgz#4dc65139eeb2714977735b6a35d06e97b494dfd7"
   dependencies:
     anymatch "^2.0.0"
     async-each "^1.0.0"
@@ -503,7 +503,7 @@ chokidar@^2.0.0:
     normalize-path "^2.1.1"
     path-is-absolute "^1.0.0"
     readdirp "^2.0.0"
-    upath "1.0.0"
+    upath "^1.0.0"
   optionalDependencies:
     fsevents "^1.0.0"
 
@@ -1081,6 +1081,10 @@ has-flag@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-2.0.0.tgz#e8207af1cc7b30d446cc70b734b5e8be18f88d51"
 
+has-flag@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-3.0.0.tgz#b5d454dc2199ae225699f3467e5a07f3b955bafd"
+
 has-unicode@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/has-unicode/-/has-unicode-2.0.1.tgz#e0e6fe6a28cf51138855e086d1691e771de2a8b9"
@@ -1429,9 +1433,9 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-kareem@2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/kareem/-/kareem-2.0.4.tgz#8e648733c1e45b7d5ca1cf36c364e2787f895ced"
+kareem@2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/kareem/-/kareem-2.0.5.tgz#437e1e40f1be304ee21b3e4790eb3a05418b35ca"
 
 keygrip@~1.0.2:
   version "1.0.2"
@@ -1501,9 +1505,9 @@ koa-json@^2.0.2:
     koa-is-json "1"
     streaming-json-stringify "3"
 
-koa-logger@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/koa-logger/-/koa-logger-3.1.0.tgz#81a353f41870119d56260e0e644f04e731810039"
+koa-logger@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/koa-logger/-/koa-logger-3.2.0.tgz#8aef64d8b848fb6253a9b31aa708d0e05141f0e6"
   dependencies:
     bytes "^2.5.0"
     chalk "^1.1.3"
@@ -1611,10 +1615,6 @@ lodash.get@4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
 
-lodash@3.x:
-  version "3.10.1"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
-
 lodash@^4.14.0:
   version "4.17.5"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
@@ -1717,32 +1717,32 @@ mixin-deep@^1.2.0:
   dependencies:
     minimist "0.0.8"
 
-mongodb-core@3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/mongodb-core/-/mongodb-core-3.0.2.tgz#914896092dd45427d9a4f98a7997a0bfb81d163b"
+mongodb-core@3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/mongodb-core/-/mongodb-core-3.0.4.tgz#a3fdf466e697a2f1df87e458e5e2df1c26cc654b"
   dependencies:
     bson "~1.0.4"
     require_optional "^1.0.1"
 
-mongodb@3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.0.2.tgz#28172302ed4e9388d8091e2cc4618057e6f5debc"
+mongodb@3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.0.4.tgz#ee0c0f7bc565edc5f40ee2d23170e522a8ad2286"
   dependencies:
-    mongodb-core "3.0.2"
+    mongodb-core "3.0.4"
 
 mongoose-legacy-pluralize@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
 
-mongoose@^5.0.5:
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.0.5.tgz#19277743efe45ef178b94050aad94338e7e3e9ee"
+mongoose@^5.0.10:
+  version "5.0.10"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.0.10.tgz#5945b4acc137b1c6acf546d64da1070bc4c4965a"
   dependencies:
     async "2.1.4"
     bson "~1.0.4"
-    kareem "2.0.4"
+    kareem "2.0.5"
     lodash.get "4.4.2"
-    mongodb "3.0.2"
+    mongodb "3.0.4"
     mongoose-legacy-pluralize "1.0.2"
     mpath "0.3.0"
     mquery "3.0.0"
@@ -1815,18 +1815,19 @@ node-pre-gyp@^0.6.39:
     tar "^2.2.1"
     tar-pack "^3.4.0"
 
-nodemon@^1.14.12:
-  version "1.14.12"
-  resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-1.14.12.tgz#fe059424b15ebdb107696287a558d9cf53a63999"
+nodemon@^1.17.2:
+  version "1.17.2"
+  resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-1.17.2.tgz#17c0062629610e03dd01241c576f1c4068da9fdd"
   dependencies:
-    chokidar "^2.0.0"
+    chokidar "^2.0.2"
     debug "^3.1.0"
     ignore-by-default "^1.0.1"
     minimatch "^3.0.4"
     pstree.remy "^1.1.0"
-    semver "^5.4.1"
+    semver "^5.5.0"
+    supports-color "^5.2.0"
     touch "^3.1.0"
-    undefsafe "^2.0.1"
+    undefsafe "^2.0.2"
     update-notifier "^2.3.0"
 
 nopt@^4.0.1:
@@ -2207,7 +2208,7 @@ semver-diff@^2.0.0:
   dependencies:
     semver "^5.0.3"
 
-semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.4.1:
+semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.5.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
 
@@ -2474,6 +2475,12 @@ supports-color@^4.0.0:
   dependencies:
     has-flag "^2.0.0"
 
+supports-color@^5.2.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.3.0.tgz#5b24ac15db80fa927cf5227a4a33fd3c4c7676c0"
+  dependencies:
+    has-flag "^3.0.0"
+
 tar-pack@^3.4.0:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/tar-pack/-/tar-pack-3.4.1.tgz#e1dbc03a9b9d3ba07e896ad027317eb679a10a1f"
@@ -2620,9 +2627,9 @@ type-is@^1.5.5, type-is@^1.6.14:
     media-typer "0.3.0"
     mime-types "~2.1.15"
 
-typescript@^2.7.1:
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.7.1.tgz#bb3682c2c791ac90e7c6210b26478a8da085c359"
+typescript@^2.7.2:
+  version "2.7.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.7.2.tgz#2d615a1ef4aee4f574425cdff7026edf81919836"
 
 uid-number@^0.0.6:
   version "0.0.6"
@@ -2638,15 +2645,11 @@ ultron@~1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ultron/-/ultron-1.1.1.tgz#9fe1536a10a664a65266a1e3ccf85fd36302bc9c"
 
-undefsafe@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/undefsafe/-/undefsafe-2.0.1.tgz#03b2f2a16c94556e14b2edef326cd66aaf82707a"
+undefsafe@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/undefsafe/-/undefsafe-2.0.2.tgz#225f6b9e0337663e0d8e7cfd686fc2836ccace76"
   dependencies:
     debug "^2.2.0"
-
-underscore.string@2.3.x:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/underscore.string/-/underscore.string-2.3.3.tgz#71c08bf6b428b1133f37e78fa3a21c82f7329b0d"
 
 union-value@^1.0.0:
   version "1.0.0"
@@ -2678,12 +2681,9 @@ unzip-response@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/unzip-response/-/unzip-response-2.0.1.tgz#d2f0f737d16b0615e72a6935ed04214572d56f97"
 
-upath@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/upath/-/upath-1.0.0.tgz#b4706b9461ca8473adf89133d235689ca17f3656"
-  dependencies:
-    lodash "3.x"
-    underscore.string "2.3.x"
+upath@^1.0.0:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/upath/-/upath-1.0.4.tgz#ee2321ba0a786c50973db043a50b7bcba822361d"
 
 update-notifier@^2.3.0:
   version "2.3.0"

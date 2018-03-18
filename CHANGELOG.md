@@ -2,6 +2,7 @@
 
 ## v1.6.3
 
+- updated dependencies (and, internally, switched from `tslint` to `prettie`r for code linting)
 - fixed typescript configuration (no longer requires `tslib`)
 
 ## v1.6.2

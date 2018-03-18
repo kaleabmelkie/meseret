@@ -11,12 +11,12 @@ export interface IServerAppConfig {
   mongoUris?: string
 
   httpServers?: {
-    path?: string,
+    path?: string
     port: number
   }[]
   httpsServers?: {
     opts: https.ServerOptions
-    path?: string,
+    path?: string
     port: number
   }[]
 
