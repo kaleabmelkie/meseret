@@ -45,6 +45,18 @@
     "node": ">= 8.9"
   },
   "dependencies": {
+    "@types/gridfs-stream": "^0.5.30",
+    "@types/koa": "^2.0.44",
+    "@types/koa-compress": "^2.0.8",
+    "@types/koa-json": "^2.0.18",
+    "@types/koa-logger": "^3.1.0",
+    "@types/koa-router": "^7.0.27",
+    "@types/koa-send": "^4.1.1",
+    "@types/koa-session": "^5.7.1",
+    "@types/koa-static": "^4.0.0",
+    "@types/mongoose": "^5.0.7",
+    "@types/node": "^9.4.7",
+    "@types/socket.io": "^1.4.32",
     "gridfs-stream": "^1.1.1",
     "koa": "^2.5.0",
     "koa-body": "^2.5.0",
@@ -58,24 +70,10 @@
     "koa-static": "^4.0.2",
     "koa-static-cache": "^5.1.2",
     "mongoose": "^5.0.10",
-    "socket.io": "^2.0.4"
+    "socket.io": "^2.0.4",
+    "typescript": "^2.7.2"
   },
   "devDependencies": {
-    "@types/gridfs-stream": "^0.5.30",
-    "@types/koa": "^2.0.44",
-    "@types/koa-compress": "^2.0.8",
-    "@types/koa-json": "^2.0.18",
-    "@types/koa-logger": "^3.1.0",
-    "@types/koa-router": "^7.0.27",
-    "@types/koa-send": "^4.1.1",
-    "@types/koa-session": "^5.7.1",
-    "@types/koa-static": "^4.0.0",
-    "@types/mongoose": "^5.0.7",
-    "@types/node": "^9.4.7",
-    "@types/socket.io": "^1.4.32",
-    "nodemon": "^1.17.2",
-    "tslint": "^5.9.1",
-    "tslint-config-standard": "^7.0.0",
-    "typescript": "^2.7.2"
+    "nodemon": "^1.17.2"
   }
 }
