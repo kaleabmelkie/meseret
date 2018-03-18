@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.6.2
+
+- Improved and amended the [README](README.md)
+
 ## v1.6.1
 
 - Improved the [README](README.md)

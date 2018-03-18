@@ -16,12 +16,12 @@ __Server Setup:__
 __Database Models:__
 
 - MongoDB connection and [Mongoose](https://www.npmjs.com/package/mongoose) models.
-- A `ModelFactory` for type enabled Mongoose schema paths, methods and statics, -- bringing type-support (and IDE auto-complete) to the data schema.
+- A `ModelFactory` for type enabled Mongoose schema paths, methods and statics: bringing static-type support (and IDE auto-complete) to the data schema.
 - GridFS support to store small and large files in MongoDB.
 
 __WebSocket Support:__
 
-- [Socket.io](https://www.npmjs.com/package/socket.io) support.
+- [Socket.io](https://www.npmjs.com/package/socket.io) integration support (connects `SocketIO.Server`s to the `ServerApp`).
 
 __Single Page Application Support:__
 
@@ -68,7 +68,7 @@ new ServerApp({
 ```
 
 A new `ServerApp` receives a configuration object (called `IServerAppConfig`) as a parameter.
-The `start()` method launches the server application and returns a `Promise`.
+The `start()` method launches the server application on `http://localhost:3000`; it returns a `Promise`.
 
 ## A Realistic Example
 
@@ -86,13 +86,22 @@ import { TaskRouter } from './routers/task.router'
 const taskOrganizer = new ServerApp({
   name: 'Task Organizer',
   
-  models: [TasksModel],
-  mongoUris: process.env['MONGO_URI'] || 'mongodb://localhost/task-organizer',
+  models: [
+    TasksModel
+  ],
+  mongoUris: process.env.MONGO_URI || 'mongodb://localhost/task-organizer',
 
-  httpServers: [{ port: Number.parseInt(process.env['PORT']) || 3000 }],
+  httpServers: [{ 
+    path: Number(process.env.SERVER_PATH) || '127.0.0.1' }
+    port: Number(process.env.SERVER_PORT) || 3000 }
+  }],
 
-  publicDirs: [join(process.cwd(), 'react', 'build')],
-  routers: [TaskRouter],
+  publicDirs: [
+    join(process.cwd(), 'react', 'build')
+  ],
+  routers: [
+    TaskRouter
+  ],
   spaFileRelativePath: join('react', 'build', 'index.html')
 })
 
@@ -101,11 +110,11 @@ taskOrganizer.start()
   .catch(err => console.error(`Launch problem: ${err}`))
 
 // optionally, you may...
-export const dbConn = () taskOrganizer.dbConn  // to access the mongoose connection
-export const gfs = () => taskOrganizer.grid    // to access GridFS from other files
-export const app = () => taskOrganizer.app     // the Koa application instance
+export const dbConn = () => taskOrganizer.dbConn  // to access the mongoose connection
+export const gfs = () => taskOrganizer.grid       // to access GridFS from other files
+export const app = () => taskOrganizer.app        // the Koa application instance
 // or, more generally...
-export { taskOrganizer }                       // the ServerApp, holding all of the above and more
+export { taskOrganizer }           // the ServerApp, holding all of the above and more
 ```
 
 In this code, we imported a `ServerApp` from meseret and created an instance (`taskOrganizer`) by passing it a (`config: IServerAppConfig`) as its first parameter. Then we called `start()` on `taskOrganizer` to launch our application based on the `config` we provided it. This configuration we passed to the `ServerApp` is the most important piece of code here. The job the `ServerApp` performs when `start()` is called will be discussed later in detail at the end of this example project.
@@ -129,7 +138,7 @@ const factory = new ModelFactory<ITasksSchemaPaths, ITasksSchemaMethods, ITasksS
   },
   methods: {
     tickToggle: async (): Promise<boolean> => {
-      const task = factory.documentify(this) // for type-support of the `this` in this document's context
+      const task = factory.documentify(this) // for static-type support of the `this` in this document's context
       task.done = !task.done
       await task.save()
       return Promise.resolve(task.done)
@@ -137,10 +146,15 @@ const factory = new ModelFactory<ITasksSchemaPaths, ITasksSchemaMethods, ITasksS
   }
   statics: {
     // empty for now
-    // `factory.modelify(this)` is available in functions here, for type-support of the `this` in this model's context
+    // `factory.modelify(this)` is available in functions here, for static-type support of the `this` in this model's context
   }
 })
 
+// optionally, you may manually access and alter the schema
+export const TasksSchema = factory.schema
+TasksSchema.index({ '$**': 'text' })
+
+// finally, create & export the model
 export const TasksModel = factory.model
 ```
 
@@ -188,7 +202,7 @@ To recap, the above router (`TaskRouter`) and the model (`TasksModel`) are inclu
 
 1. connects to a MongoDB server at a specified `MONGO_URI` environment variable (or defaults to `mongodb://localhost/task-organizer`),
 2. loads configured Mongoose database models (`TasksModel`),
-3. launches an HTTP Koa server at a specified `PORT` environment variable (or defaults to `3000`) on `localhost`,
+3. launches an HTTP Koa server at a specified `SERVER_PATH` and `SERVER_PORT` environment variables (or defaults to `http://127.0.0.1:3000`),
 4. serves the static directory `./react/build/`,
 5. serves an SPA from `./react/build/index.html`, and
 6. handles requests that match definitions in `TaskRouter`.
