@@ -9,9 +9,9 @@ import {
 import { FunctionsType } from './FunctionsType'
 import { IModelFactoryConfig } from './IModelFactoryConfig'
 export declare class ModelFactory<
-  IPaths,
-  ISchemaMethods extends FunctionsType,
-  ISchemaStatics extends FunctionsType
+  IPaths = {},
+  ISchemaMethods extends FunctionsType = {},
+  ISchemaStatics extends FunctionsType = {}
 > {
   private _config
   private _schema?

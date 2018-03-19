@@ -11,9 +11,9 @@ import { FunctionsType } from './FunctionsType'
 import { IModelFactoryConfig } from './IModelFactoryConfig'
 
 export class ModelFactory<
-  IPaths,
-  ISchemaMethods extends FunctionsType,
-  ISchemaStatics extends FunctionsType
+  IPaths = {},
+  ISchemaMethods extends FunctionsType = {},
+  ISchemaStatics extends FunctionsType = {}
 > {
   private _schema?: Schema
   private _model?: Model<Document & IPaths & ISchemaMethods> & ISchemaStatics
@@ -53,7 +53,5 @@ export class ModelFactory<
     return that as Model<Document & IPaths & ISchemaMethods> & ISchemaStatics
   }
 }
-
-// fixme: Document and Model always need to be used in users' model factories; this should happen!
 
 export { Document, Model, Schema, SchemaDefinition, SchemaOptions }
