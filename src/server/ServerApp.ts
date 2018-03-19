@@ -24,7 +24,7 @@ export class ServerApp {
 
   constructor(
     public readonly config: IServerAppConfig,
-    env = process['NODE_ENV'] || 'development'
+    env = process.env.NODE_ENV || 'development'
   ) {
     this.env = env
   }
