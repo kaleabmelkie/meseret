@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.7.2
+
+- fixed: `ServerApp` not properly setting the default NODE_ENV env from the environment variables
+
 ## v1.7.1
 
 - fixed bugs in the example code of the [README](README.md)
