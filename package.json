@@ -1,12 +1,15 @@
 {
   "name": "meseret",
   "version": "1.7.1",
-  "description": "Opinionated, feature-packed professional node.js server framework.",
+  "description":
+    "Opinionated, feature-packed professional node.js server framework.",
   "main": "src/main.js",
   "typings": "src/main.d.ts",
   "scripts": {
-    "build": "tsc && prettier --no-semi --single-quote --write ./src/**/*.js ./src/**/*.d.js",
-    "lint": "prettier --no-semi --single-quote --write ./src/**/*.ts ./src/**/*.js ./*.json"
+    "build":
+      "tsc && prettier --no-semi --single-quote --write ./src/**/*.js ./src/**/*.d.js",
+    "lint":
+      "prettier --no-semi --single-quote --write ./src/**/*.ts ./src/**/*.js ./*.json"
   },
   "keywords": [
     "meseret",
