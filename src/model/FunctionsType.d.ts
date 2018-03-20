@@ -1,3 +1,3 @@
 export declare type FunctionsType = {
-  [name: string]: Function
-}
+    [name: string]: Function;
+};

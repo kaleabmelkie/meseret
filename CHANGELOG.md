@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.7.3
+
+- fixed: typo `documetify` to `documentify` in `ModelFactory`
+
 ## v1.7.2
 
 - fixed: `ServerApp` not properly setting the default NODE_ENV env from the environment variables

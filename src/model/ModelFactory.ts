@@ -43,7 +43,7 @@ export class ModelFactory<
     return this._model
   }
 
-  documetify(that: any): Document & IPaths & ISchemaMethods {
+  documentify(that: any): Document & IPaths & ISchemaMethods {
     return that as Document & IPaths & ISchemaMethods
   }
 
