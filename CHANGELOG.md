@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.7.5
+
+* Rolled back to the previous project structure in an attempt to fix some bugs.
+
 ## v1.7.4
 
 * Changed `path` to `hostname` in `httpServers` and `httpsServers` `IServerAppConfig` configuration. `path` is now deprecated and will be removed in version 2.

@@ -4,8 +4,6 @@
     "module": "commonjs",
     "lib": ["es2017"],
     "declaration": true,
-    "outDir": "./build/",
-    "rootDir": "./src/",
     "strict": true,
     "noImplicitAny": false,
     "moduleResolution": "node",

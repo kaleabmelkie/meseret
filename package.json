@@ -1,15 +1,16 @@
 {
   "name": "meseret",
   "version": "1.7.4",
-  "description": "Opinionated, feature-packed professional node.js server framework.",
-  "main": "build/main.js",
-  "typings": "buid/main.d.ts",
+  "description":
+    "Opinionated, feature-packed professional node.js server framework.",
+  "main": "src/main.js",
+  "typings": "src/main.d.ts",
   "scripts": {
-    "clean": "node_modules/.bin/del build",
+    "clean": "node_modules/.bin/del src/**/*.{js,d.ts}",
     "build": "yarn clean && yarn tsc && yarn lint",
     "watch": "yarn clean && yarn tsc -w",
     "develop": "nodemon",
-    "lint": "prettier --write ./src/**/*.ts ./dist/**/*.js ./*.{json,md}",
+    "lint": "prettier --write ./src/**/*.{ts,js} ./*.{json,md}",
     "start": "yarn build && node ."
   },
   "keywords": [
