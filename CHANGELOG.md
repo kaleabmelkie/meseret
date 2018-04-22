@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.7.4
+
+- Changed `path` to `hostname` in `httpServers` and `httpsServers` `IServerAppConfig` configuration. `path` is now deprecated and will be removed in version 2.
+
 ## v1.7.3
 
 - fixed: typo `documetify` to `documentify` in `ModelFactory`

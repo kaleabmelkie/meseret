@@ -11,13 +11,21 @@ export interface IServerAppConfig {
   mongoUris?: string
 
   httpServers?: {
-    path?: string
+    hostname?: string
     port: number
+    /**
+     * @deprecated Use <code>hostname<code> instead. This will be removed in v2.
+     */
+    path?: string
   }[]
   httpsServers?: {
     opts: https.ServerOptions
-    path?: string
+    hostname?: string
     port: number
+    /**
+     * @deprecated Use <code>hostname<code> instead. This will be removed in v2.
+     */
+    path?: string
   }[]
 
   publicDirs?: string[]

@@ -91,8 +91,8 @@ const taskOrganizer = new ServerApp({
 
   httpServers: [
     {
-      path: process.env.SERVER_PATH || '127.0.0.1',
-      port: Number(process.env.SERVER_PORT) || 3000
+      hostname: process.env.HOSTNAME || '127.0.0.1',
+      port: Number(process.env.PORT) || 3000
     }
   ],
 
@@ -218,7 +218,7 @@ To recap, the above router (`TaskRouter`) and the model (`TasksModel`) are inclu
 
 1. connects to a MongoDB server at a specified `MONGO_URI` environment variable (or defaults to `mongodb://localhost/task-organizer`),
 2. loads configured Mongoose database models (`TasksModel`),
-3. launches an HTTP Koa server at a specified `SERVER_PATH` and `SERVER_PORT` environment variables (or defaults to `http://127.0.0.1:3000`),
+3. launches an HTTP Koa server at a specified `HOSTNAME` and `PORT` environment variables (or defaults to `http://127.0.0.1:3000`),
 4. serves the static directory `./react/build/`,
 5. serves an SPA from `./react/build/index.html`, and
 6. handles requests that match definitions in `TaskRouter`.
@@ -259,8 +259,8 @@ Option Name | Data Type | Description
 `bodyParserTextLimit?` | `string` | Text size limit, if `bodyParser` is enabled. Defaults to `'1mb'`.
 `cacheControl?` | `string` | Cache control to be used. Defaults to `'private'`.
 `compress?` | `boolean` | Compress responses? Defaults to `true`.
-`httpServers?` | `{ path?: string, port: number }[]` | HTTP server configurations.
-`httpsServers?` | `{ opts: https.ServerOptions, path?: string, port: number }[]` | HTTPS server configurations.
+`httpServers?` | `{ hostname?: string, port: number }[]` | HTTP server configurations.
+`httpsServers?` | `{ opts: https.ServerOptions, hostname?: string, port: number }[]` | HTTPS server configurations.
 `json?` | `boolean` | Support direct JSON response parsing? Defaults to `true`.
 `jsonPretty?` | `boolean` | If `json` is enabled, send pretty responses? Default to `true` only if `app` is in `'development'` mode.
 `jsonPrettyParam?` | `string` | Optional query-string param for pretty responses, if `json` is enabled.

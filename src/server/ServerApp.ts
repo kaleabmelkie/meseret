@@ -67,7 +67,7 @@ export class ServerApp {
         // if mongoUris in config...
         // connect to db
         try {
-          await mongoose.connect(this.config.mongoUris) // todo: feature request: auth (user & pass) support for db
+          await mongoose.connect(this.config.mongoUris)
           this._dbConn = mongoose.connection
           console.log(`Database connected to ${this.config.mongoUris}.`)
 
@@ -195,7 +195,7 @@ export class ServerApp {
         for (const s of this.config.httpsServers) {
           const server = https
             .createServer(s.opts, this.app.callback())
-            .listen(s.port, s.path, (err: any) => {
+            .listen(s.port, s.hostname || s.path, (err: any) => {
               if (err) {
                 err.message = `HTTPS server creation error: ${err.message}`
                 return Promise.reject(err)
@@ -217,7 +217,7 @@ export class ServerApp {
         for (const s of this.config.httpServers) {
           const server = http
             .createServer(this.app.callback())
-            .listen(s.port, s.path, (err: any) => {
+            .listen(s.port, s.hostname || s.path, (err: any) => {
               if (err) {
                 err.message = `HTTP server creation error: ${err.message}`
                 return Promise.reject(err)
