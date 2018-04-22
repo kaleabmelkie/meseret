@@ -13,13 +13,21 @@ export interface IServerAppConfig {
     models?: mongoose.Model<mongoose.Document>[];
     mongoUris?: string;
     httpServers?: {
-        path?: string;
+        hostname?: string;
         port: number;
+        /**
+         * @deprecated Use <code>hostname<code> instead. This will be removed in version 2.
+         */
+        path?: string;
     }[];
     httpsServers?: {
         opts: https.ServerOptions;
-        path?: string;
+        hostname?: string;
         port: number;
+        /**
+         * @deprecated Use <code>hostname<code> instead. This will be removed in version 2.
+         */
+        path?: string;
     }[];
     publicDirs?: string[];
     routers?: KoaRouter[];

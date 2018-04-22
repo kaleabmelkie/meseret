@@ -1,12 +1,17 @@
 {
   "name": "meseret",
   "version": "1.7.3",
-  "description": "Opinionated, feature-packed professional node.js server framework.",
-  "main": "src/main.js",
-  "typings": "src/main.d.ts",
+  "description":
+    "Opinionated, feature-packed professional node.js server framework.",
+  "main": "build/main.js",
+  "typings": "buid/main.d.ts",
   "scripts": {
-    "build": "tsc && prettier --no-semi --single-quote --write ./src/**/*.js ./src/**/*.d.js",
-    "lint": "prettier --no-semi --single-quote --write ./src/**/*.ts ./src/**/*.js ./*.json"
+    "clean": "node_modules/.bin/del build",
+    "build": "yarn clean && yarn tsc && yarn lint",
+    "watch": "yarn clean && yarn tsc -w",
+    "develop": "nodemon",
+    "lint": "prettier --write ./src/**/*.ts ./dist/**/*.js ./*.{json,md}",
+    "start": "yarn build && node ."
   },
   "keywords": [
     "meseret",
@@ -40,25 +45,27 @@
   "license": "MIT",
   "private": false,
   "engines": {
-    "node": ">= 8.9"
+    "node": ">= 8.9",
+    "yarn": ">= 1.5.1"
   },
   "dependencies": {
     "@types/gridfs-stream": "^0.5.30",
-    "@types/koa": "^2.0.44",
+    "@types/koa": "2.0.44",
     "@types/koa-compress": "^2.0.8",
     "@types/koa-json": "^2.0.18",
     "@types/koa-logger": "^3.1.0",
     "@types/koa-router": "^7.0.27",
     "@types/koa-send": "^4.1.1",
-    "@types/koa-session": "^5.7.1",
+    "@types/koa-session": "^5.7.3",
     "@types/koa-static": "^4.0.0",
-    "@types/mongoose": "^5.0.7",
-    "@types/node": "^9.4.7",
-    "@types/socket.io": "^1.4.32",
+    "@types/mongoose": "^5.0.10",
+    "@types/node": "^9.6.6",
+    "@types/socket.io": "^1.4.33",
+    "del-cli": "^1.1.0",
     "gridfs-stream": "^1.1.1",
     "koa": "^2.5.0",
     "koa-body": "^2.5.0",
-    "koa-compress": "^2.0.0",
+    "koa-compress": "^3.0.0",
     "koa-convert": "^1.2.0",
     "koa-json": "^2.0.2",
     "koa-logger": "^3.2.0",
@@ -67,10 +74,10 @@
     "koa-session": "^5.8.1",
     "koa-static": "^4.0.2",
     "koa-static-cache": "^5.1.2",
-    "mongoose": "^5.0.10",
-    "nodemon": "^1.17.2",
-    "prettier": "^1.11.1",
-    "socket.io": "^2.0.4",
-    "typescript": "^2.7.2"
+    "mongoose": "^5.0.15",
+    "nodemon": "^1.17.3",
+    "prettier": "^1.12.1",
+    "socket.io": "^2.1.0",
+    "typescript": "^2.8.3"
   }
 }

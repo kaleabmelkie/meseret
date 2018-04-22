@@ -9,6 +9,10 @@ export declare class ModelFactory<IPaths = {}, ISchemaMethods extends FunctionsT
     constructor(_config: IModelFactoryConfig<ISchemaMethods, ISchemaStatics>);
     readonly schema: Schema;
     readonly model: Model<Document & IPaths & ISchemaMethods> & ISchemaStatics;
+    /**
+     * @deprecated Use <code>documentify<code> instead. This was a typo and will be removed in version 2.
+     */
+    documetify(that: any): Document & IPaths & ISchemaMethods;
     documentify(that: any): Document & IPaths & ISchemaMethods;
     modelify(that: any): Model<Document & IPaths & ISchemaMethods> & ISchemaStatics;
 }

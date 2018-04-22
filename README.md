@@ -6,33 +6,33 @@ Meseret is a framework designed from the ground up to allow easy professional-gr
 
 Here are some of its features:
 
-__Server Setup:__
+**Server Setup:**
 
-- [Koa](https://www.npmjs.com/package/koa) server with preconfigured compression, static serving & caching, body parsing (JSON and forms), direct JSON response, console logging and session support.
-- Support for more Koa middleware, and [koa-router](https://www.npmjs.com/package/koa-router) routes.
-- Listening on multiple HTTP and/or HTTPS servers.
-- Static-serving (hosting) multiple public directories.
+* [Koa](https://www.npmjs.com/package/koa) server with preconfigured compression, static serving & caching, body parsing (JSON and forms), direct JSON response, console logging and session support.
+* Support for more Koa middleware, and [koa-router](https://www.npmjs.com/package/koa-router) routes.
+* Listening on multiple HTTP and/or HTTPS servers.
+* Static-serving (hosting) multiple public directories.
 
-__Database Models:__
+**Database Models:**
 
-- MongoDB connection and [Mongoose](https://www.npmjs.com/package/mongoose) models.
-- A `ModelFactory` for type enabled Mongoose schema paths, methods and statics: bringing static-type support (and IDE auto-complete) to the data schema.
-- GridFS support to store small and large files in MongoDB.
+* MongoDB connection and [Mongoose](https://www.npmjs.com/package/mongoose) models.
+* A `ModelFactory` for type enabled Mongoose schema paths, methods and statics: bringing static-type support (and IDE auto-complete) to the data schema.
+* GridFS support to store small and large files in MongoDB.
 
-__WebSocket Support:__
+**WebSocket Support:**
 
-- [Socket.io](https://www.npmjs.com/package/socket.io) integration support (connects `SocketIO.Server`s to the `ServerApp`).
+* [Socket.io](https://www.npmjs.com/package/socket.io) integration support (connects `SocketIO.Server`s to the `ServerApp`).
 
-__Single Page Application Support:__
+**Single Page Application Support:**
 
-- Serves any SPA file.
-- Serves build files of SPA front-end projects, built using frameworks such as [Angular](https://angular.io) and [React](https://reactjs.org), even when in different packages.
-- All 404 responses can be redirected to an SPA file, if specified.
+* Serves any SPA file.
+* Serves build files of SPA front-end projects, built using frameworks such as [Angular](https://angular.io) and [React](https://reactjs.org), even when in different packages.
+* All 404 responses can be redirected to an SPA file, if specified.
 
-__Coding Style:__
+**Coding Style:**
 
-- [TypeScript](https://www.npmjs.com/package/typescript) everywhere.
-- Configuration-based architecture (using TypeScript code).
+* [TypeScript](https://www.npmjs.com/package/typescript) everywhere.
+* Configuration-based architecture (using TypeScript code).
 
 ## Installation
 
@@ -63,7 +63,7 @@ import { ServerApp } from 'meseret'
 
 new ServerApp({
   name: 'App Name',
-  httpServers: [{ port: 3000 }],
+  httpServers: [{ port: 3000 }]
 }).start() // returns a Promise
 ```
 
@@ -109,9 +109,9 @@ taskOrganizer
 export { taskOrganizer }
 
 // optionally, you may...
-export const dbConn = () => taskOrganizer.dbConn  // to access the mongoose connection
-export const gfs = () => taskOrganizer.grid       // to access GridFS from other files
-export const app = () => taskOrganizer.app        // the Koa application instance
+export const dbConn = () => taskOrganizer.dbConn // to access the mongoose connection
+export const gfs = () => taskOrganizer.grid // to access GridFS from other files
+export const app = () => taskOrganizer.app // the Koa application instance
 ```
 
 In this code, we imported a `ServerApp` from meseret and created an instance (`taskOrganizer`) by passing it a (`config: IServerAppConfig`) as its first parameter. Then we called `start()` on `taskOrganizer` to launch our application based on the `config` we provided it. This configuration we passed to the `ServerApp` is the most important piece of code here. The job the `ServerApp` performs when `start()` is called will be discussed later in detail at the end of this example project.
@@ -175,7 +175,7 @@ As you can see above the methods' and statics' type interfaces extend `Functions
 
 However, meseret does not currently support this guaranteed match between the type definition and actual implementation for schema paths (it's in the works... shh!). Until this gets support, developers should manually check if their path interfaces match their `paths` definition.
 
-*TIP: If you have an empty `paths`, `methods` or `statics` you may pass just `{}` to the `ModelFactory`. Therefore, our code above could have eliminated the `ITasksSchemaStatics` and the `factory` would have been defined as*:
+_TIP: If you have an empty `paths`, `methods` or `statics` you may pass just `{}` to the `ModelFactory`. Therefore, our code above could have eliminated the `ITasksSchemaStatics` and the `factory` would have been defined as_:
 
 ```ts
 const factory = new ModelFactory<ITasksSchemaPaths, ITasksSchemaMethods, {}>({
@@ -216,21 +216,21 @@ export { TaskRouter }
 
 To recap, the above router (`TaskRouter`) and the model (`TasksModel`) are included in the `ServerApp` (`taskOrganizer`). When the `taskOrganizer` is started, it:
 
-1. connects to a MongoDB server at a specified `MONGO_URI` environment variable (or defaults to `mongodb://localhost/task-organizer`),
-2. loads configured Mongoose database models (`TasksModel`),
-3. launches an HTTP Koa server at a specified `HOSTNAME` and `PORT` environment variables (or defaults to `http://127.0.0.1:3000`),
-4. serves the static directory `./react/build/`,
-5. serves an SPA from `./react/build/index.html`, and
-6. handles requests that match definitions in `TaskRouter`.
+1.  connects to a MongoDB server at a specified `MONGO_URI` environment variable (or defaults to `mongodb://localhost/task-organizer`),
+2.  loads configured Mongoose database models (`TasksModel`),
+3.  launches an HTTP Koa server at a specified `HOSTNAME` and `PORT` environment variables (or defaults to `http://127.0.0.1:3000`),
+4.  serves the static directory `./react/build/`,
+5.  serves an SPA from `./react/build/index.html`, and
+6.  handles requests that match definitions in `TaskRouter`.
 
 Based on this and the default configuration, the started `ServerApp` **implicitly** takes care of:
 
-- Koa Context body parsing (using [koa-body](https://www.npmjs.com/package/koa-body)),
-- caching static requests (using [koa-static-cache](https://www.npmjs.com/package/koa-static-cache)),
-- response GZip compression (using [koa-compress](https://www.npmjs.com/package/koa-compress)),
-- JSON format responses (using [koa-json](https://www.npmjs.com/package/koa-json)),
-- logging every request and response (using [koa-logger](https://www.npmjs.com/package/koa-logger)), and
-- creating a GridFSStream instance based on the MongoDB connection (using [gridfs-stream](https://www.npmjs.com/package/gridfs-stream)).
+* Koa Context body parsing (using [koa-body](https://www.npmjs.com/package/koa-body)),
+* caching static requests (using [koa-static-cache](https://www.npmjs.com/package/koa-static-cache)),
+* response GZip compression (using [koa-compress](https://www.npmjs.com/package/koa-compress)),
+* JSON format responses (using [koa-json](https://www.npmjs.com/package/koa-json)),
+* logging every request and response (using [koa-logger](https://www.npmjs.com/package/koa-logger)), and
+* creating a GridFSStream instance based on the MongoDB connection (using [gridfs-stream](https://www.npmjs.com/package/gridfs-stream)).
 
 In addition, a `keys` option can be provided to set Koa `ctx.keys` for signing cookies. If the `keys` are set, session support will be enabled automatically (using [koa-session](https://npmjs.com/package/koa-session)).
 
@@ -246,43 +246,43 @@ Whew!
 
 The `name` option is the only required of all the `IServerAppConfig` options. Below is a list of all the available options:
 
-Option Name | Data Type | Description
---- | --- | ---
-`bodyParser?` | `boolean` | Support form, JSON and text request body parsing? Defaults to `true`.
-`bodyParserEnableForm?` | `boolean` | If `bodyParser` is enabled, enable form parsing? Defaults to `true`.
-`bodyParserEnableJson?` | `boolean` | If `bodyParser` is enabled, enable JSON parsing? Defaults to `true`.
-`bodyParserEnableText?` | `boolean` | If `bodyParser` is enabled, enable text parsing? Defaults to `true`.
-`bodyParserEncoding?` | `string` | Encoding to use, if `bodyParser` is enabled. Defaults to `'utf-8'`.
-`bodyParserFormLimit?` | `string` | Form size limit, if `bodyParser` is enabled. Defaults to `'56kb'`.
-`bodyParserJsonLimit?` | `string` | JSON size limit, if `bodyParser` is enabled. Defaults to `'1mb'`.
-`bodyParserMultipart?` | `boolean` | If `bodyParser` is enabled, enable `multipart/form-data` parsing to support standard file upload? Defaults to `false`.
-`bodyParserTextLimit?` | `string` | Text size limit, if `bodyParser` is enabled. Defaults to `'1mb'`.
-`cacheControl?` | `string` | Cache control to be used. Defaults to `'private'`.
-`compress?` | `boolean` | Compress responses? Defaults to `true`.
-`httpServers?` | `{ hostname?: string, port: number }[]` | HTTP server configurations.
-`httpsServers?` | `{ opts: https.ServerOptions, hostname?: string, port: number }[]` | HTTPS server configurations.
-`json?` | `boolean` | Support direct JSON response parsing? Defaults to `true`.
-`jsonPretty?` | `boolean` | If `json` is enabled, send pretty responses? Default to `true` only if `app` is in `'development'` mode.
-`jsonPrettyParam?` | `string` | Optional query-string param for pretty responses, if `json` is enabled.
-`jsonSpaces?` | `number` | JSON spaces, if `json` is enabled and pretty. Defaults to `2`.
-`keys?` | `string[]` | Sets Koa `app.keys`.
-`log?` | `boolean` | Log requests and responses? Defaults to true.
-`middleware?` | `Koa.middleware[]` | More [Koa](https://www.npmjs.com/package/koa) middleware to use.
-`models?` | `mongoose.Model<mongoose.Document>[]` | [Mongoose](https://www.npmjs.com/package/mongoose) models, optionally built using meseret's `ModelFactory`. Requires `IServerApp.mongoUris`.
-`mongoUris?` | `string` | MongoDB connection URIs.
-`name` | `string` | Name of the server application. It is required.
-`publicDirs?` | `string[]` | Directory paths to serve statically.
-`routers?` | `KoaRouter[]` | An array of [koa-router](https://www.npmjs.com/package/koa-router) routers used in the servers.
-`spaFileRelativePath?` | `string` | A relative path to an SPA file (e.g. an [Angular](https://angular.io) or [React](https://reactjs.org) build's `index.html` file). If this is unspecified (or `null`) the `ServerApp` will not have an SPA-like behavior of rerouting `404 Not Found` pages.
-`session?` | `boolean` | Session support using cookies? Requires `IServerAppConfig.keys`. Defaults to `true` if some `IServerAppConfig.keys` are provided.
-`sessionCookieKey?` | `string` | Session cookie key, if `session` is enabled. Defaults to the `name` of the `ServerApp` in "snake_case".
-`sessionHttpOnly?` | `boolean` | If `session` is enabled, use it for HTTP only? Defaults to `true`.
-`sessionMaxAge?` | `number` or `'session'` | Maximum valid age of the session in milliseconds, if `session` is enabled. Defaults to `86400000` (1 day). If it is set to the string value: `'session'`, the cookie expires when the session/browser is closed.
-`sessionOverwrite?` | `boolean` | If `session` is enabled, allow overwriting? Defaults to `true`.
-`sessionRenew?` | `boolean` | If `session` is enabled, renew it when nearing its expiry? Defaults to `false`.
-`sessionRolling?` | `boolean` | If `session` is enabled, force a session identifier cookie to be set on every response? Defaults to `false`.
-`sessionSigned?` | `boolean` | If `session` is enabled, should it be signed? Defaults to `true`.
-`sockets?` | `SocketIO.Server[]` | [Socket.io](https://www.npmjs.com/package/socket-io) servers used in the http servers.
+| Option Name             | Data Type                                                          | Description                                                                                                                                                                                                                                                 |
+| ----------------------- | ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `bodyParser?`           | `boolean`                                                          | Support form, JSON and text request body parsing? Defaults to `true`.                                                                                                                                                                                       |
+| `bodyParserEnableForm?` | `boolean`                                                          | If `bodyParser` is enabled, enable form parsing? Defaults to `true`.                                                                                                                                                                                        |
+| `bodyParserEnableJson?` | `boolean`                                                          | If `bodyParser` is enabled, enable JSON parsing? Defaults to `true`.                                                                                                                                                                                        |
+| `bodyParserEnableText?` | `boolean`                                                          | If `bodyParser` is enabled, enable text parsing? Defaults to `true`.                                                                                                                                                                                        |
+| `bodyParserEncoding?`   | `string`                                                           | Encoding to use, if `bodyParser` is enabled. Defaults to `'utf-8'`.                                                                                                                                                                                         |
+| `bodyParserFormLimit?`  | `string`                                                           | Form size limit, if `bodyParser` is enabled. Defaults to `'56kb'`.                                                                                                                                                                                          |
+| `bodyParserJsonLimit?`  | `string`                                                           | JSON size limit, if `bodyParser` is enabled. Defaults to `'1mb'`.                                                                                                                                                                                           |
+| `bodyParserMultipart?`  | `boolean`                                                          | If `bodyParser` is enabled, enable `multipart/form-data` parsing to support standard file upload? Defaults to `false`.                                                                                                                                      |
+| `bodyParserTextLimit?`  | `string`                                                           | Text size limit, if `bodyParser` is enabled. Defaults to `'1mb'`.                                                                                                                                                                                           |
+| `cacheControl?`         | `string`                                                           | Cache control to be used. Defaults to `'private'`.                                                                                                                                                                                                          |
+| `compress?`             | `boolean`                                                          | Compress responses? Defaults to `true`.                                                                                                                                                                                                                     |
+| `httpServers?`          | `{ hostname?: string, port: number }[]`                            | HTTP server configurations.                                                                                                                                                                                                                                 |
+| `httpsServers?`         | `{ opts: https.ServerOptions, hostname?: string, port: number }[]` | HTTPS server configurations.                                                                                                                                                                                                                                |
+| `json?`                 | `boolean`                                                          | Support direct JSON response parsing? Defaults to `true`.                                                                                                                                                                                                   |
+| `jsonPretty?`           | `boolean`                                                          | If `json` is enabled, send pretty responses? Default to `true` only if `app` is in `'development'` mode.                                                                                                                                                    |
+| `jsonPrettyParam?`      | `string`                                                           | Optional query-string param for pretty responses, if `json` is enabled.                                                                                                                                                                                     |
+| `jsonSpaces?`           | `number`                                                           | JSON spaces, if `json` is enabled and pretty. Defaults to `2`.                                                                                                                                                                                              |
+| `keys?`                 | `string[]`                                                         | Sets Koa `app.keys`.                                                                                                                                                                                                                                        |
+| `log?`                  | `boolean`                                                          | Log requests and responses? Defaults to true.                                                                                                                                                                                                               |
+| `middleware?`           | `Koa.middleware[]`                                                 | More [Koa](https://www.npmjs.com/package/koa) middleware to use.                                                                                                                                                                                            |
+| `models?`               | `mongoose.Model<mongoose.Document>[]`                              | [Mongoose](https://www.npmjs.com/package/mongoose) models, optionally built using meseret's `ModelFactory`. Requires `IServerApp.mongoUris`.                                                                                                                |
+| `mongoUris?`            | `string`                                                           | MongoDB connection URIs.                                                                                                                                                                                                                                    |
+| `name`                  | `string`                                                           | Name of the server application. It is required.                                                                                                                                                                                                             |
+| `publicDirs?`           | `string[]`                                                         | Directory paths to serve statically.                                                                                                                                                                                                                        |
+| `routers?`              | `KoaRouter[]`                                                      | An array of [koa-router](https://www.npmjs.com/package/koa-router) routers used in the servers.                                                                                                                                                             |
+| `spaFileRelativePath?`  | `string`                                                           | A relative path to an SPA file (e.g. an [Angular](https://angular.io) or [React](https://reactjs.org) build's `index.html` file). If this is unspecified (or `null`) the `ServerApp` will not have an SPA-like behavior of rerouting `404 Not Found` pages. |
+| `session?`              | `boolean`                                                          | Session support using cookies? Requires `IServerAppConfig.keys`. Defaults to `true` if some `IServerAppConfig.keys` are provided.                                                                                                                           |
+| `sessionCookieKey?`     | `string`                                                           | Session cookie key, if `session` is enabled. Defaults to the `name` of the `ServerApp` in "snake_case".                                                                                                                                                     |
+| `sessionHttpOnly?`      | `boolean`                                                          | If `session` is enabled, use it for HTTP only? Defaults to `true`.                                                                                                                                                                                          |
+| `sessionMaxAge?`        | `number` or `'session'`                                            | Maximum valid age of the session in milliseconds, if `session` is enabled. Defaults to `86400000` (1 day). If it is set to the string value: `'session'`, the cookie expires when the session/browser is closed.                                            |
+| `sessionOverwrite?`     | `boolean`                                                          | If `session` is enabled, allow overwriting? Defaults to `true`.                                                                                                                                                                                             |
+| `sessionRenew?`         | `boolean`                                                          | If `session` is enabled, renew it when nearing its expiry? Defaults to `false`.                                                                                                                                                                             |
+| `sessionRolling?`       | `boolean`                                                          | If `session` is enabled, force a session identifier cookie to be set on every response? Defaults to `false`.                                                                                                                                                |
+| `sessionSigned?`        | `boolean`                                                          | If `session` is enabled, should it be signed? Defaults to `true`.                                                                                                                                                                                           |
+| `sockets?`              | `SocketIO.Server[]`                                                | [Socket.io](https://www.npmjs.com/package/socket-io) servers used in the http servers.                                                                                                                                                                      |
 
 P.S. more API documentation is coming soon.
 
