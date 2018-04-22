@@ -43,6 +43,13 @@ export class ModelFactory<
     return this._model
   }
 
+  /**
+   * @deprecated Use <code>documentify<code> instead. This was a typo and will be removed in version 2.
+   */
+  documetify(that: any): Document & IPaths & ISchemaMethods {
+    return this.documentify(that)
+  }
+
   documentify(that: any): Document & IPaths & ISchemaMethods {
     return that as Document & IPaths & ISchemaMethods
   }

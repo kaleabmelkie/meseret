@@ -3,6 +3,7 @@
 ## v1.7.4
 
 - Changed `path` to `hostname` in `httpServers` and `httpsServers` `IServerAppConfig` configuration. `path` is now deprecated and will be removed in version 2.
+- Re-added the type `ModelFactory.documetify` as a deprecated method (to fix the _wrong_ breaking change from the previous patch release). It will be removed in version 2.
 
 ## v1.7.3
 

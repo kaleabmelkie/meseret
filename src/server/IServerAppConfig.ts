@@ -14,7 +14,7 @@ export interface IServerAppConfig {
     hostname?: string
     port: number
     /**
-     * @deprecated Use <code>hostname<code> instead. This will be removed in v2.
+     * @deprecated Use <code>hostname<code> instead. This will be removed in version 2.
      */
     path?: string
   }[]
@@ -23,7 +23,7 @@ export interface IServerAppConfig {
     hostname?: string
     port: number
     /**
-     * @deprecated Use <code>hostname<code> instead. This will be removed in v2.
+     * @deprecated Use <code>hostname<code> instead. This will be removed in version 2.
      */
     path?: string
   }[]
