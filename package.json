@@ -1,7 +1,8 @@
 {
   "name": "meseret",
   "version": "1.7.5",
-  "description": "Opinionated, feature-packed professional node.js server framework.",
+  "description":
+    "Opinionated, feature-packed professional node.js server framework.",
   "main": "src/main.js",
   "typings": "src/main.d.ts",
   "scripts": {
@@ -49,7 +50,7 @@
   },
   "dependencies": {
     "@types/gridfs-stream": "^0.5.30",
-    "@types/koa": "2.0.44",
+    "@types/koa": "^2.0.45",
     "@types/koa-compress": "^2.0.8",
     "@types/koa-json": "^2.0.18",
     "@types/koa-logger": "^3.1.0",
@@ -58,11 +59,11 @@
     "@types/koa-session": "^5.7.3",
     "@types/koa-static": "^4.0.0",
     "@types/mongoose": "^5.0.10",
-    "@types/node": "^9.6.6",
+    "@types/node": "^10.0.0",
     "@types/socket.io": "^1.4.33",
     "del-cli": "^1.1.0",
     "gridfs-stream": "^1.1.1",
-    "koa": "^2.5.0",
+    "koa": "^2.5.1",
     "koa-body": "^2.5.0",
     "koa-compress": "^3.0.0",
     "koa-convert": "^1.2.0",
@@ -73,7 +74,7 @@
     "koa-session": "^5.8.1",
     "koa-static": "^4.0.2",
     "koa-static-cache": "^5.1.2",
-    "mongoose": "^5.0.15",
+    "mongoose": "^5.0.16",
     "nodemon": "^1.17.3",
     "prettier": "^1.12.1",
     "socket.io": "^2.1.0",

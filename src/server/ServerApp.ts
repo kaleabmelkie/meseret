@@ -95,7 +95,7 @@ export class ServerApp {
 
       // use the essential koa middleware
       if (this.config.log !== false) {
-        this.app.use(KoaLogger())
+        this.app.use(KoaLogger() as any) // todo: remove as any
       }
       if (
         this.config.session !== false &&
@@ -114,16 +114,20 @@ export class ServerApp {
               httpOnly: this.config.sessionHttpOnly !== false,
               maxAge: this.config.sessionMaxAge || 86400000,
               overwrite: this.config.sessionOverwrite !== false,
-              renew: this.config.sessionRenew || false, // todo: remove the `as any` when @types/koa-session updates support for `renew` option
+              renew: this.config.sessionRenew || false,
               rolling: this.config.sessionRolling || false,
               signed: this.config.sessionSigned !== false
-            } as any,
-            this.app
-          )
+            },
+            this.app as any // todo: remove as any
+          ) as any // todo: remove as any
         )
       }
       if (this.config.compress !== false) {
-        this.app.use(KoaCompress({ level: 9, memLevel: 9, threshold: 0 }))
+        this.app.use(KoaCompress({
+          level: 9,
+          memLevel: 9,
+          threshold: 0
+        }) as any) // todo: remove as any
       }
       if (this.config.bodyParser !== false) {
         this.app.use(
@@ -145,7 +149,7 @@ export class ServerApp {
             pretty: this.config.jsonPretty || this.env === 'development',
             param: this.config.jsonPrettyParam || undefined,
             spaces: this.config.jsonSpaces || 2
-          })
+          }) as any // todo: remove as any
         )
       }
 
@@ -163,7 +167,7 @@ export class ServerApp {
                 this.config.compress === true || this.config.compress === false
                   ? this.config.compress
                   : true
-            })
+            }) as any // todo: remove as any
           )
         }
       }
@@ -176,15 +180,17 @@ export class ServerApp {
       // use provided routers
       if (this.config.routers)
         for (const r of this.config.routers)
-          this.app.use(r.routes()).use(r.allowedMethods())
+          this.app.use(r.routes() as any).use(r.allowedMethods() as any) // todo: remove as any
 
       // 404 => SPA?
       if (this.config.spaFileRelativePath) {
         this.app.use(async ctx => {
           if (ctx.status === 404) {
-            await KoaSend(ctx, this.config.spaFileRelativePath as string).catch(
-              err =>
-                console.error(`Error sending the specified SPA file: ${err}`)
+            await KoaSend(
+              ctx as any, // todo: remove as any
+              this.config.spaFileRelativePath as string
+            ).catch(err =>
+              console.error(`Error sending the specified SPA file: ${err}`)
             )
           }
         })

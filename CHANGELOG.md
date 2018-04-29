@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.7.6
+
+* Updated all dependecies and made necessary static type changes and fixes
+
 ## v1.7.5
 
 * Rolled back to the previous project structure in an attempt to fix some bugs.
