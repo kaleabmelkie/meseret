@@ -1,8 +1,12 @@
 # meseret change log
 
+## v1.7.7
+
+* Updated and fixed the version numbers of all dependencies to avoid future static-type issues
+
 ## v1.7.6
 
-* Updated all dependecies and made necessary static type changes and fixes
+* Updated all dependencies and made necessary static type changes and fixes
 
 ## v1.7.5
 
