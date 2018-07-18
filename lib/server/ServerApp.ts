@@ -1,7 +1,7 @@
 import gridFSStream from 'gridfs-stream'
 import http from 'http'
 import https from 'https'
-import Koa from 'koa'
+import Koa, { Middleware } from 'koa'
 import KoaCompress from 'koa-compress'
 import KoaConvert from 'koa-convert'
 import koaBody from 'koa-body'
@@ -15,7 +15,6 @@ import mongoose from 'mongoose'
 import net from 'net'
 
 import { IServerAppConfig } from './IServerAppConfig'
-import { AddressInfo } from 'net'
 
 export class ServerApp {
   private _dbConn?: mongoose.Connection
@@ -178,7 +177,7 @@ export class ServerApp {
       // use provided middleware
       if (this.config.middleware)
         for (const m of this.config.middleware)
-          this.app.use(KoaConvert.compose(m))
+          this.app.use(KoaConvert.compose(m) as Middleware)
 
       // use provided routers
       if (this.config.routers)
@@ -208,11 +207,13 @@ export class ServerApp {
                 return Promise.reject(err)
               }
 
-              const address = server.address() as AddressInfo
+              const address = server.address()
               console.log(
-                `Listening at https://${address.address}:${address.port}/ in ${
-                  this.app.env
-                } mode.`
+                `Listening at ${
+                  typeof address === 'string'
+                    ? address
+                    : 'https://' + address.address + ':' + address.port + '/'
+                } in ${this.app.env} mode.`
               )
             })
           this.servers.push(server)
@@ -230,11 +231,13 @@ export class ServerApp {
                 return Promise.reject(err)
               }
 
-              const address = server.address() as AddressInfo
+              const address = server.address()
               console.log(
-                `Listening at http://${address.address}:${address.port}/ in ${
-                  this.app.env
-                } mode.`
+                `Listening at ${
+                  typeof address === 'string'
+                    ? address
+                    : 'https://' + address.address + ':' + address.port + '/'
+                } in ${this.app.env} mode.`
               )
             })
           this.servers.push(server)
