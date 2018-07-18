@@ -2,14 +2,14 @@
   "name": "meseret",
   "version": "1.7.7",
   "description": "Opinionated, feature-packed professional node.js server framework.",
-  "main": "dist/main.js",
-  "typings": "dist/main.d.ts",
+  "main": "lib/main.js",
+  "typings": "lib/main.d.ts",
   "scripts": {
-    "clean": "node_modules/.bin/del dist",
-    "build": "node_modules/.bin/del dist && tsc",
-    "watch": "node_modules/.bin/del dist && tsc -w",
+    "clean": "node_modules/.bin/del lib/**/*.{d.ts,js,map}",
+    "build": "yarn clean && tsc & yarn lint",
+    "watch": "yarn clean && tsc -w",
     "develop": "nodemon",
-    "lint": "prettier --write src/**/*.{ts,js} *.{json,md,ts,js}"
+    "lint": "prettier --write lib/**/*.{ts,js,json,md} *.{ts,js,json,md}"
   },
   "keywords": [
     "meseret",
@@ -43,7 +43,7 @@
   "license": "MIT",
   "private": false,
   "engines": {
-    "node": ">= 8.9",
+    "node": ">= 8.9.11",
     "yarn": ">= 1"
   },
   "dependencies": {

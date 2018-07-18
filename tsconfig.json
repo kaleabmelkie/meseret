@@ -2,9 +2,8 @@
   "compilerOptions": {
     "declaration": true,
     "declarationMap": true,
+    "esModuleInterop": true,
     "lib": ["es2018"],
-    "outDir": "dist",
-    "rootDir": "src",
     "sourceMap": true,
     "strict": true,
     "target": "es5"
