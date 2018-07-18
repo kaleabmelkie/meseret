@@ -1,179 +1,183 @@
 # meseret change log
 
+## v1.7.8
+
+- Updated dependencies, made changes in tsconfig.json and added declarations.d.ts
+
 ## v1.7.7
 
-* Updated and fixed the version numbers of all dependencies to avoid future static-type issues
+- Updated and fixed the version numbers of all dependencies to avoid future static-type issues
 
 ## v1.7.6
 
-* Updated all dependencies and made necessary static type changes and fixes
+- Updated all dependencies and made necessary static type changes and fixes
 
 ## v1.7.5
 
-* Rolled back to the previous project structure in an attempt to fix some bugs.
+- Rolled back to the previous project structure in an attempt to fix some bugs.
 
 ## v1.7.4
 
-* Changed `path` to `hostname` in `httpServers` and `httpsServers` `IServerAppConfig` configuration. `path` is now deprecated and will be removed in version 2.
-* Re-added the type `ModelFactory.documetify` as a deprecated method (to fix the _wrong_ breaking change from the previous patch release). It will be removed in version 2.
-* Improved `tsconfig.json`, linting, installed packages and project structure.
+- Changed `path` to `hostname` in `httpServers` and `httpsServers` `IServerAppConfig` configuration. `path` is now deprecated and will be removed in version 2.
+- Re-added the type `ModelFactory.documetify` as a deprecated method (to fix the _wrong_ breaking change from the previous patch release). It will be removed in version 2.
+- Improved `tsconfig.json`, linting, installed packages and project structure.
 
 ## v1.7.3
 
-* fixed: typo `documetify` to `documentify` in `ModelFactory`
+- fixed: typo `documetify` to `documentify` in `ModelFactory`
 
 ## v1.7.2
 
-* fixed: `ServerApp` not properly setting the default NODE_ENV env from the environment variables
+- fixed: `ServerApp` not properly setting the default NODE_ENV env from the environment variables
 
 ## v1.7.1
 
-* fixed bugs in the example code of the [README](README.md)
+- fixed bugs in the example code of the [README](README.md)
 
 ## v1.7.0
 
-* fix: removed `outDir` and `rootDir` options from `tsconfig.json`
-* FEATURE: moved some `devDependencies` to `dependencies` in `package.json` (resulting in much better static-type support)
-* FEATURE: improved `tsconfig.json` and eliminated all `devDependencies` (making `prettier` and `nodemon` commands available)
+- fix: removed `outDir` and `rootDir` options from `tsconfig.json`
+- FEATURE: moved some `devDependencies` to `dependencies` in `package.json` (resulting in much better static-type support)
+- FEATURE: improved `tsconfig.json` and eliminated all `devDependencies` (making `prettier` and `nodemon` commands available)
 
 ## v1.6.4
 
-* fix: added `typeRoots` in `tsconfig.json`
+- fix: added `typeRoots` in `tsconfig.json`
 
 ## v1.6.3
 
-* fixed typescript configuration (no longer requires `tslib`)
-* updated dependencies (and, internal: switched from `tslint` to `prettier` for code linting)
-* internal: moved built `*.js` and `*.d.ts` files to their own `lib` directory
-* internal: removed unnecessary `tslint.json` and `.editorconfig` files
+- fixed typescript configuration (no longer requires `tslib`)
+- updated dependencies (and, internal: switched from `tslint` to `prettier` for code linting)
+- internal: moved built `*.js` and `*.d.ts` files to their own `lib` directory
+- internal: removed unnecessary `tslint.json` and `.editorconfig` files
 
 ## v1.6.2
 
-* Improved and amended the [README](README.md)
+- Improved and amended the [README](README.md)
 
 ## v1.6.1
 
-* Improved the [README](README.md)
+- Improved the [README](README.md)
 
 ## v1.6.0
 
-* Add support for standard `multipart/form-data` file uploads' request body parsing; remove support for `bodyParserExtendTypes` (swapped [koa-bodyparser](https://www.npmjs.com/package/koa-bodyparser) for [koa-body](https://www.npmjs.com/package/koa-body))
-* Fix: some session related config options always being set to true
+- Add support for standard `multipart/form-data` file uploads' request body parsing; remove support for `bodyParserExtendTypes` (swapped [koa-bodyparser](https://www.npmjs.com/package/koa-bodyparser) for [koa-body](https://www.npmjs.com/package/koa-body))
+- Fix: some session related config options always being set to true
 
 ## v1.5.0
 
-* Support a GridFS instance through `ServerApp.grid` (using [gridfs-stream](https://www.npmjs.org/pacakge/gridfs-stream))
-* Better examples and explanations in the [README](README.md)
+- Support a GridFS instance through `ServerApp.grid` (using [gridfs-stream](https://www.npmjs.org/pacakge/gridfs-stream))
+- Better examples and explanations in the [README](README.md)
 
 ## v1.4.1
 
-* Fix the SocketIO namespace type bug
-* Update packages
+- Fix the SocketIO namespace type bug
+- Update packages
 
 ## v1.4.0
 
-* Add options to easily configure and read the environment (default: `process['NODE_ENV'] || 'development'`)
-* Add a `name` shortcut to `ServerApp` from `ServerApp.config`
-* Enhanced `json` configuration (new options for "pretty" responses)
-* Enhanced `bodyParser` configuration (new options for encoding, and extending with new types, disabling, setting size limits for form, JSON and text request body types)
-* Enhanced `session` configuration (new options for `sessionCookieKey`, `sessionHttpOnly`, `sessionMaxAge`, `sessionOverwrite`, `sessionRenew`, `sessionRolling` and `sessionSigned`)
-* Minor code improvements
+- Add options to easily configure and read the environment (default: `process['NODE_ENV'] || 'development'`)
+- Add a `name` shortcut to `ServerApp` from `ServerApp.config`
+- Enhanced `json` configuration (new options for "pretty" responses)
+- Enhanced `bodyParser` configuration (new options for encoding, and extending with new types, disabling, setting size limits for form, JSON and text request body types)
+- Enhanced `session` configuration (new options for `sessionCookieKey`, `sessionHttpOnly`, `sessionMaxAge`, `sessionOverwrite`, `sessionRenew`, `sessionRolling` and `sessionSigned`)
+- Minor code improvements
 
 ## v1.3.3
 
-* Improved the package description
-* Fixed some issues in the [README](README.md)
+- Improved the package description
+- Fixed some issues in the [README](README.md)
 
 ## v1.3.2
 
-* Fixed an issue in the [README](README.md)
+- Fixed an issue in the [README](README.md)
 
 ## v1.3.1
 
-* Improved documentation (in the [README](README.md)) and added package keywords
+- Improved documentation (in the [README](README.md)) and added package keywords
 
 ## v1.3.0
 
-* Add SPA support
-* Upgrade package dependency requirements
-* Change package description and keywords
+- Add SPA support
+- Upgrade package dependency requirements
+- Change package description and keywords
 
 ## v1.2.4
 
-* Improve [README](README.md)
+- Improve [README](README.md)
 
 ## v1.2.3
 
-* Fix koa-router usage bug
+- Fix koa-router usage bug
 
 ## v1.2.2
 
-* [README](README.md) fix.
-* Minor improvement in the way koa-routers are handled.
+- [README](README.md) fix.
+- Minor improvement in the way koa-routers are handled.
 
 ## v1.2.1
 
-* FIX: Make `ServerAppConfig.keys` optional.
-* Improve [README](README.md).
+- FIX: Make `ServerAppConfig.keys` optional.
+- Improve [README](README.md).
 
 ## v1.2.0
 
-* Construct Koa app when `ServerApp` is constructed, before calling `ServerApp.start()`.
-* Add key and session support.
-* Improved [README](README.md) and package.json.
+- Construct Koa app when `ServerApp` is constructed, before calling `ServerApp.start()`.
+- Add key and session support.
+- Improved [README](README.md) and package.json.
 
 ## v1.1.4
 
-* support Koa@1 legacy middleware internally, using koa-convert.
-* add peer dependencies.
-* fix a [README](README.md) doc problem.
+- support Koa@1 legacy middleware internally, using koa-convert.
+- add peer dependencies.
+- fix a [README](README.md) doc problem.
 
 ## v1.1.3
 
-* FIX (maybe, BREAKING): turn on `IServerAppConfig`'s `log`, `compress`, `bodyParser` and `json` methods by default.
-* improve [README](README.md)
+- FIX (maybe, BREAKING): turn on `IServerAppConfig`'s `log`, `compress`, `bodyParser` and `json` methods by default.
+- improve [README](README.md)
 
 ## v1.1.2
 
-* improve [README](README.md)
+- improve [README](README.md)
 
 ## v1.1.0
 
-* FEATURE: Add more `IServerAppConfig` options: `compress`, `bodyParser`, `json` and `log`
-* Better [README](README.md)
+- FEATURE: Add more `IServerAppConfig` options: `compress`, `bodyParser`, `json` and `log`
+- Better [README](README.md)
 
 ## v1.0.2
 
-* BREAKING DOC: remove the demo application out of this package.
+- BREAKING DOC: remove the demo application out of this package.
 
 ## v1.0.1
 
-* Bug fixes
+- Bug fixes
 
 ## v1.0.0
 
-* MAJOR FEATURE: Socket.io support
-* BREAKING: rename `ModelFactory.doc` to `ModelFactory.documentify`
-* BREAKING: rename `ModelFactory.mod` to `ModelFactory.modelify`
-* BREAKING: rename `IServerAppConfig.routes` to `IServerAppConfig.routers`
-* improved demo that now uses Angular, Socket.io and separates logic from router (NOTE: demo is still in beta)
-* improve the [README](README.md) and [package.json](package.json)
+- MAJOR FEATURE: Socket.io support
+- BREAKING: rename `ModelFactory.doc` to `ModelFactory.documentify`
+- BREAKING: rename `ModelFactory.mod` to `ModelFactory.modelify`
+- BREAKING: rename `IServerAppConfig.routes` to `IServerAppConfig.routers`
+- improved demo that now uses Angular, Socket.io and separates logic from router (NOTE: demo is still in beta)
+- improve the [README](README.md) and [package.json](package.json)
 
 ## v0.1.0
 
-* BREAKING: improve ModelFactory (remove its abstract constraint)
-* add a config option for cache control type
-* new and better end-to-end demo app (named "Task Organizer")
+- BREAKING: improve ModelFactory (remove its abstract constraint)
+- add a config option for cache control type
+- new and better end-to-end demo app (named "Task Organizer")
 
 ## v0.0.3
 
-* enable 'index.html' as the default load file when hosting public directories
+- enable 'index.html' as the default load file when hosting public directories
 
 ## v0.0.2
 
-* Added this [CHANGELOG](CHANGELOG.md) to the project
-* Also, added a [README](README.md)
+- Added this [CHANGELOG](CHANGELOG.md) to the project
+- Also, added a [README](README.md)
 
 ## v0.0.1
 
-* Initial release with basic features (`ServerApp`, `IServerAppConfig`, `ModelFactory` and `FunctionsType`)
+- Initial release with basic features (`ServerApp`, `IServerAppConfig`, `ModelFactory` and `FunctionsType`)

@@ -1,15 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "lib": ["es2017"],
     "declaration": true,
+    "declarationMap": true,
+    "lib": ["es2018"],
+    "outDir": "dist",
+    "rootDir": "src",
+    "sourceMap": true,
     "strict": true,
-    "noImplicitAny": false,
-    "moduleResolution": "node",
-    "sourceRoot": "./",
-    "inlineSourceMap": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "target": "es5"
   }
 }

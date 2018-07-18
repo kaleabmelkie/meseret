@@ -8,31 +8,31 @@ Here are some of its features:
 
 **Server Setup:**
 
-* [Koa](https://www.npmjs.com/package/koa) server with preconfigured compression, static serving & caching, body parsing (JSON and forms), direct JSON response, console logging and session support.
-* Support for more Koa middleware, and [koa-router](https://www.npmjs.com/package/koa-router) routes.
-* Listening on multiple HTTP and/or HTTPS servers.
-* Static-serving (hosting) multiple public directories.
+- [Koa](https://www.npmjs.com/package/koa) server with preconfigured compression, static serving & caching, body parsing (JSON and forms), direct JSON response, console logging and session support.
+- Support for more Koa middleware, and [koa-router](https://www.npmjs.com/package/koa-router) routes.
+- Listening on multiple HTTP and/or HTTPS servers.
+- Static-serving (hosting) multiple public directories.
 
 **Database Models:**
 
-* MongoDB connection and [Mongoose](https://www.npmjs.com/package/mongoose) models.
-* A `ModelFactory` for type enabled Mongoose schema paths, methods and statics: bringing static-type support (and IDE auto-complete) to the data schema.
-* GridFS support to store small and large files in MongoDB.
+- MongoDB connection and [Mongoose](https://www.npmjs.com/package/mongoose) models.
+- A `ModelFactory` for type enabled Mongoose schema paths, methods and statics: bringing static-type support (and IDE auto-complete) to the data schema.
+- GridFS support to store small and large files in MongoDB.
 
 **WebSocket Support:**
 
-* [Socket.io](https://www.npmjs.com/package/socket.io) integration support (connects `SocketIO.Server`s to the `ServerApp`).
+- [Socket.io](https://www.npmjs.com/package/socket.io) integration support (connects `SocketIO.Server`s to the `ServerApp`).
 
 **Single Page Application Support:**
 
-* Serves any SPA file.
-* Serves build files of SPA front-end projects, built using frameworks such as [Angular](https://angular.io) and [React](https://reactjs.org), even when in different packages.
-* All 404 responses can be redirected to an SPA file, if specified.
+- Serves any SPA file.
+- Serves build files of SPA front-end projects, built using frameworks such as [Angular](https://angular.io) and [React](https://reactjs.org), even when in different packages.
+- All 404 responses can be redirected to an SPA file, if specified.
 
 **Coding Style:**
 
-* [TypeScript](https://www.npmjs.com/package/typescript) everywhere.
-* Configuration-based architecture (using TypeScript code).
+- [TypeScript](https://www.npmjs.com/package/typescript) everywhere.
+- Configuration-based architecture (using TypeScript code).
 
 ## Installation
 
@@ -225,12 +225,12 @@ To recap, the above router (`TaskRouter`) and the model (`TasksModel`) are inclu
 
 Based on this and the default configuration, the started `ServerApp` **implicitly** takes care of:
 
-* Koa Context body parsing (using [koa-body](https://www.npmjs.com/package/koa-body)),
-* caching static requests (using [koa-static-cache](https://www.npmjs.com/package/koa-static-cache)),
-* response GZip compression (using [koa-compress](https://www.npmjs.com/package/koa-compress)),
-* JSON format responses (using [koa-json](https://www.npmjs.com/package/koa-json)),
-* logging every request and response (using [koa-logger](https://www.npmjs.com/package/koa-logger)), and
-* creating a GridFSStream instance based on the MongoDB connection (using [gridfs-stream](https://www.npmjs.com/package/gridfs-stream)).
+- Koa Context body parsing (using [koa-body](https://www.npmjs.com/package/koa-body)),
+- caching static requests (using [koa-static-cache](https://www.npmjs.com/package/koa-static-cache)),
+- response GZip compression (using [koa-compress](https://www.npmjs.com/package/koa-compress)),
+- JSON format responses (using [koa-json](https://www.npmjs.com/package/koa-json)),
+- logging every request and response (using [koa-logger](https://www.npmjs.com/package/koa-logger)), and
+- creating a GridFSStream instance based on the MongoDB connection (using [gridfs-stream](https://www.npmjs.com/package/gridfs-stream)).
 
 In addition, a `keys` option can be provided to set Koa `ctx.keys` for signing cookies. If the `keys` are set, session support will be enabled automatically (using [koa-session](https://npmjs.com/package/koa-session)).
 
