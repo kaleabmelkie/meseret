@@ -75,7 +75,7 @@ The `start()` method launches the server application on `http://localhost:3000`;
 We are now going to create the back-end of a small "task organization" application using meseret. Its main source file looks something like:
 
 ```ts
-// src/main.ts
+// src/app.ts
 
 import { ServerApp } from 'meseret'
 import { join } from 'path'

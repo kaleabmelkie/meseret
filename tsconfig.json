@@ -1,11 +1,39 @@
 {
   "compilerOptions": {
+    "rootDir": "./src/",
+    "outDir": "./lib/",
+    "module": "commonjs",
+    "moduleResolution": "node",
+
+    "pretty": true,
+    "lib": ["es2018"],
+    "target": "es5",
+
     "declaration": true,
     "declarationMap": true,
-    "esModuleInterop": true,
-    "lib": ["es2018"],
     "sourceMap": true,
-    "strict": true,
-    "target": "es5"
-  }
+    "composite": true,
+    "noEmitOnError": true,
+
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    "skipLibCheck": true,
+
+    "alwaysStrict": true,
+    "preserveConstEnums": true,
+    "newLine": "lf"
+  },
+
+  "files": [
+    "./src/index.ts"
+  ],
+  "include": [
+    "./node_modules/**/*.ts",
+    "./declarations.d.ts",
+    "./src/**/*.ts"
+  ]
 }

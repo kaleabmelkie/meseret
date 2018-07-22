@@ -1,8 +1,8 @@
-import https from 'https'
-import Koa from 'koa'
-import KoaRouter from 'koa-router'
-import mongoose from 'mongoose'
-import SocketIO from 'socket.io'
+import * as https from 'https'
+import * as Koa from 'koa'
+import * as KoaRouter from 'koa-router'
+import * as mongoose from 'mongoose'
+import * as SocketIO from 'socket.io'
 
 export interface IServerAppConfig {
   name: string
