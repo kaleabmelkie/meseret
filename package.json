@@ -2,8 +2,8 @@
   "name": "meseret",
   "version": "1.7.7",
   "description": "Opinionated, feature-packed professional node.js server framework.",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "lib",
+  "typings": "lib",
   "scripts": {
     "clean": "node_modules/.bin/del lib",
     "build": "yarn clean && tsc",

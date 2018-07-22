@@ -32,7 +32,6 @@
     "./src/index.ts"
   ],
   "include": [
-    "./node_modules/**/*.ts",
     "./declarations.d.ts",
     "./src/**/*.ts"
   ]
