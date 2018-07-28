@@ -237,7 +237,7 @@ export class ServerApp {
                 `Listening at ${
                   typeof address === 'string'
                     ? address
-                    : 'https://' + address.address + ':' + address.port + '/'
+                    : 'http://' + address.address + ':' + address.port + '/'
                 } in ${this.app.env} mode.`
               )
             })

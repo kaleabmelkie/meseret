@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.7.9
+
+- Fix: wrong "https" console.log instead of "http" when ServerApp starts
+
 ## v1.7.8
 
 - Updated dependencies, made changes in tsconfig.json and added declarations.d.ts
