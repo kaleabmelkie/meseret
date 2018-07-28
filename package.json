@@ -1,6 +1,6 @@
 {
   "name": "meseret",
-  "version": "1.7.8",
+  "version": "1.7.9",
   "description": "Opinionated, feature-packed professional node.js server framework.",
   "main": "lib",
   "typings": "lib",
