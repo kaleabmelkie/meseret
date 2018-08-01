@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.8.0
+
+- Upgraded to TypeScript 3.0
+
 ## v1.7.9
 
 - Fix: wrong "https" console.log instead of "http" when ServerApp starts
