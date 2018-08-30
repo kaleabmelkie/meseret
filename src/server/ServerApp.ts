@@ -156,6 +156,16 @@ export class ServerApp {
         )
       }
 
+      // use provided middleware
+      if (this.config.middleware)
+        for (const m of this.config.middleware)
+          this.app.use(KoaConvert.compose(m) as Middleware)
+
+      // use provided routers
+      if (this.config.routers)
+        for (const r of this.config.routers)
+          this.app.use(r.routes()).use(r.allowedMethods())
+
       // use provided public directories (with static cache)
       if (this.config.publicDirs) {
         for (const dir of this.config.publicDirs) {
@@ -174,16 +184,6 @@ export class ServerApp {
           )
         }
       }
-
-      // use provided middleware
-      if (this.config.middleware)
-        for (const m of this.config.middleware)
-          this.app.use(KoaConvert.compose(m) as Middleware)
-
-      // use provided routers
-      if (this.config.routers)
-        for (const r of this.config.routers)
-          this.app.use(r.routes()).use(r.allowedMethods())
 
       // 404 => SPA?
       if (this.config.spaFileRelativePath) {

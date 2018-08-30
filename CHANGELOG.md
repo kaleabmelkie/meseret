@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.8.1
+
+- Re-ordered middleware stream positions to fix some bugs (POSSIBLY A BREAKING CHANGE, in some very extreme cases)
+
 ## v1.8.0
 
 - Upgraded to TypeScript 3.0
