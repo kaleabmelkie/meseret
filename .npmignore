@@ -1,5 +1,7 @@
-# Projects
+# Source Code and Tests
 tests/
+src/
+*.map
 
 # Default
 .*.swp
