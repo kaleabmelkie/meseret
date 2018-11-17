@@ -1,11 +1,12 @@
 # meseret change log
 
-## v1.8.1
+## v1.7.11
+
+- Handled mongoose.connect URL string parser deprecation
+
+## v1.7.10
 
 - Re-ordered middleware stream positions to fix some bugs (POSSIBLY A BREAKING CHANGE, in some very extreme cases)
-
-## v1.8.0
-
 - Upgraded to TypeScript 3.0
 
 ## v1.7.9

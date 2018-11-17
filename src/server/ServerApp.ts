@@ -68,7 +68,8 @@ export class ServerApp {
         // if mongoUris in config...
         // connect to db
         try {
-          await mongoose.connect(this.config.mongoUris)
+          // todo: allow overriding mongoose.connect options in v1.8.0
+          await mongoose.connect(this.config.mongoUris, { useNewUrlParser: true })
           this._dbConn = mongoose.connection
           console.log(`Database connected to ${this.config.mongoUris}.`)
 
