@@ -1,5 +1,9 @@
 # meseret change log
 
+## v1.7.12
+
+- Removed Node and Yarn engines version requirements
+
 ## v1.7.11
 
 - Handled mongoose.connect URL string parser deprecation

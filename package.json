@@ -32,10 +32,6 @@
   "author": "Kaleab Melkie <kaleabmelkie@gmail.com>",
   "license": "MIT",
   "private": false,
-  "engines": {
-    "node": ">= 8.9.11",
-    "yarn": ">= 1"
-  },
   "dependencies": {
     "@types/gridfs-stream": "latest",
     "@types/koa": "latest",
