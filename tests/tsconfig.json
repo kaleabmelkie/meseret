@@ -28,11 +28,6 @@
     "newLine": "lf"
   },
 
-  "files": [
-    "./src/index.ts"
-  ],
-  "include": [
-    "./declarations.d.ts",
-    "./src/**/*.ts"
-  ]
+  "files": ["./src/index.ts"],
+  "include": ["./declarations.d.ts", "./src/**/*.ts"]
 }

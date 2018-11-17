@@ -4,6 +4,7 @@
 
 - Handled mongoose.connect URL string parser deprecation
 - Removed yarn.lock to avoid caching non-latest version during installations in the future
+- Added 'husky' and 'npm-run-all' to meseret dependency exports (and used them internally too)
 
 ## v1.7.10
 

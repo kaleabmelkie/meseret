@@ -5,10 +5,19 @@
   "main": "lib",
   "typings": "lib",
   "scripts": {
-    "clean": "node_modules/.bin/del lib",
-    "build": "yarn clean && tsc",
-    "watch": "yarn clean && tsc -w",
-    "lint": "prettier --write src/**/*.ts"
+    "del-cli": "del-cli",
+    "run-s": "run-s",
+    "run-p": "run-p",
+    "prettier": "prettier",
+    "tsc": "tsc",
+    "precommit": "run-s prod && git add ./lib && git update-index --again",
+    "prod": "run-p format build",
+    "lint": "prettier ./{*,src/**,tests/**}/**/*.{ts,js,json,md}",
+    "format": "prettier --write ./{*,src/**,tests/**}/*.{ts,js,json,md}",
+    "clean": "run-s \"del-cli lib\"",
+    "build": "run-s clean tsc",
+    "watch": "run-s clean \"tsc -w\"",
+    "dev": "run-s watch"
   },
   "keywords": [
     "meseret",
@@ -43,6 +52,7 @@
     "@types/socket.io": "latest",
     "del-cli": "latest",
     "gridfs-stream": "latest",
+    "husky": "latest",
     "koa": "latest",
     "koa-body": "latest",
     "koa-compress": "latest",
@@ -56,6 +66,7 @@
     "koa-static-cache": "latest",
     "mongoose": "latest",
     "nodemon": "latest",
+    "npm-run-all": "latest",
     "prettier": "latest",
     "socket.io": "latest",
     "typescript": "latest"

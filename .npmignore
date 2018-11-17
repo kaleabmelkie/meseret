@@ -79,3 +79,7 @@ typings/
 # IDEs
 .idea/
 .vscode/
+
+# Installation Locks
+package-lock.json
+yarn.lock

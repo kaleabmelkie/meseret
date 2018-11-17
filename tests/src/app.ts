@@ -1,13 +1,11 @@
 import { ServerApp } from '../..'
 import Router = require('koa-router')
 
-
 const r1 = new Router()
 
 r1.post('sample', async ctx => {
-  console.log(ctx.request.body);
+  console.log(ctx.request.body)
 })
-
 
 new ServerApp({
   name: 'Hi',
