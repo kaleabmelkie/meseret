@@ -3,6 +3,7 @@
 ## v1.7.11
 
 - Handled mongoose.connect URL string parser deprecation
+- Removed yarn.lock to avoid caching non-latest version during installations in the future
 
 ## v1.7.10
 
