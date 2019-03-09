@@ -69,10 +69,9 @@ export class ServerApp {
         // connect to db
         try {
           // todo: allow overriding mongoose.connect options in v1.8.0
-          await mongoose.connect(
-            this.config.mongoUris,
-            { useNewUrlParser: true }
-          )
+          await mongoose.connect(this.config.mongoUris, {
+            useNewUrlParser: true
+          })
           this._dbConn = mongoose.connection
           console.log(`Database connected to ${this.config.mongoUris}.`)
 
@@ -193,9 +192,11 @@ export class ServerApp {
       if (this.config.spaFileRelativePath) {
         this.app.use(async ctx => {
           if (ctx.status === 404) {
-            await KoaSend(ctx, this.config.spaFileRelativePath as string).catch(
-              err =>
-                console.error(`Error sending the specified SPA file: ${err}`)
+            await KoaSend(
+              ctx as any, // todo: temp fix until @types/koa-send supports ParametrizedContext
+              this.config.spaFileRelativePath as string
+            ).catch(err =>
+              console.error(`Error sending the specified SPA file: ${err}`)
             )
           }
         })
@@ -215,7 +216,9 @@ export class ServerApp {
               const address = server.address()
               console.log(
                 `Listening at ${
-                  typeof address === 'string'
+                  !address
+                    ? 'unknown address'
+                    : typeof address === 'string'
                     ? address
                     : 'https://' + address.address + ':' + address.port + '/'
                 } in ${this.app.env} mode.`
@@ -239,7 +242,9 @@ export class ServerApp {
               const address = server.address()
               console.log(
                 `Listening at ${
-                  typeof address === 'string'
+                  !address
+                    ? 'unknown address'
+                    : typeof address === 'string'
                     ? address
                     : 'http://' + address.address + ':' + address.port + '/'
                 } in ${this.app.env} mode.`
