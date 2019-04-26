@@ -1,5 +1,8 @@
 # meseret
 
+[![meseret][npm-badge]][npm]
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
 Opinionated, feature-packed professional node.js server framework.
 
 Meseret is a framework designed from the ground up to allow easy professional-grade node.js server configuration setup (code-wise).
@@ -290,4 +293,8 @@ P.S. more API documentation is coming soon.
 
 Made with &hearts; in Addis Ababa.
 
-[MIT License](LICENSE) &copy; 2017-2018 Kaleab S. Melkie.
+[MIT License](LICENSE) &copy; 2017-2018 [Kaleab S. Melkie](https://kaleab.kelaltech.com).
+
+
+[npm-badge]: https://img.shields.io/npm/v/meseret.png?style=flat-square
+[npm]: https://www.npmjs.org/package/meseret
