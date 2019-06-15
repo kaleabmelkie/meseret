@@ -2,6 +2,7 @@
 import * as https from 'https';
 import * as Koa from 'koa';
 import * as KoaRouter from 'koa-router';
+import * as KoaStaticCache from 'koa-static-cache';
 import * as mongoose from 'mongoose';
 import * as SocketIO from 'socket.io';
 export interface IServerAppConfig {
@@ -40,6 +41,8 @@ export interface IServerAppConfig {
     bodyParserMultipart?: boolean;
     bodyParserTextLimit?: string;
     cacheControl?: string;
+    cacheOptions?: KoaStaticCache.Options;
+    cacheFiles?: KoaStaticCache.Files;
     compress?: boolean;
     keys?: string[];
     json?: boolean;

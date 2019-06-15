@@ -4,6 +4,8 @@
 
 - Create collections for models provided in IServerAppConfig ahead-of-time (needed for first-time ACID transactions)
 - Pluralize all model names
+- Add `IServerAppConfig.cacheOptions`
+- Add `IServerAppConfig.cacheFiles`
 - Add `IServerAppConfig.mongooseConnectionOptions`
 
 #### v1.7.12

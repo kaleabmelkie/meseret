@@ -186,9 +186,14 @@ export class ServerApp {
       if (this.config.publicDirs) {
         for (const dir of this.config.publicDirs) {
           this.app.use(
-            KoaStaticCache(dir, {
-              cacheControl: this.config.cacheControl || 'private'
-            })
+            KoaStaticCache(
+              dir,
+              {
+                cacheControl: this.config.cacheControl || 'private',
+                ...this.config.cacheOptions
+              },
+              this.config.cacheFiles
+            )
           )
           this.app.use(
             KoaStatic(dir, {
