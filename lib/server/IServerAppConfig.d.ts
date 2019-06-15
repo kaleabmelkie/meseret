@@ -8,8 +8,8 @@ import * as SocketIO from 'socket.io';
 export interface IServerAppConfig {
     name: string;
     models?: mongoose.Model<mongoose.Document>[];
-    mongoUris?: string;
     mongooseConnectionOptions?: mongoose.ConnectionOptions;
+    mongoUris?: string;
     httpServers?: {
         hostname?: string;
         port: number;
@@ -41,8 +41,8 @@ export interface IServerAppConfig {
     bodyParserMultipart?: boolean;
     bodyParserTextLimit?: string;
     cacheControl?: string;
-    cacheOptions?: KoaStaticCache.Options;
     cacheFiles?: KoaStaticCache.Files;
+    cacheOptions?: KoaStaticCache.Options;
     compress?: boolean;
     keys?: string[];
     json?: boolean;

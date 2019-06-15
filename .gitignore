@@ -64,3 +64,6 @@ typings/
 # Installation Locks
 package-lock.json
 yarn.lock
+
+# tests
+tests/dist/
