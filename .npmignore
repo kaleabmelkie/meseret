@@ -1,8 +1,3 @@
-# Source Code and Tests
-tests/
-src/
-*.map
-
 # Default
 .*.swp
 ._*
@@ -83,3 +78,13 @@ typings/
 # Installation Locks
 package-lock.json
 yarn.lock
+
+# TypeScript
+*.tsbuildinfo
+
+# Tests
+tests/
+
+# Source Code
+src/
+*.map

@@ -11,10 +11,11 @@
     "prettier": "prettier",
     "tsc": "tsc",
     "precommit": "run-s prod && git add ./lib && git update-index --again",
-    "prod": "run-p format build",
+    "prod": "run-s \"run-p format build\" format-lib",
     "lint": "prettier ./{*,src/**,tests/**}/**/*.{ts,js,json,md}",
     "format": "prettier --write ./{*,src/**,tests/**}/*.{ts,js,json,md}",
-    "clean": "run-s \"del-cli lib\"",
+    "format-lib": "prettier --write ./lib/**/*.{ts,js,json,md}",
+    "clean": "run-s \"del-cli lib *.tsbuildinfo\"",
     "build": "run-s clean tsc",
     "watch": "run-s clean \"tsc -w\"",
     "dev": "run-s watch"

@@ -261,7 +261,7 @@ The `name` option is the only required of all the `IServerAppConfig` options. Be
 | `bodyParserMultipart?`      | `boolean`                                                          | If `bodyParser` is enabled, enable `multipart/form-data` parsing to support standard file upload? Defaults to `false`.                                                                                                                                      |
 | `bodyParserTextLimit?`      | `string`                                                           | Text size limit, if `bodyParser` is enabled. Defaults to `'1mb'`.                                                                                                                                                                                           |
 | `cacheControl?`             | `string`                                                           | Cache control to be used. Defaults to `'private'`.                                                                                                                                                                                                          |
-| `cacheFiles`                | `[path: string]: staticCache.Options`                              | Set static cache options per file path. Optional.                                                                                                                                                                                                           |
+| `cacheFiles`                | `{ [path: string]: staticCache.Options }`                          | Set static cache options per file path. Optional.                                                                                                                                                                                                           |
 | `cacheOptions`              | `staticCache.Options`                                              | Set global static cache options. Optional. May override `IServerAppConfig.cacheOptions.cacheControl` overrides `IServerAppConfig.cacheControl`.                                                                                                             |
 | `compress?`                 | `boolean`                                                          | Compress responses? Defaults to `true`.                                                                                                                                                                                                                     |
 | `httpServers?`              | `{ hostname?: string, port: number }[]`                            | HTTP server configurations.                                                                                                                                                                                                                                 |
@@ -297,7 +297,6 @@ P.S. more API documentation is coming soon.
 Made with &hearts; in Addis Ababa.
 
 [MIT License](LICENSE) &copy; 2017-2018 [Kaleab S. Melkie](https://kaleab.kelaltech.com).
-
 
 [npm-badge]: https://img.shields.io/npm/v/meseret.png?style=flat-square
 [npm]: https://www.npmjs.org/package/meseret

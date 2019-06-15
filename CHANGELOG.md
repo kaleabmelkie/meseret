@@ -1,5 +1,10 @@
 # meseret change log
 
+#### v1.8.1
+
+- A small type bug fix for newer TypeScript versions
+- Internal workflow improvement
+
 ### v1.8.0
 
 - Create collections for models provided in IServerAppConfig ahead-of-time (needed for first-time ACID transactions)

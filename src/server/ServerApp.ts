@@ -210,11 +210,9 @@ export class ServerApp {
       if (this.config.spaFileRelativePath) {
         this.app.use(async ctx => {
           if (ctx.status === 404) {
-            await KoaSend(
-              ctx as any, // todo: temp fix until @types/koa-send supports ParametrizedContext
-              this.config.spaFileRelativePath as string
-            ).catch(err =>
-              console.error(`Error sending the specified SPA file: ${err}`)
+            await KoaSend(ctx, this.config.spaFileRelativePath as string).catch(
+              err =>
+                console.error(`Error sending the specified SPA file: ${err}`)
             )
           }
         })
@@ -225,7 +223,7 @@ export class ServerApp {
         for (const s of this.config.httpsServers) {
           const server = https
             .createServer(s.opts, this.app.callback())
-            .listen(s.port, s.hostname || s.path, (err: any) => {
+            .listen(s.port, s.hostname || s.path, (err?: any) => {
               if (err) {
                 err.message = `HTTPS server creation error: ${err.message}`
                 throw err
@@ -251,7 +249,7 @@ export class ServerApp {
         for (const s of this.config.httpServers) {
           const server = http
             .createServer(this.app.callback())
-            .listen(s.port, s.hostname || s.path, (err: any) => {
+            .listen(s.port, s.hostname || s.path, (err?: any) => {
               if (err) {
                 err.message = `HTTP server creation error: ${err.message}`
                 throw err

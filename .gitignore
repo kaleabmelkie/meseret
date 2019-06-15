@@ -65,5 +65,8 @@ typings/
 package-lock.json
 yarn.lock
 
-# tests
+# TypeScript
+*.tsbuildinfo
+
+# Tests
 tests/dist/
