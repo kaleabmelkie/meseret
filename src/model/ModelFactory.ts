@@ -2,6 +2,7 @@ import {
   Document,
   Model,
   model,
+  pluralize,
   Schema,
   SchemaDefinition,
   SchemaOptions
@@ -34,7 +35,7 @@ export class ModelFactory<
 
   get model(): Model<Document & IPaths & ISchemaMethods> & ISchemaStatics {
     if (!this._model) {
-      this._model = model(this._config.name, this.schema) as Model<
+      this._model = model(pluralize()(this._config.name), this.schema) as Model<
         Document & IPaths & ISchemaMethods
       > &
         ISchemaStatics

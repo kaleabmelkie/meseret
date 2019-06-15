@@ -13,6 +13,7 @@ import * as KoaStatic from 'koa-static'
 import * as KoaStaticCache from 'koa-static-cache'
 import * as KoaSession from 'koa-session'
 import * as mongoose from 'mongoose'
+import { pluralize } from 'mongoose'
 import * as net from 'net'
 
 import { IServerAppConfig } from './IServerAppConfig'
@@ -78,17 +79,31 @@ export class ServerApp {
           this._grid = gridFSStream(this._dbConn.db, mongoose.mongo)
         } catch (err) {
           err.message = `Database connection error: ${err.message}`
-          return Promise.reject(err)
+          throw err
+        }
+
+        if (this.config.models) {
+          // Create collections for models provided in IServerAppConfig ahead-of-time
+          // needed for first-time ACID transactions
+          for (const model of this.config.models || []) {
+            const name = pluralize()(model.modelName)
+
+            const collection = await this._dbConn.db
+              .listCollections({ name })
+              .next()
+            if (!collection) {
+              await this._dbConn.createCollection(name)
+              console.info(`Created '${name}' collection.`)
+            }
+          }
         }
       } else if (this.config.models) {
         // else if there are models but no mongoUris... what are they for?
-        return Promise.reject(
-          new Error('No MongoDB URI to load the provided models on.')
-        )
+        throw new Error('No MongoDB URI to load the provided models on.')
       }
     } catch (err) {
       err.message = `Mongoose setup error: ${err.message}`
-      return Promise.reject(err)
+      throw err
     }
 
     /* KOA */
@@ -210,7 +225,7 @@ export class ServerApp {
             .listen(s.port, s.hostname || s.path, (err: any) => {
               if (err) {
                 err.message = `HTTPS server creation error: ${err.message}`
-                return Promise.reject(err)
+                throw err
               }
 
               const address = server.address()
@@ -236,7 +251,7 @@ export class ServerApp {
             .listen(s.port, s.hostname || s.path, (err: any) => {
               if (err) {
                 err.message = `HTTP server creation error: ${err.message}`
-                return Promise.reject(err)
+                throw err
               }
 
               const address = server.address()
@@ -263,10 +278,10 @@ export class ServerApp {
         }
       }
 
-      return Promise.resolve()
+      return await Promise.resolve()
     } catch (err) {
       err.message = `Koa setup error: ${err.message}`
-      return Promise.reject(err)
+      throw err
     }
   }
 }
