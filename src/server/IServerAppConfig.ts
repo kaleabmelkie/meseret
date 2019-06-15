@@ -9,6 +9,7 @@ export interface IServerAppConfig {
 
   models?: mongoose.Model<mongoose.Document>[]
   mongoUris?: string
+  mongooseConnectionOptions?: mongoose.ConnectionOptions
 
   httpServers?: {
     hostname?: string

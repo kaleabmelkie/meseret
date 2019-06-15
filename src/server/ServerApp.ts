@@ -2,7 +2,6 @@ import * as gridFSStream from 'gridfs-stream'
 import * as http from 'http'
 import * as https from 'https'
 import * as Koa from 'koa'
-import { Middleware } from 'koa'
 import * as KoaCompress from 'koa-compress'
 import * as KoaConvert from 'koa-convert'
 import * as koaBody from 'koa-body'
@@ -13,7 +12,6 @@ import * as KoaStatic from 'koa-static'
 import * as KoaStaticCache from 'koa-static-cache'
 import * as KoaSession from 'koa-session'
 import * as mongoose from 'mongoose'
-import { pluralize } from 'mongoose'
 import * as net from 'net'
 
 import { IServerAppConfig } from './IServerAppConfig'
@@ -69,9 +67,9 @@ export class ServerApp {
         // if mongoUris in config...
         // connect to db
         try {
-          // todo: allow overriding mongoose.connect options in v1.8.0
           await mongoose.connect(this.config.mongoUris, {
-            useNewUrlParser: true
+            useNewUrlParser: true,
+            ...this.config.mongooseConnectionOptions
           })
           this._dbConn = mongoose.connection
           console.log(`Database connected to ${this.config.mongoUris}.`)
@@ -86,7 +84,7 @@ export class ServerApp {
           // Create collections for models provided in IServerAppConfig ahead-of-time
           // needed for first-time ACID transactions
           for (const model of this.config.models || []) {
-            const name = pluralize()(model.modelName)
+            const name = mongoose.pluralize()(model.modelName)
 
             const collection = await this._dbConn.db
               .listCollections({ name })
@@ -177,7 +175,7 @@ export class ServerApp {
       // use provided middleware
       if (this.config.middleware)
         for (const m of this.config.middleware)
-          this.app.use(KoaConvert.compose(m) as Middleware)
+          this.app.use(KoaConvert.compose(m) as Koa.Middleware)
 
       // use provided routers
       if (this.config.routers)

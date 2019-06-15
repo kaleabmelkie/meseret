@@ -8,6 +8,7 @@ export interface IServerAppConfig {
     name: string;
     models?: mongoose.Model<mongoose.Document>[];
     mongoUris?: string;
+    mongooseConnectionOptions?: mongoose.ConnectionOptions;
     httpServers?: {
         hostname?: string;
         port: number;
