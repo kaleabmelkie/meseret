@@ -2,6 +2,7 @@
 
 #### v1.8.2
 
+- Timeout for 5 seconds before auto-creating new collections (to give mongoose time to register all models)
 - Improve internal tests and sync some of it the README example
 
 #### v1.8.1

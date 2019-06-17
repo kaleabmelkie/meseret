@@ -83,17 +83,22 @@ export class ServerApp {
         if (this.config.models) {
           // Create collections for models provided in IServerAppConfig ahead-of-time
           // needed for first-time ACID transactions
-          for (const model of this.config.models || []) {
-            const name = mongoose.pluralize()(model.modelName)
+          // (timeout is needs to give mongoose sometime to register all models)
+          setTimeout(async () => {
+            if (!this._dbConn) return
 
-            const collection = await this._dbConn.db
-              .listCollections({ name })
-              .next()
-            if (!collection) {
-              await this._dbConn.createCollection(name)
-              console.info(`Created '${name}' collection.`)
+            for (const model of this.config.models || []) {
+              const name = mongoose.pluralize()(model.modelName)
+
+              const collection = await this._dbConn.db
+                .listCollections({ name })
+                .next()
+              if (!collection) {
+                await this._dbConn.createCollection(name)
+                console.info(`Created '${name}' collection.`)
+              }
             }
-          }
+          }, 5000)
         }
       } else if (this.config.models) {
         // else if there are models but no mongoUris... what are they for?

@@ -19,8 +19,9 @@
     "build": "run-s clean tsc",
     "watch": "run-s clean \"tsc -w\"",
     "dev": "run-s watch",
-    "test:build": "run-s prod && cd tests && del-cli dist *.tsbuildinfo && tsc",
-    "test": "run-s test:build && cd tests && node dist"
+    "test:build": "run-s prod && cd tests && del-cli dist *.tsbuildinfo && tsc && dir",
+    "test:start": "cd tests && node dist",
+    "test": "run-s test:build test:start"
   },
   "keywords": [
     "meseret",
