@@ -1,5 +1,9 @@
 # meseret change log
 
+#### v1.8.3
+
+- Bug fix: unexpected IServerAppConfig.cacheFiles behaviors (fixed as an in-code patch to the underlying library)
+
 #### v1.8.2
 
 - Stop manual pluralization of mongoose models in ModelFactory (it was causing edge-case problems)

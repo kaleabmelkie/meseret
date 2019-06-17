@@ -13,6 +13,7 @@ import * as KoaStaticCache from 'koa-static-cache'
 import * as KoaSession from 'koa-session'
 import * as mongoose from 'mongoose'
 import * as net from 'net'
+import * as path from 'path'
 
 import { IServerAppConfig } from './IServerAppConfig'
 
@@ -190,6 +191,42 @@ export class ServerApp {
       // use provided public directories (with static cache)
       if (this.config.publicDirs) {
         for (const dir of this.config.publicDirs) {
+          if (!this.config.cacheFiles) this.config.cacheFiles = {}
+          const cacheFiles = { ...this.config.cacheFiles }
+          for (const pathKey in cacheFiles) {
+            if (!cacheFiles.hasOwnProperty(pathKey)) continue
+            const value = cacheFiles[pathKey]
+            delete cacheFiles[pathKey]
+            // normalize paths
+            cacheFiles[path.normalize(decodeURIComponent(pathKey))] = value
+          }
+          const originalCacheFilesFreeze = JSON.stringify({ ...cacheFiles })
+
+          this.app.use(async (ctx, next) => {
+            await next()
+
+            const occ = JSON.parse(originalCacheFilesFreeze)
+            for (const pathKey in occ) {
+              if (
+                occ.hasOwnProperty(pathKey) &&
+                path.normalize(decodeURIComponent(ctx.path)) === pathKey
+              ) {
+                const file = occ[pathKey]
+                if (!file || (!file.cacheControl && file.maxAge != undefined))
+                  break
+                ctx.set(
+                  'cache-control',
+                  `${file.cacheControl ||
+                    this.config.cacheControl ||
+                    'private'}${
+                    file.maxAge != undefined ? ', max-age=' + file.maxAge : ''
+                  }`
+                )
+                break
+              }
+            }
+          })
+
           this.app.use(
             KoaStaticCache(
               dir,
@@ -197,9 +234,10 @@ export class ServerApp {
                 cacheControl: this.config.cacheControl || 'private',
                 ...this.config.cacheOptions
               },
-              this.config.cacheFiles
+              cacheFiles
             )
           )
+
           this.app.use(
             KoaStatic(dir, {
               gzip:
