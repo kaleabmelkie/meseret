@@ -19,7 +19,7 @@
     "build": "run-s clean tsc",
     "watch": "run-s clean \"tsc -w\"",
     "dev": "run-s watch",
-    "test:build": "run-s prod && cd tests && del-cli dist *.tsbuildinfo && tsc && dir",
+    "test:build": "run-s prod && cd tests && del-cli dist *.tsbuildinfo && tsc",
     "test:start": "cd tests && node dist",
     "test": "run-s test:build test:start"
   },

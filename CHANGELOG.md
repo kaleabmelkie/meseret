@@ -2,6 +2,7 @@
 
 #### v1.8.2
 
+- Stop manual pluralization of mongoose models in ModelFactory (it was causing edge-case problems)
 - Timeout for 5 seconds before auto-creating new collections (to give mongoose time to register all models)
 - Improve internal tests and sync some of it the README example
 
