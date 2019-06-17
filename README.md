@@ -89,25 +89,23 @@ import { TaskRouter } from './routers/task.router'
 const taskOrganizer = new ServerApp({
   name: 'Task Organizer',
 
-  models: [TasksModel],
   mongoUris: process.env.MONGO_URI || 'mongodb://localhost/task-organizer',
+  models: [TasksModel],
+
+  publicDirs: [join(process.cwd(), 'react', 'build')],
+  spaFileRelativePath: join('react', 'build', 'index.html'),
+
+  routers: [TaskRouter],
 
   httpServers: [
     {
       hostname: process.env.HOSTNAME || '127.0.0.1',
       port: Number(process.env.PORT) || 3000
     }
-  ],
-
-  publicDirs: [join(process.cwd(), 'react', 'build')],
-  routers: [TaskRouter],
-  spaFileRelativePath: join('react', 'build', 'index.html')
+  ]
 })
 
-taskOrganizer
-  .start()
-  .then(() => console.log(`Starting 'Task Organizer'...`))
-  .catch(err => console.error(`Launch problem: ${err}`))
+taskOrganizer.start().catch(console.error)
 
 export { taskOrganizer }
 
@@ -151,10 +149,10 @@ const factory = new ModelFactory<
 
   methods: {
     async tickToggle(): Promise<boolean> {
-      const task = factory.documetify(this) // for static-type support of the `this` in this document's context
+      const task = factory.documentify(this) // for static-type support of the `this` in this document's context
       task.done = !task.done
       await task.save()
-      return Promise.resolve(task.done)
+      return task.done
     }
   },
 
@@ -164,12 +162,13 @@ const factory = new ModelFactory<
   }
 })
 
-// optionally, you may manually access and alter the schema like...
+// optionally, you may manually also access the built schema
 export const TasksSchema = factory.schema
-TasksSchema.index({ '$**': 'text' })
 
 // finally, create & export the model
 export const TasksModel = factory.model
+TasksModel.collection.createIndex({ '$**': 'text' }).catch(console.error)
+
 ```
 
 In the code above, the `ModelFactory` is imported from meseret and used to create an instance called `factory`. It receives three types to support type-checks and auto-complete of the data schema here and elsewhere in the project. These types represent the mongoose schema's paths, methods and statics, respectively. In the code above, these types are interfaces, namely `ITasksSchemaPaths`, `ITasksSchemaMethods` and `ITasksSchemaStatics` in order.
@@ -200,21 +199,27 @@ Below is how we create the [koa-router](https://www.npmjs.com/packages/koa-route
 import * as Router from 'koa-router'
 import { TasksModel } from '../models/tasks.model'
 
-const TaskRouter = new Router({ prefix: '/data/task' })
+const TaskRouter = new Router({ prefix: '/api/task' })
 
-// POST /data/task/new
+// POST /api/task/new
 TaskRouter.get('/new', async ctx => {
   ctx.body = await TasksModel.create(ctx.request.body)
 })
 
-// GET /data/task/:_id
-TaskRouter.get('/:_id', async ctx => {
+// GET /api/task/all
+TaskRouter.get('/all', async ctx => {
+  ctx.body = await TasksModel.find({})
+})
+
+// GET /api/task/one/:_id
+TaskRouter.get('/one/:_id', async ctx => {
   ctx.body = await TasksModel.findById(ctx.params._id)
 })
 
 // ... more route definitions
 
 export { TaskRouter }
+
 ```
 
 To recap, the above router (`TaskRouter`) and the model (`TasksModel`) are included in the `ServerApp` (`taskOrganizer`). When the `taskOrganizer` is started, it:

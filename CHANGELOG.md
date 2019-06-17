@@ -1,5 +1,9 @@
 # meseret change log
 
+#### v1.8.2
+
+- Improve internal tests and sync some of it the README example
+
 #### v1.8.1
 
 - A small type bug fix for newer TypeScript versions
