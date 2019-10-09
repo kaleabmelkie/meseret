@@ -28,6 +28,6 @@
     }
   },
   "dependencies": {
-    "meseret": "https://github.com/kaleabmelkie/meseret.git"
+    "meseret": "file:../"
   }
 }

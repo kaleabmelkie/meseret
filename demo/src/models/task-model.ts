@@ -1,20 +1,20 @@
 import { ModelFactory, FunctionsType } from 'meseret'
 
-export interface ITasksSchemaPaths {
+export interface ITaskSchemaPaths {
   desc: string
   done: boolean
 }
 
-export interface ITasksSchemaMethods extends FunctionsType {
+export interface ITaskSchemaMethods extends FunctionsType {
   tickToggle: () => Promise<boolean>
 }
 
-export interface ITasksSchemaStatics extends FunctionsType {} // empty for now
+export interface ITaskSchemaStatics extends FunctionsType {} // empty for now
 
 const factory = new ModelFactory<
-  ITasksSchemaPaths,
-  ITasksSchemaMethods,
-  ITasksSchemaStatics
+  ITaskSchemaPaths,
+  ITaskSchemaMethods,
+  ITaskSchemaStatics
 >({
   name: 'tasks', // collection/model name
 
@@ -42,5 +42,7 @@ const factory = new ModelFactory<
 export const TasksSchema = factory.schema
 
 // finally, create & export the model
-export const TasksModel = factory.model
-TasksModel.collection.createIndex({ '$**': 'text' }).catch(console.error)
+export const TaskModel = factory.model
+
+// indexes
+TaskModel.collection.createIndex({ '$**': 'text' }).catch(console.error)

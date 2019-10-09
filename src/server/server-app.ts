@@ -15,7 +15,7 @@ import mongoose from 'mongoose'
 import net from 'net'
 import path from 'path'
 
-import { IServerAppConfig } from './IServerAppConfig'
+import { IServerAppConfig } from './i-server-app-config'
 
 export class ServerApp {
   private _dbConn?: mongoose.Connection

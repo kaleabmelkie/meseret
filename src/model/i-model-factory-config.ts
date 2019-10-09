@@ -1,6 +1,6 @@
 import { SchemaDefinition, SchemaOptions } from 'mongoose'
 
-import { FunctionsType } from './FunctionsType'
+import { FunctionsType } from './functions-type'
 
 export interface IModelFactoryConfig<
   ISchemaMethods extends FunctionsType,

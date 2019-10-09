@@ -7,8 +7,8 @@ import {
   SchemaOptions
 } from 'mongoose'
 
-import { FunctionsType } from './FunctionsType'
-import { IModelFactoryConfig } from './IModelFactoryConfig'
+import { FunctionsType } from './functions-type'
+import { IModelFactoryConfig } from './i-model-factory-config'
 
 export class ModelFactory<
   IPaths = {},
