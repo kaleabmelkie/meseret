@@ -16,7 +16,7 @@
     "format": "prettier --write ./{*,src/**/*}.{ts,tsx,js,jsx,css,less,scss,sass,json,md,html}",
     "prod": "cross-env NODE_ENV=production run-s clean \"run-p format build test\"",
     "start": "run-s clean build \"run-p watch format dev\"",
-    "dev": "nodemon",
+    "dev": "nodemon -w dist",
     "watch": "tsc -w",
     "test": "jest --passWithNoTests",
     "test-live": "jest --passWithNoTests --watch",
