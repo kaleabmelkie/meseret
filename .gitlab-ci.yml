@@ -17,6 +17,7 @@ cache:
 
 check:
   script:
+    - yarn install
     - cd demo
     - yarn install
     - cd ..
