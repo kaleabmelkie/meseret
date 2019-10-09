@@ -19,7 +19,8 @@ check:
   script:
     - yarn install
     - yarn build
+    - yarn test
     - cd demo
     - yarn install
-    - cd ..
-    - yarn prod
+    - yarn build
+    - yarn test
