@@ -1,6 +1,6 @@
 {
   "name": "meseret",
-  "version": "1.8.3",
+  "version": "1.9.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "Opinionated, feature-packed professional node.js server framework.",
