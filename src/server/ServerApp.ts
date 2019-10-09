@@ -70,6 +70,7 @@ export class ServerApp {
         try {
           await mongoose.connect(this.config.mongoUris, {
             useNewUrlParser: true,
+            useUnifiedTopology: true,
             ...this.config.mongooseConnectionOptions
           })
           this._dbConn = mongoose.connection

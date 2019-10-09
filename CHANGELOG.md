@@ -5,6 +5,7 @@
 - Add [jest](https://www.npmjs.com/package/jest) support
 - Add [cross-env](https://www.npmjs.com/package/cross-env) support
 - Include map files and src in the npm shipment for a better debugging experience
+- Enable `useUnifiedTopology` by default for the mongoose connection
 
 #### v1.8.3
 
