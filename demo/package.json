@@ -20,7 +20,7 @@
     "watch": "tsc -w",
     "test": "jest --passWithNoTests",
     "test-live": "jest --passWithNoTests --watch",
-    "UNSAFE_upgrade": "yarn add @types/koa-passport @types/nodemailer file:libraries/account-api-v0.0.1.tgz cross-env file:libraries/inventory-api-v0.0.0.tgz jest meseret meseret-utils"
+    "upgrade": "del-cli node_modules yarn.lock package-lock.json && yarn add https://github.com/kaleabmelkie/meseret.git"
   },
   "husky": {
     "hooks": {
@@ -28,8 +28,6 @@
     }
   },
   "dependencies": {
-    "cross-env": "^6.0.3",
-    "jest": "^24.9.0",
-    "meseret": "^1.8.3"
+    "meseret": "https://github.com/kaleabmelkie/meseret.git"
   }
 }

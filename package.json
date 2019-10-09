@@ -25,10 +25,13 @@
     "build": "tsc",
     "lint": "prettier ./{*,src/**/*}.{ts,tsx,js,jsx,css,less,scss,sass,json,md,html}",
     "format": "prettier --write ./{*,src/**/*}.{ts,tsx,js,jsx,css,less,scss,sass,json,md,html}",
-    "prod": "cross-env NODE_ENV=production run-s clean \"run-p format build\"",
+    "prod": "cross-env NODE_ENV=production run-s clean \"run-p format build test\"",
     "start": "run-s watch",
     "watch": "tsc -w",
-    "test": "cd demo && run-s prod"
+    "test": "jest --passWithNoTests && run-s demo-prod",
+    "test-live": "jest --passWithNoTests --watch",
+    "demo-prod": "cd demo && run-s prod",
+    "demo-start": "cd demo && run-s start"
   },
   "husky": {
     "hooks": {
@@ -53,6 +56,7 @@
     "del-cli": "latest",
     "gridfs-stream": "latest",
     "husky": "latest",
+    "jest": "latest",
     "koa": "latest",
     "koa-body": "latest",
     "koa-compress": "latest",
