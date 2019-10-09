@@ -1,4 +1,4 @@
-import { ServerApp } from '../..'
+import { ServerApp } from 'meseret'
 import { join } from 'path'
 
 import { TasksModel } from './models/tasks.model'

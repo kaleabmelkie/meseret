@@ -1,0 +1,35 @@
+{
+  "name": "meseret-demo",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Kaleab S. Melkie <kaleabmelkie@gmail.com> (https://bit.ly/kaleab)",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "run-p": "run-p",
+    "run-s": "run-s",
+    "prepublishOnly": "run-s prod",
+    "clean": "del-cli dist",
+    "build": "tsc",
+    "lint": "prettier ./{*,src/**/*}.{ts,tsx,js,jsx,css,less,scss,sass,json,md,html}",
+    "format": "prettier --write ./{*,src/**/*}.{ts,tsx,js,jsx,css,less,scss,sass,json,md,html}",
+    "prod": "cross-env NODE_ENV=production run-s clean \"run-p format build test\"",
+    "start": "run-s clean build \"run-p watch format dev\"",
+    "dev": "nodemon",
+    "watch": "tsc -w",
+    "test": "jest --passWithNoTests",
+    "test-live": "jest --passWithNoTests --watch",
+    "UNSAFE_upgrade": "yarn add @types/koa-passport @types/nodemailer file:libraries/account-api-v0.0.1.tgz cross-env file:libraries/inventory-api-v0.0.0.tgz jest meseret meseret-utils"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "run-s prod & git update-index --again"
+    }
+  },
+  "dependencies": {
+    "cross-env": "^6.0.3",
+    "jest": "^24.9.0",
+    "meseret": "^1.8.3"
+  }
+}

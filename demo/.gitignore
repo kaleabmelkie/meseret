@@ -1078,10 +1078,8 @@ MigrationBackup/
 
 # End of https://www.gitignore.io/api/vim,node,typings,webstorm,jetbrains,reactnative,sublimetext,webstorm+all,webstorm+iml,visualstudio,jetbrains+iml,jetbrains+all,visualstudiocode
 
+# TypeScript build
+dist/
 
-# Demo
-demo/
-
-# Dependency locks
-package-lock.json
-yarn.lock
+# Core Libraries
+!libraries/*.tgz

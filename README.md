@@ -168,7 +168,6 @@ export const TasksSchema = factory.schema
 // finally, create & export the model
 export const TasksModel = factory.model
 TasksModel.collection.createIndex({ '$**': 'text' }).catch(console.error)
-
 ```
 
 In the code above, the `ModelFactory` is imported from meseret and used to create an instance called `factory`. It receives three types to support type-checks and auto-complete of the data schema here and elsewhere in the project. These types represent the mongoose schema's paths, methods and statics, respectively. In the code above, these types are interfaces, namely `ITasksSchemaPaths`, `ITasksSchemaMethods` and `ITasksSchemaStatics` in order.
@@ -219,7 +218,6 @@ TaskRouter.get('/one/:_id', async ctx => {
 // ... more route definitions
 
 export { TaskRouter }
-
 ```
 
 To recap, the above router (`TaskRouter`) and the model (`TasksModel`) are included in the `ServerApp` (`taskOrganizer`). When the `taskOrganizer` is started, it:

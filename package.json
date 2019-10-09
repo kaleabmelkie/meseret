@@ -1,28 +1,9 @@
 {
   "name": "meseret",
   "version": "1.8.3",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "description": "Opinionated, feature-packed professional node.js server framework.",
-  "main": "lib",
-  "typings": "lib",
-  "scripts": {
-    "del-cli": "del-cli",
-    "run-s": "run-s",
-    "run-p": "run-p",
-    "prettier": "prettier",
-    "tsc": "tsc",
-    "precommit": "run-s prod && git add ./lib && git update-index --again",
-    "prod": "run-s \"run-p format build\" format-lib",
-    "lint": "prettier ./{*,src/**,tests/**}/**/*.{ts,js,json,md}",
-    "format": "prettier --write ./{*,src/**,tests/**}/*.{ts,js,json,md}",
-    "format-lib": "prettier --write ./lib/**/*.{ts,js,json,md}",
-    "clean": "run-s \"del-cli lib *.tsbuildinfo\"",
-    "build": "run-s clean tsc",
-    "watch": "run-s clean \"tsc -w\"",
-    "dev": "run-s watch",
-    "test:build": "run-s prod && cd tests && del-cli dist *.tsbuildinfo && tsc",
-    "test:start": "cd tests && node dist",
-    "test": "run-s test:build test:start"
-  },
   "keywords": [
     "meseret",
     "framework",
@@ -33,9 +14,27 @@
     "koa"
   ],
   "repository": "git@gitlab.com:kaleabmelkie/meseret",
-  "author": "Kaleab Melkie <kaleabmelkie@gmail.com>",
+  "author": "Kaleab S. Melkie <kaleabmelkie@gmail.com> (https://bit.ly/kaleab)",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "run-p": "run-p",
+    "run-s": "run-s",
+    "prepublishOnly": "run-s prod",
+    "clean": "del-cli dist *.tsbuildinfo",
+    "build": "tsc",
+    "lint": "prettier ./{*,src/**/*}.{ts,tsx,js,jsx,css,less,scss,sass,json,md,html}",
+    "format": "prettier --write ./{*,src/**/*}.{ts,tsx,js,jsx,css,less,scss,sass,json,md,html}",
+    "prod": "cross-env NODE_ENV=production run-s clean \"run-p format build\"",
+    "start": "run-s watch",
+    "watch": "tsc -w",
+    "test": "cd demo && run-s prod"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "run-s prod && git update-index --again"
+    }
+  },
   "dependencies": {
     "@types/gridfs-stream": "latest",
     "@types/koa": "latest",
@@ -50,6 +49,7 @@
     "@types/mongoose": "latest",
     "@types/node": "latest",
     "@types/socket.io": "latest",
+    "cross-env": "latest",
     "del-cli": "latest",
     "gridfs-stream": "latest",
     "husky": "latest",

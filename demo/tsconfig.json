@@ -29,14 +29,11 @@
 
     /* Module Resolution Options */
     "esModuleInterop": true,
-    "resolveJsonModule": true,
 
     /* Source Map Options */
 
     /* Experimental Options */
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
-  },
-  "include": ["declarations.d.ts", "src/**/*.ts"],
-  "exclude": ["demo"]
+  }
 }

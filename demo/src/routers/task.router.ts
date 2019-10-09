@@ -1,4 +1,4 @@
-import * as Router from 'koa-router'
+import Router from 'koa-router'
 import { TasksModel } from '../models/tasks.model'
 
 const TaskRouter = new Router({ prefix: '/api/task' })

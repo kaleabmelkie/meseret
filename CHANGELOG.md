@@ -1,5 +1,11 @@
 # meseret change log
 
+#### v1.8.4
+
+- Add [jest](https://www.npmjs.com/package/jest) support
+- Add [cross-env](https://www.npmjs.com/package/cross-env) support
+- Include map files and src in the npm shipment for a better debugging experience
+
 #### v1.8.3
 
 - Bug fix: unexpected IServerAppConfig.cacheFiles behaviors (fixed as an in-code patch to the underlying library)

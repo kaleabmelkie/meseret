@@ -1,4 +1,4 @@
-import { ModelFactory, FunctionsType } from '../../..'
+import { ModelFactory, FunctionsType } from 'meseret'
 
 export interface ITasksSchemaPaths {
   desc: string
