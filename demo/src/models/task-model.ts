@@ -38,7 +38,7 @@ const factory = new ModelFactory<
     // `factory.modelify(this)` is available in functions here, for static-type support of the `this` in this model's context
   },
 
-  mongooseInstance: mongoose
+  mongooseInstance: () => mongoose
 })
 
 // optionally, you may manually also access the built schema

@@ -16,5 +16,5 @@ export interface IModelFactoryConfig<
 
   options?: SchemaOptions
 
-  mongooseInstance?: typeof mongoose
+  mongooseInstance?: (typeof mongoose) | (() => typeof mongoose)
 }

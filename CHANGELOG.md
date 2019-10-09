@@ -1,5 +1,9 @@
 # meseret change log
 
+#### v1.9.2
+
+- Support lazy-loading `mongooseInstance` in `ModelFactory`
+
 #### v1.9.1
 
 - Add an option for a custom `mongooseInstance` in `ModelFactory` to support libraries that export models

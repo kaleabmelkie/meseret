@@ -24,9 +24,12 @@ export class ModelFactory<
 
   get schema(): Schema {
     if (!this._schema) {
-      const S = this._config.mongooseInstance
-        ? this._config.mongooseInstance.Schema
-        : Schema
+      const S =
+        typeof this._config.mongooseInstance === 'function'
+          ? this._config.mongooseInstance().Schema
+          : this._config.mongooseInstance
+          ? this._config.mongooseInstance.Schema
+          : Schema
       this._schema = new S(this._config.paths, this._config.options)
       this._schema.method(this._config.methods || {})
       this._schema.static(this._config.statics || {})
@@ -37,9 +40,12 @@ export class ModelFactory<
 
   get model(): Model<Document & IPaths & ISchemaMethods> & ISchemaStatics {
     if (!this._model) {
-      const m = this._config.mongooseInstance
-        ? this._config.mongooseInstance.model
-        : model
+      const m =
+        typeof this._config.mongooseInstance === 'function'
+          ? this._config.mongooseInstance().model
+          : this._config.mongooseInstance
+          ? this._config.mongooseInstance.model
+          : model
       this._model = m(this._config.name, this.schema) as Model<
         Document & IPaths & ISchemaMethods
       > &
