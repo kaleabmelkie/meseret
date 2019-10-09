@@ -1,4 +1,5 @@
 import { ModelFactory, FunctionsType } from 'meseret'
+import * as mongoose from 'mongoose'
 
 export interface ITaskSchemaPaths {
   desc: string
@@ -35,7 +36,9 @@ const factory = new ModelFactory<
   statics: {
     // empty for now
     // `factory.modelify(this)` is available in functions here, for static-type support of the `this` in this model's context
-  }
+  },
+
+  mongooseInstance: mongoose
 })
 
 // optionally, you may manually also access the built schema

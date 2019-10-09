@@ -1,5 +1,9 @@
 # meseret change log
 
+#### v1.9.1
+
+- Add an option for a custom `mongooseInstance` in `ModelFactory` to support libraries that export models
+
 ### v1.9.0
 
 - Add [jest](https://www.npmjs.com/package/jest) support

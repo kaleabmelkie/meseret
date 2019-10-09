@@ -1,4 +1,4 @@
-import { SchemaDefinition, SchemaOptions } from 'mongoose'
+import mongoose, { SchemaDefinition, SchemaOptions } from 'mongoose'
 
 import { FunctionsType } from './functions-type'
 
@@ -15,4 +15,6 @@ export interface IModelFactoryConfig<
   statics?: ISchemaStatics
 
   options?: SchemaOptions
+
+  mongooseInstance?: typeof mongoose
 }
