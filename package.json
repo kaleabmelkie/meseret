@@ -25,10 +25,10 @@
     "build": "tsc",
     "lint": "prettier ./{*,src/**/*}.{ts,tsx,js,jsx,css,less,scss,sass,json,md,html}",
     "format": "prettier --write ./{*,src/**/*}.{ts,tsx,js,jsx,css,less,scss,sass,json,md,html}",
-    "prod": "cross-env NODE_ENV=production CI=true run-s clean \"run-p format build test\"",
+    "prod": "cross-env NODE_ENV=production CI=true run-s clean \"run-p format build test\" demo-prod",
     "start": "run-s watch",
     "watch": "tsc -w",
-    "test": "jest --passWithNoTests && run-s demo-prod",
+    "test": "jest --passWithNoTests",
     "test-live": "jest --passWithNoTests --watch",
     "demo-prod": "cd demo && run-s prod",
     "demo-start": "cd demo && run-s start"
