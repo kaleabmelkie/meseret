@@ -18,7 +18,9 @@ cache:
 check:
   script:
     - yarn install
+    - yarn link
     - cd demo
     - yarn install
+    - yarn link meseret
     - cd ..
     - yarn prod
