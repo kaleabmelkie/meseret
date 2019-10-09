@@ -20,7 +20,7 @@
     "watch": "tsc -w",
     "test": "jest --passWithNoTests",
     "test-live": "jest --passWithNoTests --watch",
-    "upgrade": "del-cli node_modules yarn.lock package-lock.json && yarn add https://github.com/kaleabmelkie/meseret.git"
+    "UNSAFE_upgrade": "yarn add file:../"
   },
   "husky": {
     "hooks": {
