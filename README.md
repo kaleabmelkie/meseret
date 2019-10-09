@@ -1,6 +1,8 @@
 # meseret
 
-[![meseret][npm-badge]][npm]
+[![meseret](https://img.shields.io/npm/v/meseret.png?style=flat-square)](https://www.npmjs.org/package/meseret)
+[![npm downloads](https://img.shields.io/npm/dm/meseret.svg?style=flat-square)](https://www.npmjs.org/package/meseret)
+[![npm](https://img.shields.io/npm/dt/meseret.svg?style=flat-square)](https://www.npmjs.org/package/meseret)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 Opinionated, feature-packed professional node.js server framework.
@@ -300,6 +302,3 @@ P.S. more API documentation is coming soon.
 Made with &hearts; in Addis Ababa.
 
 [MIT License](LICENSE) &copy; 2017-2018 [Kaleab S. Melkie](https://kaleab.kelaltech.com).
-
-[npm-badge]: https://img.shields.io/npm/v/meseret.png?style=flat-square
-[npm]: https://www.npmjs.org/package/meseret
