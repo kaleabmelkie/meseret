@@ -18,9 +18,7 @@ cache:
 check:
   script:
     - yarn install
-    - yarn build
-    - yarn test
+    - yarn run-p "build test"
     - cd demo
     - yarn install
-    - yarn build
-    - yarn test
+    - yarn run-p "build test"
