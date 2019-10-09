@@ -1,6 +1,6 @@
 # meseret change log
 
-#### v1.8.4
+### v1.9.0
 
 - Add [jest](https://www.npmjs.com/package/jest) support
 - Add [cross-env](https://www.npmjs.com/package/cross-env) support
