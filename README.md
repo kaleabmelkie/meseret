@@ -3,7 +3,7 @@
 [![meseret](https://img.shields.io/npm/v/meseret.png?style=flat-square)](https://www.npmjs.org/package/meseret)
 [![npm downloads](https://img.shields.io/npm/dm/meseret.svg?style=flat-square)](https://www.npmjs.org/package/meseret)
 [![npm](https://img.shields.io/npm/dt/meseret.svg?style=flat-square)](https://www.npmjs.org/package/meseret)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) [![Greenkeeper badge](https://badges.greenkeeper.io/kaleabmelkie/meseret.svg)](https://greenkeeper.io/)
 
 Opinionated, feature-packed professional node.js server framework.
 
